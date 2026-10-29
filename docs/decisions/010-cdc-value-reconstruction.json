@@ -1,0 +1,38 @@
+{
+  "decision": "Reconstruct unavailable CDC values in a separate, evidenced business projection",
+  "date": "2026-10-29",
+  "extends": "009-cdc-captured-values.json",
+  "contract": "cdc-values/v1",
+  "raw_consumer_contract": "sales/v2 remains unchanged",
+  "decisions": [
+    "Preserve archive payloads, source event identities, semantic hashes, Data Vault satellites and existing batch acknowledgements. Store sparse derived images in business.event_resolution rather than rewriting source evidence.",
+    "Record before/after envelopes containing the reserved unavailable-value marker. Resolve only the explicitly mapped nvarchar(max) columns in Orders and Invoices under the pinned Debezium 3.7.0 behavior.",
+    "Require both a source CDC proof and a preceding live archived value. The source proof checks operation 3/4, captured type/length/ordinal, source NULL, a clear update-mask bit, the exact marker and every other captured column of the image against verified archive contents.",
+    "Do not guess whether text equal to the marker is a literal assignment. Missing or contradictory source evidence, an unsupported column, a changed column or a literal marker in a create/snapshot blocks reconstruction.",
+    "Create proofs through a VM operator command using the existing dedicated read-only SQL account. Reobserve the source at the same boundary before importing proofs. The runtime loader cannot insert, update or delete source proof rows.",
+    "Replay each affected key in source order, using the existing source-coordinate index. A snapshot/create anchors its lifecycle; an explicit NULL is a known value, an absent field is unknown, and deletion prevents reuse of earlier lifecycle values.",
+    "Rebuild affected derived images inside the same transaction as raw ingestion and batch acknowledgement. Late earlier events invalidate their dependent revisions. Identical archive replay leaves raw rows, revision hashes and resolution timestamps unchanged.",
+    "Record a per-cell value event ID, source-observation hash and marker-proof hash. A chain of markers retains the originating known-value event rather than treating a marker as a new value.",
+    "Independently re-read each originating value event from its verified archive and compare with its source CDC image when retained. Validate available target columns directly. Report literal equality with target CDC representations separately, since an unavailable before-image NULL may correctly reconstruct to a non-NULL value.",
+    "Keep the names, columns and types of existing mart views. Read derived attributes when resolved and raise a fixed error for unresolved current rows. The export ingestion-context preflight independently blocks publication when current marker-bearing rows remain unresolved.",
+    "Keep SQL Server CDC cleanup disabled. Strict raw equality and derived reconstruction are distinct evidence; do not replace the historical v2 mismatch report or call this a certified source transaction boundary."
+  ],
+  "operations": [
+    "No additional permanent service. The existing loader image becomes version 3; PostgreSQL receives additive checksum-ledgered migration 006.",
+    "Use protected full warehouse backup and prior code/image before migration. Validate in disposable PostgreSQL databases, replay verified archives and compare source images before publishing acceptance evidence.",
+    "Proof preparation is on demand through scripts/certify-values-host.py. New unresolved events continue into raw history while protected business reads/publication are blocked until proof and prior values are available.",
+    "The proof job is bounded to 10,000 affected events; reconstruction is bounded to 100,000 events per key. Exceeding a bound fails, and requires partitioning rather than silent truncation."
+  ],
+  "limits": [
+    "The captured column/type mapping is explicit for the current five-table source. Other connectors, placeholder encodings, binary columns, schema generations and additional source tables require a new reviewed contract.",
+    "Order is established among the events currently archived and loaded. This does not prove source completeness or transaction atomicity; certified connector checkpoints and transaction fences remain independent work.",
+    "Retention and consumer approvals, pre-bootstrap history, off-VM restore and application/stored-procedure cutover remain unresolved. The backup made here is on the same VM.",
+    "A reserved-marker literal that cannot be unambiguously distinguished is blocked for review. It is never silently turned into NULL or a preceding string.",
+    "Proof production is not yet continuously scheduled. Source history must still be retained while proof is collected; absent CDC rows are not replaced by current base-table values."
+  ],
+  "sources": [
+    "https://github.com/debezium/debezium/blob/v3.7.0.Final/debezium-connector-sqlserver/src/main/java/io/debezium/connector/sqlserver/SqlServerChangeTablePointer.java",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-functions/cdc-fn-cdc-get-all-changes-capture-instance-transact-sql",
+    "https://www.postgresql.org/docs/18/sql-createview.html"
+  ]
+}

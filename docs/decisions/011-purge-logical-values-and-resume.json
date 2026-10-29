@@ -1,0 +1,41 @@
+{
+  "decision": "Revalidate reconstructed CDC values and verify a bounded persistent connector resume independently",
+  "date": "2026-10-29",
+  "status": "Deployed and validated on the VM; purge and crash-durability certification remain blocked",
+  "live_evidence": {
+    "audit": "../validation/cdc-purge-audit-v3-2026-10-29.json",
+    "resume": "../validation/cdc-local-resume-v1-2026-10-29.json",
+    "audit_run": "20261029T160143Z-87331a9da67a",
+    "resume_run": "20261029T153635Z-9119c3f1",
+    "audit_tests_passed": 79
+  },
+  "extends": ["009-cdc-captured-values.json", "010-cdc-value-reconstruction.json"],
+  "contract": "cdc-purge-audit/v3",
+  "decisions": [
+    "Keep captured_column_values as the unchanged strict raw diagnostic. Replace the v2 FULL_SOURCE_ROW_IMAGES_RECONCILED gate with the explicitly named v3 RETAINED_LOGICAL_ROW_IMAGES_RECONCILED gate. Historical v1/v2 reports remain immutable.",
+    "Export a bounded reconstruction bundle in one read-only PostgreSQL repeatable-read transaction through the VM operator. The runtime audit identity gains no business-table privileges. Its protected input already contains source business values; the additional bundle remains under the same access restrictions.",
+    "Rebuild affected keys from the complete checksum-verified active archive scan. Revalidate marker proofs against the current source image, column metadata, update mask and verified manifest. Check prior live state, delete barriers, every resolved value, per-cell lineage and the deterministic history/proof revision.",
+    "An old passed report is not proof. Require the source observation and exported reconstruction bundle to remain unchanged across this audit. Late changes, missing proofs, missing history, unused proofs, unsupported markers or value differences fail closed.",
+    "Decode the file offset using a bounded data-only reader for the specific HashMap<byte[],byte[]> Java serialization format used by Kafka FileOffsetBackingStore. No JVM deserialization or class loading is performed by the auditor. Null, duplicate, truncated, unexpected-class and oversized data are rejected.",
+    "Support one SQL Server partition and the pinned direct/function offset fields. Record namespace, database, server, commit/change LSN, event serial number and command_id. In direct mode, order command_id before change_lsn as the pinned TxLogPosition implementation does. Reject query-mode changes during an exercise. Incremental-snapshot state and format changes require further implementation.",
+    "The live image uses direct mode; archived event source metadata omits command_id. Bind each exercised probe and checkpoint event to unique retained CDC images by table, key, operation and commit/change LSN. Require update before/after images to agree on command_id; absence, ambiguity or a mismatching offset command fails. Never infer this field from the maximum LSN.",
+    "Keep the normal audit read-only. A separate explicit operator exercise briefly stops and recreates Debezium with unchanged persistent mounts, configuration and image; it fsyncs and saves the stopped state, verifies isolated lab probe cycles before/during/after the stop, and checks that archived snapshot counts do not increase.",
+    "Revalidate exercise probe events and checkpoint coordinates in the audit's fresh archive scan. Bind the exercise to the current container, source container, image, configuration and schema history. Require unchanged current checkpoint observations and a recent exercise (24-hour lab default).",
+    "Separate CONNECTOR_PERSISTENT_RESUME_VERIFIED from CONNECTOR_DURABLE_RESUME_CHECKPOINT_CERTIFIED. Graceful local recreation does not prove crash/power-loss durability of the offset store. The latter gate, transaction fence and off-VM restoration remain unknown.",
+    "Always return purge_authorized=false, changes_deleted=0 and no executable watermark. This milestone implements no cleanup executor or schedule."
+  ],
+  "bounds_and_tradeoffs": [
+    "At most 10,000 reconstruction targets, 100,000 proof cells and 100,000 relevant history events in total per audit. A larger workload requires partitioning; no truncation is accepted.",
+    "Offset files are limited to 1 MiB, individual serialized byte arrays to 64 KiB and maps to 32 entries; certification accepts exactly one expected partition. Schema history observations are limited to 64 MiB.",
+    "The unchanged-before/after requirements are conservative for this quiet single-VM lab. Busy online cutover requires a separate stable-boundary protocol, not removal of these checks.",
+    "The exercise preserves local copies of offsets and schema history but does not restore them or simulate disk loss. FileOffsetBackingStore's reviewed implementation writes through ObjectOutputStream without an explicit fsync or atomic replacement; normal connector writes are not certified against abrupt power loss.",
+    "The deployed Debezium 3.7.0.Final image contains connect-runtime-4.3.1.jar. The bounded parser successfully decoded its actual offset file, namespace http and the wwi/WideWorldImporters partition. No broker or Kafka Connect service is added."
+  ],
+  "sources": [
+    "https://github.com/apache/kafka/blob/4.3.1/connect/runtime/src/main/java/org/apache/kafka/connect/storage/FileOffsetBackingStore.java",
+    "https://github.com/debezium/debezium/blob/v3.7.0.Final/debezium-connector-sqlserver/src/main/java/io/debezium/connector/sqlserver/SqlServerOffsetContext.java",
+    "https://github.com/debezium/debezium/blob/v3.7.0.Final/debezium-connector-sqlserver/src/main/java/io/debezium/connector/sqlserver/TxLogPosition.java",
+    "https://github.com/debezium/debezium/blob/v3.7.0.Final/pom.xml",
+    "https://docs.oracle.com/en/java/javase/21/docs/specs/serialization/protocol.html"
+  ]
+}

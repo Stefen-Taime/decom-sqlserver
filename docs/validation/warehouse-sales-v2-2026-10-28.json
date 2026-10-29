@@ -1,0 +1,452 @@
+{
+  "verified_at": "2026-10-28T21:10:25.194655+00:00",
+  "consumer_version": "sales/v2",
+  "scope": [
+    "Sales.Customers",
+    "Sales.Orders",
+    "Sales.OrderLines",
+    "Sales.Invoices",
+    "Sales.InvoiceLines"
+  ],
+  "integration_tests": {
+    "passed": 28,
+    "isolated_database": "warehouse_test; removed after tests"
+  },
+  "reconciliation": {
+    "passed": true,
+    "tables": {
+      "Sales.Customers": {
+        "source_rows": 663,
+        "warehouse_rows": 663,
+        "checked_columns": [
+          "CustomerID",
+          "CustomerName",
+          "BillToCustomerID",
+          "CustomerCategoryID",
+          "BuyingGroupID",
+          "PrimaryContactPersonID",
+          "AlternateContactPersonID",
+          "DeliveryMethodID",
+          "DeliveryCityID",
+          "PostalCityID",
+          "CreditLimit",
+          "AccountOpenedDate",
+          "StandardDiscountPercentage",
+          "IsStatementSent",
+          "IsOnCreditHold",
+          "PaymentDays",
+          "PhoneNumber",
+          "FaxNumber",
+          "DeliveryRun",
+          "RunPosition",
+          "WebsiteURL",
+          "DeliveryAddressLine1",
+          "DeliveryAddressLine2",
+          "DeliveryPostalCode",
+          "PostalAddressLine1",
+          "PostalAddressLine2",
+          "PostalPostalCode"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "f913d9f23770831856a45d9430b9b2231047fe1064aea46278b3b0cf41ab07df",
+        "warehouse_projection_sha256": "f913d9f23770831856a45d9430b9b2231047fe1064aea46278b3b0cf41ab07df"
+      },
+      "Sales.Orders": {
+        "source_rows": 73595,
+        "warehouse_rows": 73595,
+        "checked_columns": [
+          "OrderID",
+          "CustomerID",
+          "SalespersonPersonID",
+          "PickedByPersonID",
+          "ContactPersonID",
+          "BackorderOrderID",
+          "OrderDate",
+          "ExpectedDeliveryDate",
+          "CustomerPurchaseOrderNumber",
+          "IsUndersupplyBackordered",
+          "Comments",
+          "DeliveryInstructions",
+          "InternalComments",
+          "PickingCompletedWhen"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "d93f19737ed98b1fb57980774a0f88378a4a16e468fdef824ccb0673e3b7de67",
+        "warehouse_projection_sha256": "d93f19737ed98b1fb57980774a0f88378a4a16e468fdef824ccb0673e3b7de67"
+      },
+      "Sales.OrderLines": {
+        "source_rows": 231412,
+        "warehouse_rows": 231412,
+        "checked_columns": [
+          "OrderLineID",
+          "OrderID",
+          "StockItemID",
+          "Description",
+          "PackageTypeID",
+          "Quantity",
+          "UnitPrice",
+          "TaxRate",
+          "PickedQuantity",
+          "PickingCompletedWhen"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "b44dd903dcac9f94fce68d724dc3c0984b78202acd3991e7fbeace95409b8685",
+        "warehouse_projection_sha256": "b44dd903dcac9f94fce68d724dc3c0984b78202acd3991e7fbeace95409b8685"
+      },
+      "Sales.Invoices": {
+        "source_rows": 70510,
+        "warehouse_rows": 70510,
+        "checked_columns": [
+          "InvoiceID",
+          "CustomerID",
+          "BillToCustomerID",
+          "OrderID",
+          "DeliveryMethodID",
+          "ContactPersonID",
+          "AccountsPersonID",
+          "SalespersonPersonID",
+          "PackedByPersonID",
+          "InvoiceDate",
+          "CustomerPurchaseOrderNumber",
+          "IsCreditNote",
+          "CreditNoteReason",
+          "Comments",
+          "DeliveryInstructions",
+          "InternalComments",
+          "TotalDryItems",
+          "TotalChillerItems",
+          "DeliveryRun",
+          "RunPosition",
+          "ReturnedDeliveryData",
+          "ConfirmedDeliveryTime",
+          "ConfirmedReceivedBy"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "55f403dada3c8d2f9ef2af9f367c0e5c848e19035d146ce7e960f69ba7e1ef1a",
+        "warehouse_projection_sha256": "55f403dada3c8d2f9ef2af9f367c0e5c848e19035d146ce7e960f69ba7e1ef1a"
+      },
+      "Sales.InvoiceLines": {
+        "source_rows": 228265,
+        "warehouse_rows": 228265,
+        "checked_columns": [
+          "InvoiceLineID",
+          "InvoiceID",
+          "StockItemID",
+          "Description",
+          "PackageTypeID",
+          "Quantity",
+          "UnitPrice",
+          "TaxRate",
+          "TaxAmount",
+          "LineProfit",
+          "ExtendedPrice"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "7e431cba2cbe4ec8b89276c923e32922fd7c262eb328d5de1f5fb40924a1512a",
+        "warehouse_projection_sha256": "7e431cba2cbe4ec8b89276c923e32922fd7c262eb328d5de1f5fb40924a1512a"
+      }
+    },
+    "orphan_relationships": {
+      "order_customers": 0,
+      "order_line_orders": 0,
+      "invoice_customers": 0,
+      "invoice_bill_to_customers": 0,
+      "invoice_orders": 0,
+      "invoice_line_invoices": 0
+    },
+    "view_grains": {
+      "order_details": {
+        "rows": 231412,
+        "distinct_keys": 231412,
+        "expected_rows": 231412
+      },
+      "invoice_details": {
+        "rows": 228265,
+        "distinct_keys": 228265,
+        "expected_rows": 228265
+      },
+      "invoice_summary": {
+        "rows": 70510,
+        "distinct_keys": 70510,
+        "expected_rows": 70510
+      }
+    },
+    "invoice_totals": {
+      "quantity": {
+        "invoice_lines": "8950628",
+        "invoice_details": "8950628",
+        "invoice_summary": "8950628"
+      },
+      "tax_amount": {
+        "invoice_lines": "25782098.25",
+        "invoice_details": "25782098.25",
+        "invoice_summary": "25782098.25"
+      },
+      "line_profit": {
+        "invoice_lines": "85729180.90",
+        "invoice_details": "85729180.90",
+        "invoice_summary": "85729180.90"
+      },
+      "extended_price": {
+        "invoice_lines": "198043439.45",
+        "invoice_details": "198043439.45",
+        "invoice_summary": "198043439.45"
+      }
+    },
+    "source_export_at": "2026-10-28T20:54:53.739101+00:00",
+    "scope": "Full business primary-key sets and explicit projections, excluding spatial and audit columns; quiet fixture validation, not an online cutover checkpoint.",
+    "purge_authorized": false
+  },
+  "fixture_business_projection_unchanged": true,
+  "upgrade": {
+    "legacy_batches": 375,
+    "legacy_events": 74261,
+    "legacy_batch_fingerprint_preserved": true,
+    "legacy_event_fingerprint_preserved": true,
+    "legacy_scoped_checkpoints_copied": true,
+    "pre_cutover_backup": "/srv/decom-sqlserver/releases/warehouse-sales-v2-20261028/warehouse-pre-v2.dump",
+    "pre_cutover_backup_sha256": "28b98760639d8704b4c25efefb771d7c556799cb7178663e8c9c6bdeb42c245b",
+    "old_image_id": "sha256:559d752f1593cda231ae862c095795b494313a36ed69317d7f94b3f447cd934f"
+  },
+  "consumer_ledgers": [
+    {
+      "consumer_version": "sales/v2",
+      "verified_batches": 3027,
+      "selected_event_deliveries": 604459,
+      "new_events": 530198,
+      "reused_event_deliveries": 74261,
+      "out_of_scope_events": 0,
+      "last_batch_at": "2026-10-28T20:53:19.873459+00:00"
+    },
+    {
+      "consumer_version": "customers-orders/v1",
+      "verified_batches": 375,
+      "selected_event_deliveries": 74261,
+      "new_events": 74261,
+      "reused_event_deliveries": 0,
+      "out_of_scope_events": 542,
+      "last_batch_at": "2026-10-28T20:04:42.511416+00:00"
+    }
+  ],
+  "live_cdc_restart_replay": {
+    "verified_at": "2026-10-28T20:57:58.421736+00:00",
+    "probe_key": 2000000100,
+    "marker": "sales-v2-634853b7-2d2a-4854-b735-1d2bb87829cd",
+    "phases": {
+      "created": {
+        "invoice": {
+          "CustomerID": 1,
+          "BillToCustomerID": 2,
+          "OrderID": null,
+          "ConfirmedDeliveryTime": "2026-10-28T12:30:15.1234567",
+          "ConfirmedReceivedBy": "sales-v2-634853b7-2d2a-4854-b735-1d2bb87829cd-created"
+        },
+        "line_quantity": 2,
+        "line_extended_price": "0.23"
+      },
+      "updated": {
+        "invoice": {
+          "CustomerID": 1,
+          "BillToCustomerID": 2,
+          "OrderID": 2000000100,
+          "ConfirmedDeliveryTime": "2026-10-28T12:30:15.7654321",
+          "ConfirmedReceivedBy": "sales-v2-634853b7-2d2a-4854-b735-1d2bb87829cd-updated"
+        },
+        "line_quantity": 3,
+        "line_extended_price": "0.34"
+      }
+    },
+    "operations": {
+      "Sales.InvoiceLines": [
+        "c",
+        "u",
+        "d"
+      ],
+      "Sales.Invoices": [
+        "c",
+        "u",
+        "d"
+      ],
+      "Sales.OrderLines": [
+        "c",
+        "u",
+        "d"
+      ],
+      "Sales.Orders": [
+        "c",
+        "d"
+      ]
+    },
+    "raw_streaming_invoice_computed_values_null": true,
+    "computed_values_rebuilt_from_delivery_json": true,
+    "counts_before_restart": {
+      "customers": 663,
+      "orders": 73595,
+      "order_lines": 231412,
+      "invoices": 70510,
+      "invoice_lines": 228265,
+      "journal_events": 604459,
+      "batch_headers": 3027,
+      "scope_batches": 3027,
+      "h_customer": 663,
+      "h_order": 73597,
+      "h_order_line": 231413,
+      "h_invoice": 70511,
+      "h_invoice_line": 228266,
+      "l_order_customer": 73597,
+      "l_order_line_order": 231413,
+      "l_invoice_customer": 70511,
+      "l_invoice_bill_to_customer": 70511,
+      "l_invoice_order": 70511,
+      "l_invoice_line_invoice": 228266,
+      "s_customer": 663,
+      "s_order": 73600,
+      "s_order_line": 231415,
+      "s_invoice": 70513,
+      "s_invoice_line": 228268
+    },
+    "counts_after_restart": {
+      "customers": 663,
+      "orders": 73595,
+      "order_lines": 231412,
+      "invoices": 70510,
+      "invoice_lines": 228265,
+      "journal_events": 604459,
+      "batch_headers": 3027,
+      "scope_batches": 3027,
+      "h_customer": 663,
+      "h_order": 73597,
+      "h_order_line": 231413,
+      "h_invoice": 70511,
+      "h_invoice_line": 228266,
+      "l_order_customer": 73597,
+      "l_order_line_order": 231413,
+      "l_invoice_customer": 70511,
+      "l_invoice_bill_to_customer": 70511,
+      "l_invoice_order": 70511,
+      "l_invoice_line_invoice": 228266,
+      "s_customer": 663,
+      "s_order": 73600,
+      "s_order_line": 231415,
+      "s_invoice": 70513,
+      "s_invoice_line": 228268
+    },
+    "counts_after_replay": {
+      "customers": 663,
+      "orders": 73595,
+      "order_lines": 231412,
+      "invoices": 70510,
+      "invoice_lines": 228265,
+      "journal_events": 604459,
+      "batch_headers": 3027,
+      "scope_batches": 3027,
+      "h_customer": 663,
+      "h_order": 73597,
+      "h_order_line": 231413,
+      "h_invoice": 70511,
+      "h_invoice_line": 228266,
+      "l_order_customer": 73597,
+      "l_order_line_order": 231413,
+      "l_invoice_customer": 70511,
+      "l_invoice_bill_to_customer": 70511,
+      "l_invoice_order": 70511,
+      "l_invoice_line_invoice": 228266,
+      "s_customer": 663,
+      "s_order": 73600,
+      "s_order_line": 231415,
+      "s_invoice": 70513,
+      "s_invoice_line": 228268
+    },
+    "replay": {
+      "scanned_manifests": 3027,
+      "verified_batches_this_run": 3027,
+      "new_events": 0,
+      "purge_authorized": false
+    },
+    "source_probe_rows_removed": true,
+    "purge_authorized": false
+  },
+  "backup_restore": {
+    "backup": "/srv/decom-sqlserver/warehouse/backups/warehouse-20261028T210157Z.dump",
+    "sha256": "a17cd8ebf9d8c2b6af7d5250a1a831dbb3042fc1960bde972f8f61475de2ec18",
+    "bytes": 426003035,
+    "isolated_restore_and_business_reconciliation": "passed",
+    "existing_cluster_roles_reused": true,
+    "off_vm_recovery_tested": false,
+    "purge_authorized": false
+  },
+  "cloudbeaver": {
+    "cloudbeaver_login": "passed",
+    "postgresql_saved_connection": "passed",
+    "validated_counts": [
+      663,
+      73595,
+      231412,
+      70510,
+      228265,
+      231412,
+      228265
+    ],
+    "reader_can_insert": false
+  },
+  "archive_reader_permissions": {
+    "archive_list": "passed",
+    "archive_read": "passed",
+    "archive_write_denied": true
+  },
+  "loader_image": "decom-warehouse-loader:2 sha256:054226c9095b0d3c89d091b99e4b2ac25d17259cf1c98122e7837627b262cf70",
+  "service_health": {
+    "decom-sqlserver-sqlserver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-debezium-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-archiver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-seaweedfs-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cloudbeaver-cloudbeaver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-postgres-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-loader-1": {
+      "running": true,
+      "health": "healthy"
+    }
+  },
+  "automatic_cdc_cleanup_enabled": false,
+  "purge_authorized": false,
+  "limits": [
+    "Five captured business tables only; not the whole source database",
+    "Spatial and audit columns excluded from business reconciliation",
+    "No stored procedure migration or application cutover",
+    "Same-VM restore with existing roles; no off-VM disaster recovery",
+    "Per-batch atomicity and eventual cross-table consistency; no contiguous source purge watermark"
+  ]
+}

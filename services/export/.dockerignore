@@ -1,0 +1,8 @@
+.env
+.secrets
+.reload-seaweed
+data
+__pycache__
+**/__pycache__
+scripts
+README.md

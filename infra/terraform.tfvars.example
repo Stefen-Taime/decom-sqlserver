@@ -1,0 +1,8 @@
+project_id   = "your-gcp-project-id"
+admin_member = "user:you@example.com"
+
+region            = "northamerica-northeast1"
+zone              = "northamerica-northeast1-b"
+name              = "decom-sqlserver-lab"
+machine_type      = "e2-custom-4-12288"
+data_disk_size_gb = 100

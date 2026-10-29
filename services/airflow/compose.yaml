@@ -1,0 +1,119 @@
+name: decom-airflow
+x-airflow: &airflow
+  build: .
+  image: decom-airflow:3.3.2-1
+  user: "50000:0"
+  restart: unless-stopped
+  stop_grace_period: 90s
+  environment: &environment
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN_CMD: cat /run/secrets/sql_connection
+    AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_SIZE: "2"
+    AIRFLOW__DATABASE__SQL_ALCHEMY_MAX_OVERFLOW: "0"
+    AIRFLOW__CORE__FERNET_KEY_CMD: cat /run/secrets/fernet_key
+    AIRFLOW__API__SECRET_KEY_CMD: cat /run/secrets/api_secret
+    AIRFLOW__API_AUTH__JWT_SECRET_CMD: cat /run/secrets/jwt_secret
+    AIRFLOW__API_AUTH__JWT_ISSUER: decom-airflow-lab
+    AIRFLOW__API__BASE_URL: http://localhost:8080
+    AIRFLOW__API__WORKERS: "1"
+    AIRFLOW__CORE__EXECUTION_API_SERVER_URL: http://api:8080/execution/
+    AIRFLOW__CORE__PARALLELISM: "1"
+    AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: "1"
+    AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG: "1"
+    AIRFLOW__CORE__DEFAULT_POOL_TASK_SLOT_COUNT: "1"
+    AIRFLOW__CORE__DEFAULT_TIMEZONE: America/Toronto
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__DAG_PROCESSOR__PARSING_PROCESSES: "1"
+    AIRFLOW__DAG_PROCESSOR__MIN_FILE_PROCESS_INTERVAL: "30"
+    AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: "true"
+    AIRFLOW__SCHEDULER__MAX_TIS_PER_QUERY: "1"
+    AIRFLOW__LOGGING__LOGGING_LEVEL: INFO
+    AIRFLOW__METRICS__STATSD_ON: "false"
+    AIRFLOW__CORE__TEST_CONNECTION: Disabled
+    PYTHONDONTWRITEBYTECODE: "1"
+  secrets: [sql_connection,fernet_key,api_secret,jwt_secret]
+  volumes:
+    - ./dags:/opt/airflow/dags:ro
+    - ${AIRFLOW_DATA_DIR:-./data}/logs:/opt/airflow/logs
+  networks: [control,metadata]
+  logging:
+    driver: local
+    options: {max-size: "10m", max-file: "3"}
+services:
+  api:
+    <<: *airflow
+    command: api-server
+    ports: ["127.0.0.1:8080:8080"]
+    mem_limit: 1024m
+    memswap_limit: 1024m
+    cpus: 1.0
+    healthcheck:
+      test: [CMD,curl,--fail,http://localhost:8080/api/v2/monitor/health]
+      interval: 20s
+      timeout: 10s
+      retries: 12
+      start_period: 60s
+  scheduler:
+    <<: *airflow
+    hostname: airflow-scheduler
+    command: scheduler
+    secrets: [sql_connection,fernet_key,api_secret,jwt_secret,runner_key,runner_known_hosts]
+    extra_hosts: ["lab-host:host-gateway"]
+    mem_limit: 2048m
+    memswap_limit: 2048m
+    cpus: 1.5
+    depends_on:
+      api: {condition: service_healthy}
+    healthcheck:
+      test: [CMD,curl,--fail,http://localhost:8974/health]
+      interval: 20s
+      timeout: 10s
+      retries: 12
+      start_period: 60s
+  dag-processor:
+    <<: *airflow
+    command: dag-processor
+    mem_limit: 768m
+    memswap_limit: 768m
+    cpus: 0.75
+    healthcheck:
+      test: [CMD,python,/opt/lab/health.py]
+      interval: 30s
+      timeout: 15s
+      retries: 8
+      start_period: 60s
+  init:
+    <<: *airflow
+    profiles: [tools]
+    restart: "no"
+    environment:
+      <<: *environment
+      AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_SIZE: "5"
+    command: [python,/opt/lab/init-container.py]
+    secrets: [sql_connection,fernet_key,api_secret,jwt_secret,admin_credentials]
+    mem_limit: 1024m
+    memswap_limit: 1024m
+    cpus: 1.0
+secrets:
+  sql_connection:
+    file: ${AIRFLOW_SECRET_DIR:-./.secrets}/sql_connection
+  fernet_key:
+    file: ${AIRFLOW_SECRET_DIR:-./.secrets}/fernet_key
+  api_secret:
+    file: ${AIRFLOW_SECRET_DIR:-./.secrets}/api_secret
+  jwt_secret:
+    file: ${AIRFLOW_SECRET_DIR:-./.secrets}/jwt_secret
+  admin_credentials:
+    file: ${AIRFLOW_SECRET_DIR:-./.secrets}/admin.json
+  runner_key:
+    file: ${AIRFLOW_SECRET_DIR:-./.secrets}/runner_ed25519
+  runner_known_hosts:
+    file: ${AIRFLOW_SECRET_DIR:-./.secrets}/runner_known_hosts
+networks:
+  control:
+    name: decom-airflow-control
+  metadata:
+    external: true
+    name: decom-warehouse-backend

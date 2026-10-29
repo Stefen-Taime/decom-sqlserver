@@ -1,0 +1,200 @@
+{
+  "verified_on": "2026-10-28",
+  "receiver_image": "decom-cdc-archiver:2",
+  "automated_tests": {
+    "passed": 21,
+    "environment": "disposable container on the lab VM"
+  },
+  "migration": {
+    "state": "complete",
+    "verified_at": "2026-10-28T18:53:04.263793+00:00",
+    "layout": "table-batch-date/v2",
+    "source_prefix": "raw/wwi/bootstrap-v1",
+    "target_prefix": "raw/wwi/bootstrap-v2",
+    "source_inventory_sha256": "276d2ab9877f2480a7a8047d0ca0c5e6283303b5549f190f0f6af279a8839cbd",
+    "verified_batches": 3026,
+    "verified_target_objects": 6052,
+    "records": 604454,
+    "tables": {
+      "Sales.Customers": 663,
+      "Sales.InvoiceLines": 228265,
+      "Sales.Invoices": 70510,
+      "Sales.OrderLines": 231412,
+      "Sales.Orders": 73595,
+      "lab.CdcProbe": 9
+    },
+    "operations": {
+      "r": 604445,
+      "c": 3,
+      "u": 3,
+      "d": 3
+    },
+    "source_unreceipted_payloads": 0,
+    "payload_bytes_preserved": true,
+    "compressed_bytes_preserved": true,
+    "source_deleted": false,
+    "purge_authorized": false
+  },
+  "full_mapping_report": {
+    "vm_path": "/srv/decom-sqlserver/cdc/migration-reports/layout-v2-migration.json",
+    "sha256": "f1fa859b2dff557b296607f44969adcbd71bae6ad529a1f7b6c5a8e2a126a4d9",
+    "entries": 3026
+  },
+  "requested_file_example": {
+    "source_receipt": "raw/wwi/bootstrap-v1/Sales.Customers/6f/6f4c55f78b84a99a8c0acb25a534fe1eaf5a92791f4df508dd54af9ee7082943.receipt.json",
+    "source_payload": "raw/wwi/bootstrap-v1/Sales.Customers/6f/6f4c55f78b84a99a8c0acb25a534fe1eaf5a92791f4df508dd54af9ee7082943.json.gz",
+    "target_receipt": "raw/wwi/bootstrap-v2/manifests/table=Sales.Customers/batch_date=2026-10-28/6f4c55f78b84a99a8c0acb25a534fe1eaf5a92791f4df508dd54af9ee7082943.receipt.json",
+    "target_payload": "raw/wwi/bootstrap-v2/data/table=Sales.Customers/batch_date=2026-10-28/6f4c55f78b84a99a8c0acb25a534fe1eaf5a92791f4df508dd54af9ee7082943.json.gz",
+    "payload_sha256": "6f4c55f78b84a99a8c0acb25a534fe1eaf5a92791f4df508dd54af9ee7082943",
+    "compressed_sha256": "7ab1b5856eab2b4622d4d1f17711d7cd8f79d30367bd723b1569130ed6604bd3",
+    "records": 200,
+    "tables": {
+      "Sales.Customers": 200
+    },
+    "operations": {
+      "r": 200
+    }
+  },
+  "snapshot_verification_before_resume": {
+    "verified_receipts": 3026,
+    "snapshot_unique_keys": {
+      "Sales.Customers": 663,
+      "Sales.InvoiceLines": 228265,
+      "Sales.Invoices": 70510,
+      "Sales.OrderLines": 231412,
+      "Sales.Orders": 73595
+    },
+    "snapshot_last_marker": true,
+    "archived_events_by_table": {
+      "Sales.Customers": 663,
+      "Sales.InvoiceLines": 228265,
+      "Sales.Invoices": 70510,
+      "Sales.OrderLines": 231412,
+      "Sales.Orders": 73595,
+      "lab.CdcProbe": 9
+    },
+    "operations": {
+      "r": 604445,
+      "c": 3,
+      "u": 3,
+      "d": 3
+    },
+    "probes": {},
+    "purge_authorized": false
+  },
+  "cdc_recovery": {
+    "baseline_probe": "95aafb95-266d-45c2-94f4-fbc57a29da8c",
+    "outage_probe": "fcafad60-f4d7-4414-bcbc-cba0e504cdff",
+    "restart_probe": "3f0e81f3-316d-47b4-8cc9-a6f86e8fd7e4",
+    "storage_outage_offset_unchanged": true,
+    "purge_authorized": false,
+    "outage_verification": {
+      "verified_receipts": 9,
+      "snapshot_unique_keys": {
+        "Sales.Customers": 63,
+        "Sales.InvoiceLines": 20,
+        "Sales.Invoices": 310,
+        "Sales.OrderLines": 212,
+        "Sales.Orders": 195
+      },
+      "snapshot_last_marker": false,
+      "archived_events_by_table": {
+        "lab.CdcProbe": 15,
+        "Sales.OrderLines": 212,
+        "Sales.Invoices": 310,
+        "Sales.Customers": 63,
+        "Sales.Orders": 195,
+        "Sales.InvoiceLines": 20
+      },
+      "operations": {
+        "c": 5,
+        "u": 5,
+        "d": 5,
+        "r": 800
+      },
+      "probes": {
+        "fcafad60-f4d7-4414-bcbc-cba0e504cdff": [
+          {
+            "op": "c",
+            "value": "before",
+            "commit_lsn": "00000274:00003dd0:0003",
+            "change_lsn": "00000274:00003dd0:0002",
+            "event_serial_no": 1
+          },
+          {
+            "op": "u",
+            "value": "after",
+            "commit_lsn": "00000274:00003dd8:0003",
+            "change_lsn": "00000274:00003dd8:0002",
+            "event_serial_no": 2
+          },
+          {
+            "op": "d",
+            "value": "after",
+            "commit_lsn": "00000274:00003de0:0005",
+            "change_lsn": "00000274:00003de0:0002",
+            "event_serial_no": 1
+          }
+        ]
+      },
+      "purge_authorized": false
+    },
+    "restart_verification": {
+      "verified_receipts": 10,
+      "snapshot_unique_keys": {
+        "Sales.Customers": 63,
+        "Sales.InvoiceLines": 20,
+        "Sales.Invoices": 310,
+        "Sales.OrderLines": 212,
+        "Sales.Orders": 195
+      },
+      "snapshot_last_marker": false,
+      "archived_events_by_table": {
+        "lab.CdcProbe": 18,
+        "Sales.OrderLines": 212,
+        "Sales.Invoices": 310,
+        "Sales.Customers": 63,
+        "Sales.Orders": 195,
+        "Sales.InvoiceLines": 20
+      },
+      "operations": {
+        "c": 6,
+        "u": 6,
+        "d": 6,
+        "r": 800
+      },
+      "probes": {
+        "3f0e81f3-316d-47b4-8cc9-a6f86e8fd7e4": [
+          {
+            "op": "c",
+            "value": "before",
+            "commit_lsn": "00000274:00003f28:0003",
+            "change_lsn": "00000274:00003f28:0002",
+            "event_serial_no": 1
+          },
+          {
+            "op": "u",
+            "value": "after",
+            "commit_lsn": "00000274:00003f30:0003",
+            "change_lsn": "00000274:00003f30:0002",
+            "event_serial_no": 2
+          },
+          {
+            "op": "d",
+            "value": "after",
+            "commit_lsn": "00000274:00003f38:0005",
+            "change_lsn": "00000274:00003f38:0002",
+            "event_serial_no": 1
+          }
+        ]
+      },
+      "purge_authorized": false
+    }
+  },
+  "baseline_insert_update_delete_verified": true,
+  "no_new_snapshot_on_connector_recreation": true,
+  "filer_browser_new_customer_partition_verified": true,
+  "source_archive_preserved": true,
+  "offsets_reset": false,
+  "purge_authorized": false
+}

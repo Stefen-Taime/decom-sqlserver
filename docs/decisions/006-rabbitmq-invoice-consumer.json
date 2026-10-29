@@ -1,0 +1,117 @@
+{
+  "title": "One invoice application notified through RabbitMQ",
+  "date": "2026-10-29",
+  "status": "Implemented and validated in the single-VM lab",
+  "scope": {
+    "dataset": "invoice_details/v1",
+    "other_consumers": "Continue direct SeaweedFS/PostgreSQL reads; order exports are not routed to RabbitMQ",
+    "notification": "Metadata pointer to a committed full-export publication; no invoice rows in AMQP"
+  },
+  "deployment": {
+    "broker": "rabbitmq:4.4.0-management@sha256:af6f50d38098d8bd52fef7f3fa85015dd8b2bf6def58e995bf584ae9ba0f6407",
+    "client": "pika==1.4.4",
+    "runtime": "Persistent broker, polling dispatcher, invoice application; ten total permanent containers",
+    "limits_mib": {
+      "rabbitmq": 768,
+      "dispatcher": 256,
+      "invoice_app": 512
+    },
+    "management": "127.0.0.1:15672 through SSH/IAP; private AMQP network, additional broker-only management bridge"
+  },
+  "contract": {
+    "event_type": "export.ready/v1",
+    "fields": [
+      "event_id",
+      "type",
+      "dataset",
+      "contract_version",
+      "run_id",
+      "bucket",
+      "publication",
+      "manifest_sha256"
+    ],
+    "identity": "SHA-256 of canonical JSON of all notification fields except event_id",
+    "eligibility": "Only committed invoice_details/v1 publication markers",
+    "discovery": "Full-prefix rescan every 30 seconds; immutable per-key discovery record"
+  },
+  "publisher": {
+    "state": "Local SQLite outbox committed before send",
+    "send": "Persistent message, publisher confirm and mandatory routing",
+    "recovery": "Unconfirmed outbox rows are retried with the same identity; uncertain confirms can cause duplicate messages",
+    "meaning": "Confirmed means broker accepted; it does not mean application committed"
+  },
+  "consumer": {
+    "qos": "Prefetch 1, single active consumer; background processing while AMQP thread services heartbeats",
+    "transaction": "Validate every file and atomically replace invoice_lines, insert delivery history and update active pointer in one SQLite transaction; ACK afterward",
+    "duplicate": "Matching committed event ID is acknowledged without applying again",
+    "ordering": "UTC warehouse capture timestamp then run ID; older unseen runs are validated and recorded as superseded",
+    "deletions": "Missing rows disappear on atomic full replacement; no incremental event/delete feed",
+    "money": "Exact Decimal during validation; canonical decimal strings in application row JSON"
+  },
+  "local_storage": {
+    "journal": "DELETE rollback journal; synchronous=EXTRA; persistent disk; one writer per state directory",
+    "reason": "Single-writer lab application; no additional DB server. Avoid WAL-reset race documented for SQLite 3.40.1 supplied by the base image.",
+    "recovery": "Rollback on incomplete transaction; committed local inbox and business rows survive process/container recreation",
+    "limits": "Not distributed state, not an HA or off-VM restore proof; live file copies are not a backup procedure"
+  },
+  "topology": {
+    "vhost": "/exports",
+    "exchange": "exports.ready",
+    "routing_key": "invoice_details.v1",
+    "queue": "invoice-app.ready",
+    "dead_exchange": "exports.dead",
+    "dead_queue": "invoice-app.dead",
+    "queue_type": "quorum with one member in this lab",
+    "delivery_limit": 5,
+    "overflow": "reject-publish",
+    "max_messages_per_queue": 10000,
+    "dead_letter_strategy": "at-least-once",
+    "retries": "Five-second application delay then basic.reject(requeue=True); basic.nack does not increment failed-delivery count in RabbitMQ >=4.3"
+  },
+  "security": {
+    "publisher": "Publish to exports.ready only; S3 list bucket/read invoice publication markers only",
+    "application": "Consume invoice-app.ready only; S3 read invoice publication/data paths only",
+    "operator": "Separate generated administrator account; salted hashes in broker definitions; no guest account",
+    "runtime": "Non-root workers; no admin secrets, source/warehouse network or database credentials",
+    "boundaries": "Trusted VM/Docker/filer admin surfaces; no TLS inside VM or hostile-tenant isolation claim"
+  },
+  "validation": {
+    "shared_export_regression_tests": 9,
+    "isolated_protocol_checks": 20,
+    "real_invoice_lines": 228265,
+    "checks": [
+      "Publisher crash before send and after confirm",
+      "Application crash during replacement and after commit before ACK",
+      "Duplicate and out-of-order delivery",
+      "Atomic removal of absent full-snapshot rows",
+      "Corruption in a later file leaves old application data intact",
+      "Bounded retry and DLQ; mandatory unroutable publish",
+      "AMQP/S3 least-privilege denials",
+      "Queued messages survive broker recreation",
+      "All stored real invoice rows match the accepted export",
+      "Fresh full export delivered automatically by watch services",
+      "Ten healthy services, unchanged warehouse CDC counts, cleanup disabled"
+    ],
+    "evidence": "../validation/rabbitmq-invoice-app-v1-2026-10-29.json"
+  },
+  "rollback": "Stop dispatcher and invoice-app, retain broker data/outbox/app state/secrets and last verified image. Direct consumers remain available. Do not reset offsets or erase queues to retry.",
+  "deferred": [
+    "Production application ownership/authorization/cutover",
+    "Airflow export scheduling and operational alerting",
+    "DLQ review and approved replay operations",
+    "Off-VM recovery, HA, retention and TLS",
+    "Additional SQL object migrations",
+    "Safe CDC purge and source decommissioning"
+  ],
+  "purge_authorized": false,
+  "references": [
+    "https://www.rabbitmq.com/docs/confirms",
+    "https://www.rabbitmq.com/docs/quorum-queues",
+    "https://www.rabbitmq.com/docs/access-control",
+    "https://www.rabbitmq.com/docs/definitions",
+    "https://pika.github.io/pika/latest/modules/adapters/blocking/",
+    "https://www.sqlite.org/wal.html",
+    "https://www.sqlite.org/pragma.html#pragma_synchronous"
+  ],
+  "conventions": "Notification schema, local outbox, ordering rule and deployment topology are project decisions, not a universal enterprise architecture."
+}

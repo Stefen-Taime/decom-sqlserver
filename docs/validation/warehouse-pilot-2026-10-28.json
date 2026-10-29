@@ -1,0 +1,254 @@
+{
+  "verified_at": "2026-10-28T20:09:48.358593+00:00",
+  "scope": [
+    "Sales.Customers",
+    "Sales.Orders"
+  ],
+  "integration_tests": {
+    "passed": 15,
+    "database": "isolated warehouse_test; removed after tests"
+  },
+  "reconciliation": {
+    "tables": {
+      "Sales.Customers": {
+        "source_rows": 663,
+        "warehouse_rows": 663,
+        "checked_columns": [
+          "CustomerID",
+          "CustomerName",
+          "BillToCustomerID",
+          "CustomerCategoryID",
+          "BuyingGroupID",
+          "PrimaryContactPersonID",
+          "AlternateContactPersonID",
+          "DeliveryMethodID",
+          "DeliveryCityID",
+          "PostalCityID",
+          "CreditLimit",
+          "AccountOpenedDate",
+          "StandardDiscountPercentage",
+          "IsStatementSent",
+          "IsOnCreditHold",
+          "PaymentDays",
+          "PhoneNumber",
+          "FaxNumber",
+          "DeliveryRun",
+          "RunPosition",
+          "WebsiteURL",
+          "DeliveryAddressLine1",
+          "DeliveryAddressLine2",
+          "DeliveryPostalCode",
+          "PostalAddressLine1",
+          "PostalAddressLine2",
+          "PostalPostalCode"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "source_projection_sha256": "476a9b7fc6d3174a240b753581022fcb3dc3bc595f1703f6d6cf467a8e16d824",
+        "warehouse_projection_sha256": "476a9b7fc6d3174a240b753581022fcb3dc3bc595f1703f6d6cf467a8e16d824"
+      },
+      "Sales.Orders": {
+        "source_rows": 73595,
+        "warehouse_rows": 73595,
+        "checked_columns": [
+          "OrderID",
+          "CustomerID",
+          "SalespersonPersonID",
+          "PickedByPersonID",
+          "ContactPersonID",
+          "BackorderOrderID",
+          "OrderDate",
+          "ExpectedDeliveryDate",
+          "CustomerPurchaseOrderNumber",
+          "IsUndersupplyBackordered",
+          "Comments",
+          "DeliveryInstructions",
+          "InternalComments",
+          "PickingCompletedWhen"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "source_projection_sha256": "fd7b58c907502b7333ff2e1be17b6fb0baf12903f2834ec9fd503f5dcbac3c31",
+        "warehouse_projection_sha256": "fd7b58c907502b7333ff2e1be17b6fb0baf12903f2834ec9fd503f5dcbac3c31"
+      }
+    },
+    "orphan_order_customers": 0,
+    "source_export_at": "2026-10-28T20:05:48.658814+00:00",
+    "scope": "Business projection and full primary-key sets. Excludes spatial data and temporal/audit metadata; not a general online cutover checkpoint.",
+    "purge_authorized": false
+  },
+  "fixture_business_projection_unchanged": true,
+  "live_cdc_restart_and_replay": {
+    "live_probe": {
+      "order_id": 2000000000,
+      "marker": "warehouse-pilot-fb1d333f-cb6b-4b91-96c1-37adc05e6b91",
+      "expected_operations": [
+        "c",
+        "u",
+        "d"
+      ],
+      "source_row_removed_in_same_transaction": true
+    },
+    "source_events": [
+      {
+        "op": "c",
+        "value": "warehouse-pilot-fb1d333f-cb6b-4b91-96c1-37adc05e6b91-before",
+        "commit_lsn": "0000027400005a88001b",
+        "change_lsn": "0000027400005a880003",
+        "serial": 1
+      },
+      {
+        "op": "u",
+        "value": "warehouse-pilot-fb1d333f-cb6b-4b91-96c1-37adc05e6b91-after",
+        "commit_lsn": "0000027400005a88001b",
+        "change_lsn": "0000027400005a88000c",
+        "serial": 2
+      },
+      {
+        "op": "d",
+        "value": "warehouse-pilot-fb1d333f-cb6b-4b91-96c1-37adc05e6b91-after",
+        "commit_lsn": "0000027400005a88001b",
+        "change_lsn": "0000027400005a880018",
+        "serial": 1
+      }
+    ],
+    "counts_before_restart": {
+      "customers": 663,
+      "orders": 73595,
+      "journal_events": 74261,
+      "customer_hubs": 663,
+      "order_hubs": 73596,
+      "customer_satellites": 663,
+      "order_satellites": 73598,
+      "relationships": 73596,
+      "batches": 375
+    },
+    "counts_after_restart": {
+      "customers": 663,
+      "orders": 73595,
+      "journal_events": 74261,
+      "customer_hubs": 663,
+      "order_hubs": 73596,
+      "customer_satellites": 663,
+      "order_satellites": 73598,
+      "relationships": 73596,
+      "batches": 375
+    },
+    "counts_after_replay": {
+      "customers": 663,
+      "orders": 73595,
+      "journal_events": 74261,
+      "customer_hubs": 663,
+      "order_hubs": 73596,
+      "customer_satellites": 663,
+      "order_satellites": 73598,
+      "relationships": 73596,
+      "batches": 375
+    },
+    "replay": {
+      "scanned_manifests": 375,
+      "verified_batches_this_run": 375,
+      "new_events": 0,
+      "purge_authorized": false
+    },
+    "current_probe_row_absent": true,
+    "purge_authorized": false
+  },
+  "backup_restore": {
+    "backup": "/srv/decom-sqlserver/warehouse/backups/warehouse-20261028T200600Z.dump",
+    "sha256": "c1615cbbe55b4ffcb54502241a6c71a532b98c623554c0c9b31d232f8a21d714",
+    "bytes": 47712334,
+    "isolated_restore_and_business_reconciliation": "passed",
+    "existing_cluster_roles_reused": true,
+    "off_vm_recovery_tested": false,
+    "purge_authorized": false
+  },
+  "source_inventory": {
+    "path": "/srv/decom-sqlserver/validation/source-inventory-20261028.json",
+    "sha256": "3d02de78110c6392c7995a83c3412663f385e90f796ba16863ea59f67aa59694",
+    "object_counts": {
+      "SQL_STORED_PROCEDURE": 42,
+      "USER_TABLE": 49,
+      "SQL_INLINE_TABLE_VALUED_FUNCTION": 1,
+      "DEFAULT_CONSTRAINT": 41,
+      "SECURITY_POLICY": 1,
+      "FOREIGN_KEY_CONSTRAINT": 98,
+      "PRIMARY_KEY_CONSTRAINT": 32,
+      "UNIQUE_CONSTRAINT": 17,
+      "CHECK_CONSTRAINT": 3,
+      "SEQUENCE_OBJECT": 26,
+      "SQL_SCALAR_FUNCTION": 1,
+      "VIEW": 3
+    },
+    "declared_dependency_count": 176,
+    "foreign_key_column_count": 98,
+    "dynamic_sql_review_candidates": 0,
+    "sql_agent_jobs": [
+      {
+        "name": "cdc.WideWorldImporters_capture",
+        "enabled": true
+      },
+      {
+        "name": "cdc.WideWorldImporters_cleanup",
+        "enabled": false
+      }
+    ],
+    "application_ownership_and_external_callers": "not established; review required",
+    "stored_procedures_translated": false
+  },
+  "postgresql_settings": {
+    "version": "18.6 (Debian 18.6-1.pgdg12+2)",
+    "fsync": "on",
+    "synchronous_commit": "on",
+    "data_checksums": "on"
+  },
+  "image_ids": {
+    "decom-warehouse-postgres-1": "sha256:5c4783a8cc3f0074912164f94dfa1be4e043438f0f707cf968d7af9a0d31a2c8",
+    "decom-warehouse-loader-1": "sha256:559d752f1593cda231ae862c095795b494313a36ed69317d7f94b3f447cd934f"
+  },
+  "cloudbeaver": {
+    "cloudbeaver_login": "passed",
+    "postgresql_saved_connection": "passed",
+    "customers": 663,
+    "orders": 73595,
+    "reader_can_insert": false
+  },
+  "archive_reader_permissions": {
+    "archive_list": "passed",
+    "archive_read": "passed",
+    "archive_write_denied": true
+  },
+  "service_health": {
+    "decom-sqlserver-sqlserver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-debezium-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-archiver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-seaweedfs-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cloudbeaver-cloudbeaver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-postgres-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-loader-1": {
+      "running": true,
+      "health": "healthy"
+    }
+  },
+  "purge_authorized": false
+}

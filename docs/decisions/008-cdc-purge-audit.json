@@ -1,0 +1,38 @@
+{
+  "decision": "Read-only CDC purge readiness audit before implementing cleanup",
+  "date": "2026-10-29",
+  "scope": "SQL Server CDC change-table retention; no business-table deletion or application decommissioning",
+  "mode": "audit-only",
+  "decisions": [
+    "Inspect all six configured capture instances, including the archive-only lab probe. Keep the five-table warehouse consumer contract explicit.",
+    "Observe a fixed upper LSN, enumerate bounded retained CDC row identities, and re-read the same bounded source observation afterward. LSN numeric gaps are not treated as missing events.",
+    "Read and checksum every active archive manifest and payload, compare in-scope manifest hashes and counts with sales/v2 batch acknowledgements, and compare post-bootstrap business streaming event semantic hashes with the warehouse ledger. Probe-only batches remain archive-only; mixed batches with business rows require warehouse acknowledgement.",
+    "Expand each Debezium update into SQL CDC before/after image identities and preserve multiplicity. Deduplicate identical archive redeliveries by event identity; conflicting copies block readiness.",
+    "Distinguish pre-bootstrap CDC history from the initial snapshot. Snapshot state does not prove that earlier changes can be replayed.",
+    "Use a 72-hour initial lab retention margin, matching the source cleanup job's initial 4,320-minute setting. Production retention and consumer ownership remain unapproved.",
+    "Provision distinct SQL Server, PostgreSQL and S3 audit identities. SQL access cannot delete changes or execute cleanup; PostgreSQL permits only the needed ledger/metadata reads; S3 permits only archive reads/listing.",
+    "Run one bounded 512 MiB/1 CPU container on demand, with a protected read-only source observation. No permanent service, Airflow purge task, cleanup executable or destructive schedule is installed.",
+    "Always emit purge_authorized=false and executable_low_watermark=null. Missing evidence is unknown, never implicitly successful.",
+    "Retain per-run source observations, policy hashes, code hashes, diagnostics and a root-protected report; an unsuccessful audit does not replace the last completed report."
+  ],
+  "required_follow_up_before_cleanup_implementation": [
+    "Reconcile all source CDC column values, not only retained identities and multiplicity.",
+    "Certify a durable connector resume checkpoint and a complete source transaction fence; maximum observed LSN alone is insufficient.",
+    "Account for retained changes from before bootstrap and every other CDC consumer.",
+    "Approve retention, consumer ownership and the rollback/replay contract.",
+    "Prove archive and checkpoint restoration outside the source VM.",
+    "Design a separate bounded executor that revalidates capture-instance identity and cleanup boundaries immediately before action, records partial outcomes and handles low-watermark advancement even when physical deletion fails."
+  ],
+  "limits": [
+    "At most 100,000 retained CDC rows per capture instance in this first observer; exceeding the bound aborts instead of truncating evidence. Larger histories require partitioned reconciliation.",
+    "Warehouse batch acknowledgements establish the loader's transaction record; initial snapshot row semantics are not fully recomputed by this audit.",
+    "Source identity matching does not certify every source column or transaction atomicity.",
+    "The report is an operator diagnostic, not a signed authorization token for future deletion.",
+    "The single-VM and trusted-network lab limitations remain."
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-cdc-cleanup-change-table-transact-sql",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server",
+    "https://debezium.io/documentation/reference/3.7/connectors/sqlserver.html"
+  ]
+}

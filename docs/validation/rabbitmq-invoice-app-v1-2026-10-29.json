@@ -1,0 +1,308 @@
+{
+  "verified_at": "2026-10-29T00:32:15.561503+00:00",
+  "regression_tests_passed": 9,
+  "isolated_protocol": {
+    "checks": [
+      "crash after durable outbox loses no pending notification",
+      "ambiguous publisher success produces a stable duplicate event ID",
+      "crash during local replacement rolls back all application rows",
+      "crash after app commit before broker ACK redelivers without duplicate effect",
+      "new full snapshot atomically removes rows absent from the new delivery",
+      "late older snapshot is validated and recorded without rolling current data backward",
+      "corruption in a later Parquet file rolls back earlier inserts and reaches DLQ",
+      "forged bucket/notification is rejected before reading data",
+      "transient failures stop retrying at the broker delivery limit and reach DLQ",
+      "mandatory unroutable publish is detected",
+      "publisher cannot declare queues",
+      "publisher cannot read application queue",
+      "application cannot declare queues",
+      "application cannot consume its DLQ",
+      "application cannot publish",
+      "invoice app cannot list CDC raw",
+      "invoice app cannot read order exports",
+      "invoice app cannot write exports",
+      "dispatcher cannot read Parquet data",
+      "broker has no guest account"
+    ],
+    "production_data_modified": false,
+    "retry_attempts_before_dlq": 6,
+    "synthetic_deliveries_committed": 3,
+    "synthetic_rows_after_failures": 2,
+    "synthetic_s3_prefix": "validation/rabbitmq-v1/c5d868b6f70f48db8f867807d990e5d8",
+    "test_vhost": "/validation-invoice-c5d868b6f70f48db8f867807d990e5d8",
+    "test_vhost_and_s3_fixture_removed": true,
+    "verified_at": "2026-10-29T00:31:16.411104+00:00"
+  },
+  "live_recovery": {
+    "warehouse_before": {
+      "events": 604459,
+      "batches": 3027,
+      "current_keys": 604450
+    },
+    "first_dispatch": {
+      "status": "ok",
+      "discovered": 2,
+      "confirmed": 2,
+      "pending": 0,
+      "last_success": "2026-10-29T00:22:41.613628+00:00",
+      "checked_at": 1793233361.6136494
+    },
+    "queued": {
+      "version": "4.4.0",
+      "queues_ready": {
+        "invoice-app.ready": 2,
+        "invoice-app.dead": 0
+      },
+      "policies": [
+        {
+          "vhost": "/exports",
+          "name": "invoice-dead-retention",
+          "pattern": "^invoice-app\\.dead$",
+          "apply-to": "quorum_queues",
+          "definition": {
+            "delivery-limit": -1,
+            "max-length": 10000,
+            "overflow": "reject-publish"
+          },
+          "priority": 10
+        },
+        {
+          "vhost": "/exports",
+          "name": "invoice-delivery",
+          "pattern": "^invoice-app\\.ready$",
+          "apply-to": "quorum_queues",
+          "definition": {
+            "dead-letter-exchange": "exports.dead",
+            "dead-letter-routing-key": "invoice_details.v1",
+            "dead-letter-strategy": "at-least-once",
+            "delivery-limit": 5,
+            "max-length": 10000,
+            "overflow": "reject-publish"
+          },
+          "priority": 10
+        }
+      ],
+      "users": [
+        "export_publisher",
+        "invoice_app",
+        "stefen"
+      ],
+      "permissions": [
+        {
+          "vhost": "/exports",
+          "user": "export_publisher",
+          "configure": "^$",
+          "write": "^exports\\.ready$",
+          "read": "^$"
+        },
+        {
+          "vhost": "/exports",
+          "user": "invoice_app",
+          "configure": "^$",
+          "write": "^$",
+          "read": "^invoice-app\\.ready$"
+        },
+        {
+          "vhost": "/exports",
+          "user": "stefen",
+          "configure": ".*",
+          "write": ".*",
+          "read": ".*"
+        }
+      ]
+    },
+    "broker_recreated": {
+      "invoice-app.ready": 2,
+      "invoice-app.dead": 0
+    },
+    "application_crash_after_commit": {
+      "rows": 228265,
+      "deliveries": 1
+    },
+    "application_recreated": true,
+    "repeated_scan": {
+      "status": "ok",
+      "discovered": 0,
+      "confirmed": 0,
+      "pending": 0,
+      "last_success": "2026-10-29T00:24:21.429218+00:00",
+      "checked_at": 1793233461.429244
+    },
+    "watch_request_id": "invoice-rabbitmq-e2e-20261029T002636Z",
+    "watch_delivery": {
+      "export": {
+        "dataset": "invoice_details",
+        "request_id": "invoice-rabbitmq-e2e-20261029T002636Z",
+        "run_id": "20261029T002638Z-7680654179fb474a884014e471054b04",
+        "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T002638Z-7680654179fb474a884014e471054b04.json",
+        "status": "published",
+        "attempts": 1
+      },
+      "application_event_id": "3f8bd92b447ba50a727341217e279d9714101f9309399343cda79768b46c6f9d",
+      "automatic_dispatch_and_consumption": true
+    }
+  },
+  "application": {
+    "status": "ready",
+    "active": {
+      "event_id": "3f8bd92b447ba50a727341217e279d9714101f9309399343cda79768b46c6f9d",
+      "run_id": "20261029T002638Z-7680654179fb474a884014e471054b04",
+      "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T002638Z-7680654179fb474a884014e471054b04.json",
+      "body": "{\"bucket\":\"warehouse-exports\",\"contract_version\":1,\"dataset\":\"invoice_details\",\"event_id\":\"3f8bd92b447ba50a727341217e279d9714101f9309399343cda79768b46c6f9d\",\"manifest_sha256\":\"672b952a5b475e402b4ddfd4c1104b39eb5449ec62019ba1b660d99d5c1eb6aa\",\"publication\":\"published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T002638Z-7680654179fb474a884014e471054b04.json\",\"run_id\":\"20261029T002638Z-7680654179fb474a884014e471054b04\",\"type\":\"export.ready/v1\"}",
+      "captured_at": "2026-10-29T00:26:38.864226+00:00",
+      "statistics": "{\"first_key\":1,\"last_key\":228265,\"null_counts\":{\"bill_to_customer_id\":0,\"bill_to_customer_name\":0,\"customer_id\":0,\"customer_name\":0,\"description\":0,\"extended_price\":0,\"invoice_date\":0,\"invoice_id\":0,\"invoice_line_id\":0,\"is_credit_note\":0,\"line_profit\":0,\"order_id\":0,\"quantity\":0,\"stock_item_id\":0,\"tax_amount\":0,\"tax_rate\":0,\"unit_price\":0},\"row_sha256\":\"373f883715913220873e0d146793cd9d647d91eb7fca330e77ec5fd3fa441d85\",\"rows\":228265,\"sums\":{\"extended_price\":\"198043439.45\",\"line_profit\":\"85729180.90\",\"quantity\":\"8950628\",\"tax_amount\":\"25782098.25\"}}",
+      "decision": "applied",
+      "committed_at": "2026-10-29T00:28:30.057149+00:00"
+    },
+    "invoice_lines": 228265,
+    "deliveries": 3,
+    "attempts": [
+      {
+        "outcome": "applied",
+        "count": 2
+      },
+      {
+        "outcome": "duplicate",
+        "count": 1
+      }
+    ]
+  },
+  "stored_rows_audit": {
+    "event_id": "3f8bd92b447ba50a727341217e279d9714101f9309399343cda79768b46c6f9d",
+    "statistics": {
+      "rows": 228265,
+      "first_key": 1,
+      "last_key": 228265,
+      "null_counts": {
+        "invoice_line_id": 0,
+        "invoice_id": 0,
+        "order_id": 0,
+        "customer_id": 0,
+        "customer_name": 0,
+        "bill_to_customer_id": 0,
+        "bill_to_customer_name": 0,
+        "invoice_date": 0,
+        "is_credit_note": 0,
+        "stock_item_id": 0,
+        "description": 0,
+        "quantity": 0,
+        "unit_price": 0,
+        "tax_rate": 0,
+        "tax_amount": 0,
+        "line_profit": 0,
+        "extended_price": 0
+      },
+      "sums": {
+        "quantity": "8950628",
+        "tax_amount": "25782098.25",
+        "line_profit": "85729180.90",
+        "extended_price": "198043439.45"
+      },
+      "row_sha256": "373f883715913220873e0d146793cd9d647d91eb7fca330e77ec5fd3fa441d85"
+    },
+    "all_stored_rows_reconciled": true,
+    "sqlite_version": "3.40.1",
+    "journal_mode": "delete",
+    "synchronous": 3,
+    "quick_check": "ok"
+  },
+  "broker": {
+    "version": "4.4.0",
+    "queues_ready": {
+      "invoice-app.ready": 0,
+      "invoice-app.dead": 0
+    },
+    "policies": [
+      {
+        "vhost": "/exports",
+        "name": "invoice-dead-retention",
+        "pattern": "^invoice-app\\.dead$",
+        "apply-to": "quorum_queues",
+        "definition": {
+          "delivery-limit": -1,
+          "max-length": 10000,
+          "overflow": "reject-publish"
+        },
+        "priority": 10
+      },
+      {
+        "vhost": "/exports",
+        "name": "invoice-delivery",
+        "pattern": "^invoice-app\\.ready$",
+        "apply-to": "quorum_queues",
+        "definition": {
+          "dead-letter-exchange": "exports.dead",
+          "dead-letter-routing-key": "invoice_details.v1",
+          "dead-letter-strategy": "at-least-once",
+          "delivery-limit": 5,
+          "max-length": 10000,
+          "overflow": "reject-publish"
+        },
+        "priority": 10
+      }
+    ],
+    "users": [
+      "export_publisher",
+      "invoice_app",
+      "stefen"
+    ],
+    "permissions": [
+      {
+        "vhost": "/exports",
+        "user": "export_publisher",
+        "configure": "^$",
+        "write": "^exports\\.ready$",
+        "read": "^$"
+      },
+      {
+        "vhost": "/exports",
+        "user": "invoice_app",
+        "configure": "^$",
+        "write": "^$",
+        "read": "^invoice-app\\.ready$"
+      },
+      {
+        "vhost": "/exports",
+        "user": "stefen",
+        "configure": ".*",
+        "write": ".*",
+        "read": ".*"
+      }
+    ]
+  },
+  "warehouse_after": {
+    "events": 604459,
+    "batches": 3027,
+    "current_keys": 604450
+  },
+  "service_health": {
+    "decom-sqlserver-sqlserver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy"
+  },
+  "runtime_has_no_admin_credentials_or_warehouse_network": true,
+  "automatic_cdc_cleanup_enabled": false,
+  "purge_authorized": false,
+  "application_image_id": "sha256:f697881e7631b45b7904a2f05d68a0136a3e7ddd77f6be5b87b1ddb83680cd2f",
+  "shared_export_verifier_sha256": "deeeed86eebe94015c4964a356bd4b640d7640f3e68d75ce9ada14825298681a",
+  "limits": [
+    "Single broker member and one VM: no HA or off-VM disaster-recovery proof.",
+    "At-least-once messaging; deduplicated effects only within this local transactional application.",
+    "Full-snapshot ordering uses capture time and run ID; no certified SQL Server CDC boundary.",
+    "Trusted internal Docker network; HTTP/AMQP transport without TLS; management via loopback/IAP.",
+    "DLQ review/replay, external alerting, retention and source decommissioning remain operator work."
+  ],
+  "management_access": {
+    "local_url": "http://localhost:15672/",
+    "authenticated_http_api_verified": true,
+    "username": "stefen",
+    "browser_opened": "Chrome, RabbitMQ Management login page; no browser login claimed"
+  }
+}

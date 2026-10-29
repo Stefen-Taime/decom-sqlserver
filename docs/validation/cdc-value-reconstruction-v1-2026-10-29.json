@@ -1,0 +1,366 @@
+{
+  "contract": "cdc-value-reconstruction-acceptance/v1",
+  "readiness_audit": {
+    "report": "cdc-purge-after-reconstruction-2026-10-29.json",
+    "run_id": "20261029T141639Z-111bf9afc14c",
+    "safety_tests_passed": 50,
+    "verified_manifests": 3033,
+    "strict_raw_equality_gate": false,
+    "automatic_cleanup_disabled": true,
+    "purge_authorized": false
+  },
+  "deployment": {
+    "contract": "cdc-value-reconstruction-deployment/v1",
+    "completed_at": "2026-10-29T14:14:00.395624+00:00",
+    "tests": {
+      "warehouse": 51,
+      "sql_object": 25
+    },
+    "before": {
+      "events": 604459,
+      "sales_batches": 3027,
+      "customers": 663,
+      "orders": 73595,
+      "order_lines": 231412,
+      "invoices": 70510,
+      "invoice_lines": 228265
+    },
+    "after": {
+      "events": 604459,
+      "sales_batches": 3027,
+      "customers": 663,
+      "orders": 73595,
+      "order_lines": 231412,
+      "invoices": 70510,
+      "invoice_lines": 228265
+    },
+    "raw_journal_sha256_before": "7872ced0a44f6e6b9a957356fcd06f71036b04397c1988a40bf279d6dfc522ff",
+    "raw_journal_sha256_after": "7872ced0a44f6e6b9a957356fcd06f71036b04397c1988a40bf279d6dfc522ff",
+    "source_validation": {
+      "contract": "cdc-value-reconstruction/v1",
+      "source_observation_sha256": "242fe1d35c65806dd59b931aa8ff23af945860821b345f4407abce77d21e91d1",
+      "events_examined": 2,
+      "verified_manifests": 3,
+      "problems": [],
+      "derived_images_compared": 4,
+      "derived_images_matching": 4,
+      "derived_cells_compared": 82,
+      "captured_representation_equal_images": 3,
+      "lineage_cells_verified": 10,
+      "lineage_cells_also_matched_to_retained_source": 10,
+      "purge_authorized": false,
+      "scope": "Available captured values plus independently verified original values for unchanged markers; not literal equality with unavailable CDC NULLs, a connector checkpoint or full snapshot reconciliation",
+      "run_id": "20261029T141159Z-2841f941",
+      "proofs_prepared": 10,
+      "new_proofs_imported": 0,
+      "source_stable": true,
+      "source_fingerprint": "93e490f76942361aa47cdfe4725d392e472fd8eaf4dc353aeb11d8e2678f4c44",
+      "completed_at": "2026-10-29T14:12:10.221403+00:00",
+      "protected_run_directory": "/srv/decom-sqlserver/validation/cdc-values-20261029T141159Z-2841f941"
+    },
+    "affected_archive_replay": {
+      "affected_batches_replayed": 2,
+      "new_raw_events": 0,
+      "derived_revisions_unchanged": true,
+      "revision_inventory_sha256": "ccbbbb6e180d0fe26e8d8d225181cb160f7d2f1beae144bc50d2b465e8f26440",
+      "statuses": [
+        [
+          "Sales.Invoices",
+          "resolved",
+          1,
+          6
+        ],
+        [
+          "Sales.Orders",
+          "resolved",
+          1,
+          4
+        ]
+      ],
+      "purge_authorized": false
+    },
+    "export_reader_checks": {
+      "order_rows": 231412,
+      "invoice_rows": 228265,
+      "guard_executable": true
+    },
+    "backup": {
+      "path": "/srv/decom-sqlserver/releases/cdc-values-v1-20261029/warehouse-before-values.dump",
+      "sha256": "3f9502dd16d2322c27453daccc265c85b60ee365418fd88f5dfa43da65c02e2b",
+      "bytes": 426021125,
+      "off_vm_restore_tested": false
+    },
+    "purge_authorized": false,
+    "source_rows_deleted": 0,
+    "raw_archives_rewritten": 0,
+    "previous_loader_image": "sha256:054226c9095b0d3c89d091b99e4b2ac25d17259cf1c98122e7837627b262cf70",
+    "loader_image": "sha256:35843234d5516eb1344483170b9e40abbdd704567104a011ab074e3e6f6aa983",
+    "provenance_sha256": {
+      "loader/certify_values.py": "aea45c021fde2567107a08eb0aa2fc3964c2bdf1e9e956271a3bb5edbbde5b60",
+      "loader/check-access.py": "35266d15367acc615183b7f8ad8a04601a4164bac2a9836939ffce81809db98d",
+      "loader/load.py": "de1085af1a93b00a46bf086d507f6cda7550cd40bbf15782b2b749316cf359cb",
+      "loader/reconcile-sales.py": "333a7b9c2930f4185662ad6a8ef5dfb5eebbe5f8d08ea3fca5431f8cd31a70c9",
+      "loader/reconcile.py": "e3e032e4dabae08e862a10ed22c503a28e72a64071032a1f7ee5bf17230904b5",
+      "loader/resolve.py": "2abd8e258adc9ff84086d451f4280ca8c0d7e8b3ddd711c262f5f2475fa9c1ca",
+      "loader/resolve_core.py": "4942576cb98c234868fd33b3212cdf85c66b6eaa16e8fef284fcea6ab6c4c536",
+      "loader/sales_contract.py": "e852615f290f3dba302927c7fa0c360d6974759636e8a4ae5d9900d2adb93f23",
+      "loader/verify_values.py": "273c4cd3c08fc639309f9b4f9796751beba457f40f4ec85f851cf2fcfc2fe2bc",
+      "scripts/backup-restore-host.py": "6d83be598546407993b4fe5976e39c7e8021c13813f52b468eaf498309aeae38",
+      "scripts/certify-values-host.py": "3f79d92e227e3869bdf1a53d32a67aaf047b5342c334f1bc88e396ec5399e500",
+      "scripts/collect-evidence-host.py": "14fd0338659e6f6335a1d495ad411d7b9ca727bfc93ec27cc878b8b5caeda998",
+      "scripts/collect-sales-evidence-host.py": "fe88a2b5d8dafb42b5947e6cacf3acc095b6c4c5607f74a5d5e5a916b9b945db",
+      "scripts/compare-order-updates.py": "cbfc48e228d762c79b4e040de148599e33573b2074593173af6808e4b97dac06",
+      "scripts/cutover-sales-host.py": "ce001e038feb82dce680b4fc472de0ca13175ae580351d6118b59f660b2dd671",
+      "scripts/deploy-order-updates-host.py": "035cdfdad05b189af6e956c5b327d134bb8f7e2f67120b96e9c2d4a643e6167b",
+      "scripts/deploy-values-host.py": "1a6b39af36de7c533d142510cd63c5cba20c83de35745852f55e6c7a7843e87d",
+      "scripts/export-order-updates-host.py": "a70f38f01e80b8375763c8642bb79b620b5565725b7171721776e7ce91d770dd",
+      "scripts/inventory-sql-objects-host.py": "5fff77d2fcf6d72849ed597669df35e3e41ab9936d9135d4b2fa9d0fcfa25269",
+      "scripts/load-package-reference-host.py": "2991628918b6a87c80e992fc8150cbe939b39d65a79787b93798ff76bf4cec5f",
+      "scripts/migrate-host.py": "e4240f8bcdf0e3e316f08ea4bcf5732e41e7a2c4e6ffd57f31c6aa4ded29bf74",
+      "scripts/prepare-host.py": "75a104b3ff70037279b475ef8a28182df5d212e72a8b51f5d5bbb2d315141a02",
+      "scripts/probe-host.py": "e56a9f12736523b8d149f0262cd402dfaaeefebe7f318c33e088c81eecbe8744",
+      "scripts/reconcile-host.py": "73514e816d4f57d16e6f260d82427f9a9bef26a341e94b31b0227d0676f98874",
+      "scripts/source-export.py": "8cc97c751af3a2d353665ed7d6ad5054cad704bbc8d99a6de3db7cdf94d541ac",
+      "scripts/source-sales-export.py": "423e9896b8350aa1f7b7c08f4279d3f0858643c0cf4ce21f4afd3c514d363939",
+      "scripts/test-host.py": "48351609a05641facdd3e3ad40d563f915720ece3450acae70a89a1df3e04c44",
+      "scripts/test-order-updates-host.py": "bbe72449e77ecf04e302559c926d5944c4cece22a11ba1e6e30e1528e0918e61",
+      "scripts/verify-cloudbeaver-host.py": "3b74e57008ea06794183cca57827b8743c0aac0e1cc4cb3f1cdb9574b368f31c",
+      "scripts/verify-order-updates-host.py": "976a3bc90f103efcd69323b785188eda5ed4a0c26667b38b86867cb0e6a2cb9e",
+      "scripts/verify-pilot-host.py": "fe9809e93016e0fb2a069325521153700e9365ad633848eb6a0b68e0d10349eb",
+      "scripts/verify-sales-host.py": "2e96af646c4e10e3c8a927543147f403a0f8b619580615984b45b1d96b544a99",
+      "tests/test_marker_proof.py": "faeccc8558aaedbbbc6e866f1e6255fc64efef7ba5baff8166261f9c6546f433",
+      "tests/test_pipeline.py": "a1ef657ce91e66f9d647984f6051a0431dbc4673a1b1e21743784a1e7ef444b2",
+      "tests/test_resolution.py": "64b5e1a3ceba964b8423f40ee76cbeb76721a8075194d4475a32816d4d455793",
+      "tests/test_sales.py": "9fbe0c419001e5f373b9abeae692f3d74443d48d03b2d2b76f92981155b29109",
+      "sql/001-pilot.sql": "4e91d92475c07954f4e175eff987683ca3218cae3ea1f871bafcf086b293dde0",
+      "sql/002-five-sales-tables.sql": "7d44d3f5cfd48714d4f322700f0b320751cc6ee948397c2afaca7b7eb5afebb7",
+      "sql/003-order-updates-api.sql": "fae53554105e7b2b4da320058e6670868b2fbf8e22863e996178f9daff90f1c5",
+      "sql/004-order-tax-division.sql": "ef67fbc984bfca77b48bc5f3f8243d2e7edab3cec7c7c065cb20feee80f7984f",
+      "sql/005-export-contracts.sql": "b13685120e4109c254228916b27e970018f20bf7ed0bb674c15330ecb12738f8",
+      "sql/006-cdc-value-resolution.sql": "29db339aba28d905efab3f51ff9e7934ebdbe23b2dd587fd94e1668579df7f7e",
+      "sql/load-batch.sql": "2fa8aa029f7dbfd22a8ec4f14330ba440ac3e1041bd0b60633b7bc89edfd2eee"
+    }
+  },
+  "business_reconciliation": {
+    "passed": true,
+    "tables": {
+      "Sales.Customers": {
+        "source_rows": 663,
+        "warehouse_rows": 663,
+        "checked_columns": [
+          "CustomerID",
+          "CustomerName",
+          "BillToCustomerID",
+          "CustomerCategoryID",
+          "BuyingGroupID",
+          "PrimaryContactPersonID",
+          "AlternateContactPersonID",
+          "DeliveryMethodID",
+          "DeliveryCityID",
+          "PostalCityID",
+          "CreditLimit",
+          "AccountOpenedDate",
+          "StandardDiscountPercentage",
+          "IsStatementSent",
+          "IsOnCreditHold",
+          "PaymentDays",
+          "PhoneNumber",
+          "FaxNumber",
+          "DeliveryRun",
+          "RunPosition",
+          "WebsiteURL",
+          "DeliveryAddressLine1",
+          "DeliveryAddressLine2",
+          "DeliveryPostalCode",
+          "PostalAddressLine1",
+          "PostalAddressLine2",
+          "PostalPostalCode"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "f913d9f23770831856a45d9430b9b2231047fe1064aea46278b3b0cf41ab07df",
+        "warehouse_projection_sha256": "f913d9f23770831856a45d9430b9b2231047fe1064aea46278b3b0cf41ab07df"
+      },
+      "Sales.Orders": {
+        "source_rows": 73595,
+        "warehouse_rows": 73595,
+        "checked_columns": [
+          "OrderID",
+          "CustomerID",
+          "SalespersonPersonID",
+          "PickedByPersonID",
+          "ContactPersonID",
+          "BackorderOrderID",
+          "OrderDate",
+          "ExpectedDeliveryDate",
+          "CustomerPurchaseOrderNumber",
+          "IsUndersupplyBackordered",
+          "Comments",
+          "DeliveryInstructions",
+          "InternalComments",
+          "PickingCompletedWhen"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "d93f19737ed98b1fb57980774a0f88378a4a16e468fdef824ccb0673e3b7de67",
+        "warehouse_projection_sha256": "d93f19737ed98b1fb57980774a0f88378a4a16e468fdef824ccb0673e3b7de67"
+      },
+      "Sales.OrderLines": {
+        "source_rows": 231412,
+        "warehouse_rows": 231412,
+        "checked_columns": [
+          "OrderLineID",
+          "OrderID",
+          "StockItemID",
+          "Description",
+          "PackageTypeID",
+          "Quantity",
+          "UnitPrice",
+          "TaxRate",
+          "PickedQuantity",
+          "PickingCompletedWhen"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "b44dd903dcac9f94fce68d724dc3c0984b78202acd3991e7fbeace95409b8685",
+        "warehouse_projection_sha256": "b44dd903dcac9f94fce68d724dc3c0984b78202acd3991e7fbeace95409b8685"
+      },
+      "Sales.Invoices": {
+        "source_rows": 70510,
+        "warehouse_rows": 70510,
+        "checked_columns": [
+          "InvoiceID",
+          "CustomerID",
+          "BillToCustomerID",
+          "OrderID",
+          "DeliveryMethodID",
+          "ContactPersonID",
+          "AccountsPersonID",
+          "SalespersonPersonID",
+          "PackedByPersonID",
+          "InvoiceDate",
+          "CustomerPurchaseOrderNumber",
+          "IsCreditNote",
+          "CreditNoteReason",
+          "Comments",
+          "DeliveryInstructions",
+          "InternalComments",
+          "TotalDryItems",
+          "TotalChillerItems",
+          "DeliveryRun",
+          "RunPosition",
+          "ReturnedDeliveryData",
+          "ConfirmedDeliveryTime",
+          "ConfirmedReceivedBy"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "55f403dada3c8d2f9ef2af9f367c0e5c848e19035d146ce7e960f69ba7e1ef1a",
+        "warehouse_projection_sha256": "55f403dada3c8d2f9ef2af9f367c0e5c848e19035d146ce7e960f69ba7e1ef1a"
+      },
+      "Sales.InvoiceLines": {
+        "source_rows": 228265,
+        "warehouse_rows": 228265,
+        "checked_columns": [
+          "InvoiceLineID",
+          "InvoiceID",
+          "StockItemID",
+          "Description",
+          "PackageTypeID",
+          "Quantity",
+          "UnitPrice",
+          "TaxRate",
+          "TaxAmount",
+          "LineProfit",
+          "ExtendedPrice"
+        ],
+        "missing_keys": 0,
+        "extra_keys": 0,
+        "mismatched_rows": 0,
+        "differing_columns": [],
+        "source_projection_sha256": "7e431cba2cbe4ec8b89276c923e32922fd7c262eb328d5de1f5fb40924a1512a",
+        "warehouse_projection_sha256": "7e431cba2cbe4ec8b89276c923e32922fd7c262eb328d5de1f5fb40924a1512a"
+      }
+    },
+    "orphan_relationships": {
+      "order_customers": 0,
+      "order_line_orders": 0,
+      "invoice_customers": 0,
+      "invoice_bill_to_customers": 0,
+      "invoice_orders": 0,
+      "invoice_line_invoices": 0
+    },
+    "view_grains": {
+      "order_details": {
+        "rows": 231412,
+        "distinct_keys": 231412,
+        "expected_rows": 231412
+      },
+      "invoice_details": {
+        "rows": 228265,
+        "distinct_keys": 228265,
+        "expected_rows": 228265
+      },
+      "invoice_summary": {
+        "rows": 70510,
+        "distinct_keys": 70510,
+        "expected_rows": 70510
+      }
+    },
+    "invoice_totals": {
+      "quantity": {
+        "invoice_lines": "8950628",
+        "invoice_details": "8950628",
+        "invoice_summary": "8950628"
+      },
+      "tax_amount": {
+        "invoice_lines": "25782098.25",
+        "invoice_details": "25782098.25",
+        "invoice_summary": "25782098.25"
+      },
+      "line_profit": {
+        "invoice_lines": "85729180.90",
+        "invoice_details": "85729180.90",
+        "invoice_summary": "85729180.90"
+      },
+      "extended_price": {
+        "invoice_lines": "198043439.45",
+        "invoice_details": "198043439.45",
+        "invoice_summary": "198043439.45"
+      }
+    },
+    "source_export_at": "2026-10-29T14:06:12.266134+00:00",
+    "scope": "Full business primary-key sets and explicit projections, excluding spatial and audit columns; quiet fixture validation, not an online cutover checkpoint.",
+    "purge_authorized": false
+  },
+  "service_health": {
+    "decom-warehouse-loader-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy",
+    "decom-airflow-api-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-sqlserver-sqlserver-1": "healthy"
+  },
+  "resolution_inventory": {
+    "proofs": 10,
+    "resolved_events": 2,
+    "blocked_events": 0,
+    "known_null_cells": 8,
+    "known_nonnull_cells": 2
+  }
+}

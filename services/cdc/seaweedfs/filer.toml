@@ -1,0 +1,8 @@
+[filer.options]
+recursive_delete = false
+
+[leveldb2]
+enabled = true
+dir = "/data/filer"
+block_cache_size_mb = 8
+write_buffer_size_mb = 4

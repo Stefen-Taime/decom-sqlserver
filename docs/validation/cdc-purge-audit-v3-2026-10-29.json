@@ -1,0 +1,1642 @@
+{
+  "contract": "cdc-purge-audit/v3",
+  "mode": "audit-only",
+  "observed_at": "2026-10-29T16:04:20.022187+00:00",
+  "source_observation_sha256": "0d38bc24c737e918d916359afe86e617aeb9a93cd64800421adc8f62800fc3fc",
+  "policy_sha256": "33ac34d00add9a115d6e95989dae35df8e892f49acbf192afd4958b2321d6702",
+  "source_upper_lsn_observed": "0x0000027900004B400003",
+  "bootstrap_lsn": "00000274:00000758:0003",
+  "capture_instances": [
+    {
+      "capture_instance": "lab_CdcProbe",
+      "table_name": "lab.CdcProbe",
+      "start_lsn": "0x00000273000045E0003C",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_Customers",
+      "table_name": "Sales.Customers",
+      "start_lsn": "0x0000027300001C100118",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_InvoiceLines",
+      "table_name": "Sales.InvoiceLines",
+      "start_lsn": "0x0000027300003C18007E",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_Invoices",
+      "table_name": "Sales.Invoices",
+      "start_lsn": "0x000002730000343000CE",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_OrderLines",
+      "table_name": "Sales.OrderLines",
+      "start_lsn": "0x0000027300002C980078",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_Orders",
+      "table_name": "Sales.Orders",
+      "start_lsn": "0x00000273000024E000A2",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    }
+  ],
+  "retention_hours": 72,
+  "retention_cutoff_source_time": "2026-10-26T16:01:43.553",
+  "retention_observation_lsn": null,
+  "pre_bootstrap_retained_row_images": {
+    "lab.CdcProbe": 12
+  },
+  "archive": {
+    "listed_manifests": 3036,
+    "verified_manifests": 3036,
+    "inventory_sha256": "68beade0e57ed150d5046832a0e7809e761c472b71fee75aa156dc9e242bca53",
+    "operations": {
+      "r": 604445,
+      "c": 14,
+      "u": 13,
+      "d": 14
+    },
+    "records_by_table": {
+      "Sales.Customers": 663,
+      "Sales.InvoiceLines": 228268,
+      "Sales.Invoices": 70513,
+      "Sales.OrderLines": 231415,
+      "Sales.Orders": 73600,
+      "lab.CdcProbe": 27
+    },
+    "integrity_errors": [],
+    "integrity_error_count": 0,
+    "identical_stream_redeliveries": 0,
+    "conflicting_stream_redeliveries": 0
+  },
+  "retained_identity_coverage": {
+    "matched": true,
+    "source_row_images": 54,
+    "archive_row_images": 54,
+    "missing_row_images": 0,
+    "unexpected_row_images": 0,
+    "source_identity_sha256": "d54a4477327a506f90835a43fd74ef3acfa33436d6ff7f0d329fccf73596bec7",
+    "archive_identity_sha256": "d54a4477327a506f90835a43fd74ef3acfa33436d6ff7f0d329fccf73596bec7",
+    "comparison": "Retained row identities and multiplicities; see captured_column_values for the separate value comparison"
+  },
+  "tables": {
+    "Sales.Customers": {
+      "matched": true,
+      "source_row_images": 0,
+      "archive_row_images": 0,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "archive_identity_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "comparison": "Retained row identities and multiplicities; see captured_column_values for the separate value comparison"
+    },
+    "Sales.Orders": {
+      "matched": true,
+      "source_row_images": 6,
+      "archive_row_images": 6,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "24f9f45973f9b276a6581cc499aa88fe81194891629807e2c964696dff12e3e8",
+      "archive_identity_sha256": "24f9f45973f9b276a6581cc499aa88fe81194891629807e2c964696dff12e3e8",
+      "comparison": "Retained row identities and multiplicities; see captured_column_values for the separate value comparison"
+    },
+    "Sales.OrderLines": {
+      "matched": true,
+      "source_row_images": 4,
+      "archive_row_images": 4,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "36ddd6aa1e4ef2d021d15da092273297dee45649a640d1523f7fe8c5cd48466e",
+      "archive_identity_sha256": "36ddd6aa1e4ef2d021d15da092273297dee45649a640d1523f7fe8c5cd48466e",
+      "comparison": "Retained row identities and multiplicities; see captured_column_values for the separate value comparison"
+    },
+    "Sales.Invoices": {
+      "matched": true,
+      "source_row_images": 4,
+      "archive_row_images": 4,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "dcdc2e932ed18bf2b8e8b30120a9f19b2bd471e195548ed6cd39244450598a04",
+      "archive_identity_sha256": "dcdc2e932ed18bf2b8e8b30120a9f19b2bd471e195548ed6cd39244450598a04",
+      "comparison": "Retained row identities and multiplicities; see captured_column_values for the separate value comparison"
+    },
+    "Sales.InvoiceLines": {
+      "matched": true,
+      "source_row_images": 4,
+      "archive_row_images": 4,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "5405ed9db46d11bcd52c9a98be548a9bf3eaad513e381ff3b95c8893bbcb8cc0",
+      "archive_identity_sha256": "5405ed9db46d11bcd52c9a98be548a9bf3eaad513e381ff3b95c8893bbcb8cc0",
+      "comparison": "Retained row identities and multiplicities; see captured_column_values for the separate value comparison"
+    },
+    "lab.CdcProbe": {
+      "matched": true,
+      "source_row_images": 36,
+      "archive_row_images": 36,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "6fee99f901115d4e4d945dab54206522c46533a116a611afda8f35dfaca28344",
+      "archive_identity_sha256": "6fee99f901115d4e4d945dab54206522c46533a116a611afda8f35dfaca28344",
+      "comparison": "Retained row identities and multiplicities; see captured_column_values for the separate value comparison"
+    }
+  },
+  "captured_column_values": {
+    "contract": "sqlserver-cdc-row-values/v1",
+    "matched": false,
+    "tables": {
+      "Sales.Customers": {
+        "source_images": 0,
+        "archive_images": 0,
+        "matching_images": 0,
+        "mismatched_images": 0,
+        "differing_columns": [],
+        "placeholder_only_mismatched_images": 0,
+        "unexplained_mismatched_images": 0,
+        "unexplained_differing_columns": [],
+        "explained_placeholder_cells": 0,
+        "placeholder_differences": [],
+        "captured_columns": [
+          "CustomerID",
+          "CustomerName",
+          "BillToCustomerID",
+          "CustomerCategoryID",
+          "BuyingGroupID",
+          "PrimaryContactPersonID",
+          "AlternateContactPersonID",
+          "DeliveryMethodID",
+          "DeliveryCityID",
+          "PostalCityID",
+          "CreditLimit",
+          "AccountOpenedDate",
+          "StandardDiscountPercentage",
+          "IsStatementSent",
+          "IsOnCreditHold",
+          "PaymentDays",
+          "PhoneNumber",
+          "FaxNumber",
+          "DeliveryRun",
+          "RunPosition",
+          "WebsiteURL",
+          "DeliveryAddressLine1",
+          "DeliveryAddressLine2",
+          "DeliveryPostalCode",
+          "DeliveryLocation",
+          "PostalAddressLine1",
+          "PostalAddressLine2",
+          "PostalPostalCode",
+          "LastEditedBy",
+          "ValidFrom",
+          "ValidTo"
+        ],
+        "compared_cells": 0,
+        "observed_archive_column_shapes": 1,
+        "source_values_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "archive_values_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status": "no_retained_images"
+      },
+      "Sales.Orders": {
+        "source_images": 6,
+        "archive_images": 6,
+        "matching_images": 4,
+        "mismatched_images": 2,
+        "differing_columns": [
+          "DeliveryInstructions",
+          "InternalComments"
+        ],
+        "placeholder_only_mismatched_images": 2,
+        "unexplained_mismatched_images": 0,
+        "unexplained_differing_columns": [],
+        "explained_placeholder_cells": 4,
+        "placeholder_differences": [
+          {
+            "column": "DeliveryInstructions",
+            "operation": 3,
+            "cells": 1
+          },
+          {
+            "column": "DeliveryInstructions",
+            "operation": 4,
+            "cells": 1
+          },
+          {
+            "column": "InternalComments",
+            "operation": 3,
+            "cells": 1
+          },
+          {
+            "column": "InternalComments",
+            "operation": 4,
+            "cells": 1
+          }
+        ],
+        "captured_columns": [
+          "OrderID",
+          "CustomerID",
+          "SalespersonPersonID",
+          "PickedByPersonID",
+          "ContactPersonID",
+          "BackorderOrderID",
+          "OrderDate",
+          "ExpectedDeliveryDate",
+          "CustomerPurchaseOrderNumber",
+          "IsUndersupplyBackordered",
+          "Comments",
+          "DeliveryInstructions",
+          "InternalComments",
+          "PickingCompletedWhen",
+          "LastEditedBy",
+          "LastEditedWhen"
+        ],
+        "compared_cells": 96,
+        "observed_archive_column_shapes": 1,
+        "source_values_sha256": "09a9c9522ea5b85c4a01a0b9b6b720f3baa4dcd54ec6afa24f1b4511f56501c5",
+        "archive_values_sha256": "43d6c2f405b7affe97343d8c5091a2594c19edc214975bb76a4bbccc002b4af5",
+        "status": "mismatch"
+      },
+      "Sales.OrderLines": {
+        "source_images": 4,
+        "archive_images": 4,
+        "matching_images": 4,
+        "mismatched_images": 0,
+        "differing_columns": [],
+        "placeholder_only_mismatched_images": 0,
+        "unexplained_mismatched_images": 0,
+        "unexplained_differing_columns": [],
+        "explained_placeholder_cells": 0,
+        "placeholder_differences": [],
+        "captured_columns": [
+          "OrderLineID",
+          "OrderID",
+          "StockItemID",
+          "Description",
+          "PackageTypeID",
+          "Quantity",
+          "UnitPrice",
+          "TaxRate",
+          "PickedQuantity",
+          "PickingCompletedWhen",
+          "LastEditedBy",
+          "LastEditedWhen"
+        ],
+        "compared_cells": 48,
+        "observed_archive_column_shapes": 1,
+        "source_values_sha256": "b875a5f1c016f82673521575d7536d5d3c76e3a3e4abf99379ff356fd7f16aac",
+        "archive_values_sha256": "b875a5f1c016f82673521575d7536d5d3c76e3a3e4abf99379ff356fd7f16aac",
+        "status": "matched"
+      },
+      "Sales.Invoices": {
+        "source_images": 4,
+        "archive_images": 4,
+        "matching_images": 2,
+        "mismatched_images": 2,
+        "differing_columns": [
+          "Comments",
+          "CreditNoteReason",
+          "DeliveryInstructions",
+          "InternalComments"
+        ],
+        "placeholder_only_mismatched_images": 2,
+        "unexplained_mismatched_images": 0,
+        "unexplained_differing_columns": [],
+        "explained_placeholder_cells": 6,
+        "placeholder_differences": [
+          {
+            "column": "Comments",
+            "operation": 3,
+            "cells": 1
+          },
+          {
+            "column": "CreditNoteReason",
+            "operation": 3,
+            "cells": 1
+          },
+          {
+            "column": "CreditNoteReason",
+            "operation": 4,
+            "cells": 1
+          },
+          {
+            "column": "DeliveryInstructions",
+            "operation": 3,
+            "cells": 1
+          },
+          {
+            "column": "InternalComments",
+            "operation": 3,
+            "cells": 1
+          },
+          {
+            "column": "InternalComments",
+            "operation": 4,
+            "cells": 1
+          }
+        ],
+        "captured_columns": [
+          "InvoiceID",
+          "CustomerID",
+          "BillToCustomerID",
+          "OrderID",
+          "DeliveryMethodID",
+          "ContactPersonID",
+          "AccountsPersonID",
+          "SalespersonPersonID",
+          "PackedByPersonID",
+          "InvoiceDate",
+          "CustomerPurchaseOrderNumber",
+          "IsCreditNote",
+          "CreditNoteReason",
+          "Comments",
+          "DeliveryInstructions",
+          "InternalComments",
+          "TotalDryItems",
+          "TotalChillerItems",
+          "DeliveryRun",
+          "RunPosition",
+          "ReturnedDeliveryData",
+          "ConfirmedDeliveryTime",
+          "ConfirmedReceivedBy",
+          "LastEditedBy",
+          "LastEditedWhen"
+        ],
+        "compared_cells": 100,
+        "observed_archive_column_shapes": 1,
+        "source_values_sha256": "c23dc5275dd69ddd55862c9c2a2ad6dcdadf6e876140f535ab81efaf52829e25",
+        "archive_values_sha256": "3908009b59395e0141e5d67e5ac578854a7c1d53f71ba33bba446aa0f193e3d7",
+        "status": "mismatch"
+      },
+      "Sales.InvoiceLines": {
+        "source_images": 4,
+        "archive_images": 4,
+        "matching_images": 4,
+        "mismatched_images": 0,
+        "differing_columns": [],
+        "placeholder_only_mismatched_images": 0,
+        "unexplained_mismatched_images": 0,
+        "unexplained_differing_columns": [],
+        "explained_placeholder_cells": 0,
+        "placeholder_differences": [],
+        "captured_columns": [
+          "InvoiceLineID",
+          "InvoiceID",
+          "StockItemID",
+          "Description",
+          "PackageTypeID",
+          "Quantity",
+          "UnitPrice",
+          "TaxRate",
+          "TaxAmount",
+          "LineProfit",
+          "ExtendedPrice",
+          "LastEditedBy",
+          "LastEditedWhen"
+        ],
+        "compared_cells": 52,
+        "observed_archive_column_shapes": 1,
+        "source_values_sha256": "0124cf925ce9380813e6d6c68316a03cd636db9c07de1593f88e5972d214a8e5",
+        "archive_values_sha256": "0124cf925ce9380813e6d6c68316a03cd636db9c07de1593f88e5972d214a8e5",
+        "status": "matched"
+      },
+      "lab.CdcProbe": {
+        "source_images": 36,
+        "archive_images": 36,
+        "matching_images": 36,
+        "mismatched_images": 0,
+        "differing_columns": [],
+        "placeholder_only_mismatched_images": 0,
+        "unexplained_mismatched_images": 0,
+        "unexplained_differing_columns": [],
+        "explained_placeholder_cells": 0,
+        "placeholder_differences": [],
+        "captured_columns": [
+          "ProbeID",
+          "Payload"
+        ],
+        "compared_cells": 72,
+        "observed_archive_column_shapes": 1,
+        "source_values_sha256": "5a40d6e46b84c1a50084d5235efc930c115a8bddf235f4e173731c9c56bc4ccc",
+        "archive_values_sha256": "5a40d6e46b84c1a50084d5235efc930c115a8bddf235f4e173731c9c56bc4ccc",
+        "status": "matched"
+      }
+    },
+    "source_images": 54,
+    "archive_images": 54,
+    "matching_images": 50,
+    "placeholder_only_mismatched_images": 4,
+    "explained_placeholder_cells": 10,
+    "unexplained_mismatched_images": 0,
+    "connector_representation_explains_all_differences": true,
+    "compared_cells": 368,
+    "issues": [],
+    "issue_count": 0,
+    "semantics": "Strict captured-value equality. NULL and unavailable markers remain different; explained placeholders are diagnostics, not successful value reconciliation or a purge approval."
+  },
+  "captured_columns": {
+    "Sales.Customers": [
+      {
+        "name": "CustomerID",
+        "ordinal": 1,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CustomerName",
+        "ordinal": 2,
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "BillToCustomerID",
+        "ordinal": 3,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CustomerCategoryID",
+        "ordinal": 4,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "BuyingGroupID",
+        "ordinal": 5,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PrimaryContactPersonID",
+        "ordinal": 6,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "AlternateContactPersonID",
+        "ordinal": 7,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryMethodID",
+        "ordinal": 8,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryCityID",
+        "ordinal": 9,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PostalCityID",
+        "ordinal": 10,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CreditLimit",
+        "ordinal": 11,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "AccountOpenedDate",
+        "ordinal": 12,
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "StandardDiscountPercentage",
+        "ordinal": 13,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 3,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "IsStatementSent",
+        "ordinal": 14,
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "IsOnCreditHold",
+        "ordinal": 15,
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PaymentDays",
+        "ordinal": 16,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PhoneNumber",
+        "ordinal": 17,
+        "type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "FaxNumber",
+        "ordinal": 18,
+        "type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryRun",
+        "ordinal": 19,
+        "type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "RunPosition",
+        "ordinal": 20,
+        "type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "WebsiteURL",
+        "ordinal": 21,
+        "type": "nvarchar",
+        "max_length": 512,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryAddressLine1",
+        "ordinal": 22,
+        "type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryAddressLine2",
+        "ordinal": 23,
+        "type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryPostalCode",
+        "ordinal": 24,
+        "type": "nvarchar",
+        "max_length": 20,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryLocation",
+        "ordinal": 25,
+        "type": "geography",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PostalAddressLine1",
+        "ordinal": 26,
+        "type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PostalAddressLine2",
+        "ordinal": 27,
+        "type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PostalPostalCode",
+        "ordinal": 28,
+        "type": "nvarchar",
+        "max_length": 20,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedBy",
+        "ordinal": 29,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ValidFrom",
+        "ordinal": 30,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ValidTo",
+        "ordinal": 31,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      }
+    ],
+    "Sales.Orders": [
+      {
+        "name": "OrderID",
+        "ordinal": 1,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CustomerID",
+        "ordinal": 2,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "SalespersonPersonID",
+        "ordinal": 3,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PickedByPersonID",
+        "ordinal": 4,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ContactPersonID",
+        "ordinal": 5,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "BackorderOrderID",
+        "ordinal": 6,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "OrderDate",
+        "ordinal": 7,
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ExpectedDeliveryDate",
+        "ordinal": 8,
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CustomerPurchaseOrderNumber",
+        "ordinal": 9,
+        "type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "IsUndersupplyBackordered",
+        "ordinal": 10,
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "Comments",
+        "ordinal": 11,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryInstructions",
+        "ordinal": 12,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "InternalComments",
+        "ordinal": 13,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PickingCompletedWhen",
+        "ordinal": 14,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedBy",
+        "ordinal": 15,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedWhen",
+        "ordinal": 16,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      }
+    ],
+    "Sales.OrderLines": [
+      {
+        "name": "OrderLineID",
+        "ordinal": 1,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "OrderID",
+        "ordinal": 2,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "StockItemID",
+        "ordinal": 3,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "Description",
+        "ordinal": 4,
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PackageTypeID",
+        "ordinal": 5,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "Quantity",
+        "ordinal": 6,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "UnitPrice",
+        "ordinal": 7,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "TaxRate",
+        "ordinal": 8,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 3,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PickedQuantity",
+        "ordinal": 9,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PickingCompletedWhen",
+        "ordinal": 10,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedBy",
+        "ordinal": 11,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedWhen",
+        "ordinal": 12,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      }
+    ],
+    "Sales.Invoices": [
+      {
+        "name": "InvoiceID",
+        "ordinal": 1,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CustomerID",
+        "ordinal": 2,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "BillToCustomerID",
+        "ordinal": 3,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "OrderID",
+        "ordinal": 4,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryMethodID",
+        "ordinal": 5,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ContactPersonID",
+        "ordinal": 6,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "AccountsPersonID",
+        "ordinal": 7,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "SalespersonPersonID",
+        "ordinal": 8,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PackedByPersonID",
+        "ordinal": 9,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "InvoiceDate",
+        "ordinal": 10,
+        "type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CustomerPurchaseOrderNumber",
+        "ordinal": 11,
+        "type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "IsCreditNote",
+        "ordinal": 12,
+        "type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "CreditNoteReason",
+        "ordinal": 13,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "Comments",
+        "ordinal": 14,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryInstructions",
+        "ordinal": 15,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "InternalComments",
+        "ordinal": 16,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "TotalDryItems",
+        "ordinal": 17,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "TotalChillerItems",
+        "ordinal": 18,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "DeliveryRun",
+        "ordinal": 19,
+        "type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "RunPosition",
+        "ordinal": 20,
+        "type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ReturnedDeliveryData",
+        "ordinal": 21,
+        "type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ConfirmedDeliveryTime",
+        "ordinal": 22,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 1
+      },
+      {
+        "name": "ConfirmedReceivedBy",
+        "ordinal": 23,
+        "type": "nvarchar",
+        "max_length": 8000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 1
+      },
+      {
+        "name": "LastEditedBy",
+        "ordinal": 24,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedWhen",
+        "ordinal": 25,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      }
+    ],
+    "Sales.InvoiceLines": [
+      {
+        "name": "InvoiceLineID",
+        "ordinal": 1,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "InvoiceID",
+        "ordinal": 2,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "StockItemID",
+        "ordinal": 3,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "Description",
+        "ordinal": 4,
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "PackageTypeID",
+        "ordinal": 5,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "Quantity",
+        "ordinal": 6,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "UnitPrice",
+        "ordinal": 7,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "TaxRate",
+        "ordinal": 8,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 3,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "TaxAmount",
+        "ordinal": 9,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LineProfit",
+        "ordinal": 10,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "ExtendedPrice",
+        "ordinal": 11,
+        "type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedBy",
+        "ordinal": 12,
+        "type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "LastEditedWhen",
+        "ordinal": 13,
+        "type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "source_is_computed": 0
+      }
+    ],
+    "lab.CdcProbe": [
+      {
+        "name": "ProbeID",
+        "ordinal": 1,
+        "type": "uniqueidentifier",
+        "max_length": 16,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      },
+      {
+        "name": "Payload",
+        "ordinal": 2,
+        "type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "source_is_computed": 0
+      }
+    ]
+  },
+  "logical_column_values": {
+    "contract": "sqlserver-cdc-logical-values/v1",
+    "matched": true,
+    "strict_raw_matching_images": 50,
+    "reconstructed_images_verified": 4,
+    "logical_matching_images": 54,
+    "marker_cells_revalidated": 10,
+    "history_events_verified": 6,
+    "affected_keys": 2,
+    "issues": [],
+    "scope": "Retained images: exact available captured values and unchanged markers reconstructed from verified prior live archive state; not full snapshot reconciliation or transaction completeness"
+  },
+  "resolution_observation_sha256": "90b8bfec67d9e02a925ce2198e76ea58c2a970307606d3b934ed6e0ef0ceccff",
+  "connector_resume": {
+    "contract": "cdc-persistent-resume/v1",
+    "verified": true,
+    "purge_authorized": false,
+    "scope": "Graceful local container recreation and persistent files; no crash/power-loss, off-VM restore or transaction-fence certification",
+    "checkpoint": {
+      "namespace": "http",
+      "partition": {
+        "server": "wwi",
+        "database": "WideWorldImporters"
+      },
+      "commit_lsn": "00000279000042c00005",
+      "change_lsn": "00000279000042c00002",
+      "event_serial_no": 1,
+      "command_id": 1
+    },
+    "exercise_sha256": "7a0b6ec06b29d718ee191ae95f204eed249e429cfc3c43f1236481caffa7c113",
+    "probe_cycles_verified": 3,
+    "checkpoint_in_verified_archive": true,
+    "query_mode": "direct",
+    "source_command_ids_bound_events": 9
+  },
+  "checkpoint_observation_sha256": "4a11aaa89c81b8744d6b21d5ef3932788dfb97c98b11057fcdbab54246c8abab",
+  "warehouse": {
+    "consumer": "sales/v2",
+    "acknowledged_batches": 3027,
+    "required_batches": 3027,
+    "archive_only_batches_not_required": 9,
+    "checkpoint_mismatches": 0,
+    "acknowledged_but_missing_manifests": 0,
+    "archive_stream_events": 14,
+    "ledger_stream_events": 14,
+    "missing_stream_events": 0,
+    "unexpected_stream_events": 0,
+    "semantic_mismatches": 0
+  },
+  "checks": {
+    "ARCHIVE_INTEGRITY": true,
+    "RETAINED_POST_BOOTSTRAP_IDENTITIES_MATCH": true,
+    "WAREHOUSE_BATCH_CHECKPOINTS_MATCH": true,
+    "WAREHOUSE_STREAM_SEMANTICS_MATCH": true,
+    "WAREHOUSE_SCAN_RECENT": true,
+    "CAPTURE_SCOPE_MATCHES_POLICY": true,
+    "CAPTURE_HISTORY_REACHES_BOOTSTRAP": true,
+    "PRE_BOOTSTRAP_HISTORY_ACCOUNTED_FOR": false,
+    "RETENTION_WINDOW_HAS_HISTORY": false,
+    "SOURCE_OBSERVATION_STABLE": true,
+    "AUTOMATIC_CLEANUP_DISABLED": true,
+    "RETAINED_LOGICAL_ROW_IMAGES_RECONCILED": true,
+    "WAREHOUSE_RESOLUTION_OBSERVATION_STABLE": true,
+    "CONNECTOR_PERSISTENT_RESUME_VERIFIED": true,
+    "CONNECTOR_OBSERVATION_STABLE": true,
+    "CONNECTOR_DURABLE_RESUME_CHECKPOINT_CERTIFIED": null,
+    "TRANSACTION_FENCE_CERTIFIED": null,
+    "ALL_CDC_CONSUMERS_REGISTERED_AND_APPROVED": null,
+    "RETENTION_POLICY_APPROVED": null,
+    "OFF_VM_ARCHIVE_RESTORE_PROVEN": null,
+    "SERVICES_HEALTHY_AT_COMPLETION": true
+  },
+  "limitations": [
+    "Value comparison covers retained post-bootstrap CDC images, not a full source snapshot or original values SQL CDC did not preserve.",
+    "A fixed maximum observed LSN is not a certified connector checkpoint or transaction fence.",
+    "The snapshot establishes state, not recovery of changes from before bootstrap.",
+    "Full-export application receipts do not establish a contiguous CDC checkpoint.",
+    "This audit contains no purge execution path and cannot produce an executable low watermark."
+  ],
+  "decision": {
+    "status": "blocked",
+    "purge_authorized": false,
+    "executable_low_watermark": null,
+    "blockers": [
+      "PRE_BOOTSTRAP_HISTORY_ACCOUNTED_FOR",
+      "RETENTION_WINDOW_HAS_HISTORY",
+      "CONNECTOR_DURABLE_RESUME_CHECKPOINT_CERTIFIED",
+      "TRANSACTION_FENCE_CERTIFIED",
+      "ALL_CDC_CONSUMERS_REGISTERED_AND_APPROVED",
+      "RETENTION_POLICY_APPROVED",
+      "OFF_VM_ARCHIVE_RESTORE_PROVEN",
+      "PURGE_EXECUTION_NOT_IMPLEMENTED"
+    ],
+    "changes_deleted": 0
+  },
+  "run_id": "20261029T160143Z-87331a9da67a",
+  "completed_at": "2026-10-29T16:04:22.284586+00:00",
+  "sql_access_checks": {
+    "sysadmin": 0,
+    "db_owner": 0,
+    "can_read_cdc": 1,
+    "can_delete_cdc": 0,
+    "can_update_source": 0,
+    "can_execute_cleanup": 0
+  },
+  "storage_access_checks": {
+    "warehouse_read_only": true,
+    "business_row_access_denied": true,
+    "s3_write_denied": true,
+    "export_bucket_list_denied": true
+  },
+  "unit_tests": {
+    "tests_run": 79,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true
+  },
+  "unit_tests_passed": 79,
+  "source_fingerprint_before": "7f67d4cf9f385e22ad61ee59d43d1ca4ad7866078e2a278059f3474b55615770",
+  "source_fingerprint_after": "7f67d4cf9f385e22ad61ee59d43d1ca4ad7866078e2a278059f3474b55615770",
+  "cleanup_job_before": {
+    "cleanup_jobs": [
+      {
+        "enabled": 0,
+        "retention": 4320
+      }
+    ]
+  },
+  "cleanup_job_after": {
+    "cleanup_jobs": [
+      {
+        "enabled": 0,
+        "retention": 4320
+      }
+    ]
+  },
+  "image_id": "sha256:136eb594a583a89240ef14b8833cd53bc88c292d6e4be0c27d0db8a22418b72b",
+  "service_health": {
+    "decom-airflow-api-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-sqlserver-sqlserver-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy"
+  },
+  "provenance_sha256": {
+    "Dockerfile": "3499edfe6087efe741514723f1004222572af9ef8e351d8e42ccf25dab956ea8",
+    "app/audit.py": "58c79f52a81708c72cf68731b08b55979d40fd0ff5affa595438b473502aed54",
+    "app/audit_core.py": "45e47a0e823f14897678353ae599386d5ef6b85d5f23345cff79e0f357551950",
+    "app/check_access.py": "5741e6fe183bffa74e5b21cea853e406ddaa3c621e8eec9fabdd7ae58f98e32f",
+    "app/logical_values.py": "0cfa5d7d0d3588363e3e3e18cc437d924f8437ced119536f79af6fd887ce8a86",
+    "app/offset_checkpoint.py": "9d62a927f351b135f998d54c4fa41a8399a11c702551a1a859a5cf1e783ed1cb",
+    "app/resume_audit.py": "ea4079c3e9d83337f19cb21582098bbe5e751cd727a141d39abc7d61496502be",
+    "app/row_values.py": "0a092ba77e8aab85eaf12d31dda59fb7b7a55f5efafb4486df76c7461551106e",
+    "app/run_tests.py": "8ce8484082986485a869d56187349b9ccd18456ba480bdc39c7ce8e1db51bbb4",
+    "compose.yaml": "8284b78eb563a89e210c6f189e12c9fcf866949291fb7aa04eb70d3cf5c4d122",
+    "policy.json": "11a5d0d5bd9121b48be9262fc5ae4573314797c47bc7e59cbf29c2ce1a386ca6",
+    "scripts/checkpoint-input.py": "c36f4f478d873e7539661ebfcf03db1d1b04b6fe00a33a15fb91bb401d3510d0",
+    "scripts/prepare-host.py": "7c8ceca6c1142b95a93e779d128650be30ef0477367621958f00638d48cf0913",
+    "scripts/resolution-input.py": "c4f4a7e3f3a2ba2c5014c98a4c4bc3d0928fb452b1eb277655a36f73ceff5c01",
+    "scripts/run-host.py": "7e095448c10e40877a3a64fff1e75c95d64396f2205fa1de42d2fd3bfba2b9b2",
+    "scripts/source.py": "b6744d6282f50af0b8186442b2b0c38d40578e25afd729b900dc28e5c0420f1d",
+    "scripts/verify-checkpoint-host.py": "d3c2d1707c521816f144258586208422d45ede1afa0fee1c986002775fddff91",
+    "tests/fixtures/OffsetFixture.java": "bdad1cd8cbe7ec773bcbcdc33ff6806ef36bc13255fee4d32ec9a4e8800f2b3e",
+    "tests/fixtures/offsets.json": "c1af8ef800c757ad45ff438b890c7605b979d43b5c526e096319ea5aee722e90",
+    "tests/test_audit.py": "e0ac985467210a7a179c7730d8b3275cb4f16544d583d07083f75bf356fc9d28",
+    "tests/test_checkpoint.py": "bf275936c641719509ef14e72b5d08a0f12742579b2f952e22df31cb8ee65884",
+    "tests/test_logical_values.py": "392a018aad28ba8d511e3b1a5145497e7f0b2d5a08c2ef7063efdbc306b8afe1",
+    "tests/test_resume_runner.py": "6cf1cc128bcbf0b3e2ac30863dcd85f9f888908bc8cab3e4f1088ead37d83a3b",
+    "tests/test_row_values.py": "e98e06edc72ad1ebc0d88ee428702cf1945e2f909ac718193cfc5f044368581a",
+    "tests/test_source.py": "83af52530821545e518751ccc2b815f5b3540be767faf875dd0291e94451feb5"
+  },
+  "dependency_provenance_sha256": {
+    "cdc/archiver/archive.py": "6c673bac604a2cdcbff378c4e4053a208464726829d7e24a3ae877a91578362b",
+    "warehouse/loader/load.py": "de1085af1a93b00a46bf086d507f6cda7550cd40bbf15782b2b749316cf359cb",
+    "warehouse/loader/sales_contract.py": "e852615f290f3dba302927c7fa0c360d6974759636e8a4ae5d9900d2adb93f23",
+    "warehouse/loader/resolve.py": "2abd8e258adc9ff84086d451f4280ca8c0d7e8b3ddd711c262f5f2475fa9c1ca",
+    "warehouse/loader/resolve_core.py": "4942576cb98c234868fd33b3212cdf85c66b6eaa16e8fef284fcea6ab6c4c536",
+    "warehouse/loader/requirements.txt": "7cb75b3fb43df654c969ff7cdb5f40757be189c7c25dfe510864518df1ed1586"
+  }
+}

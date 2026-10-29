@@ -1,0 +1,530 @@
+{
+  "contract": "migration-poc-closure/v1",
+  "run_id": "20261029T165303Z-9ba59731",
+  "started_at": "2026-10-29T16:53:03.473792+00:00",
+  "passed": true,
+  "source_retired": false,
+  "business_purge_authorized": false,
+  "initial_services": {
+    "decom-airflow-api-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-sqlserver-sqlserver-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy"
+  },
+  "airflow": {
+    "export_invoices": {
+      "dag_run_id": "poc_closure__20261029T165303Z-9ba59731",
+      "dataset": "invoice_details",
+      "request_id": "af1-3aaa58575ead18dbdd1a802e571e13f8912ce917",
+      "state": "success",
+      "tasks": [
+        {
+          "task_id": "check_ingestion",
+          "state": "success",
+          "try_number": 1,
+          "start_date": "2026-10-29T16:53:06.346502Z",
+          "end_date": "2026-10-29T16:53:09.025212Z"
+        },
+        {
+          "task_id": "export_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "start_date": "2026-10-29T16:53:09.597088Z",
+          "end_date": "2026-10-29T16:54:55.526622Z"
+        },
+        {
+          "task_id": "verify_delivery",
+          "state": "success",
+          "try_number": 1,
+          "start_date": "2026-10-29T16:54:58.024662Z",
+          "end_date": "2026-10-29T16:55:10.567830Z"
+        },
+        {
+          "task_id": "confirm_invoice_application",
+          "state": "success",
+          "try_number": 1,
+          "start_date": "2026-10-29T16:56:30.563455Z",
+          "end_date": "2026-10-29T16:56:31.596712Z"
+        }
+      ],
+      "export": {
+        "attempts": 1,
+        "dataset": "invoice_details",
+        "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T165312Z-affc878abc0c4a6f9ab8c5fbfd4f9043.json",
+        "request_id": "af1-3aaa58575ead18dbdd1a802e571e13f8912ce917",
+        "run_id": "20261029T165312Z-affc878abc0c4a6f9ab8c5fbfd4f9043"
+      },
+      "validation": {
+        "attempts": 1,
+        "dataset": "invoice_details",
+        "files": 5,
+        "manifest_sha256": "f45e437260b5d89247febed0aa8dc961f8d856b520e70e61bac553b0b38b0c1a",
+        "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T165312Z-affc878abc0c4a6f9ab8c5fbfd4f9043.json",
+        "request_id": "af1-3aaa58575ead18dbdd1a802e571e13f8912ce917",
+        "row_sha256": "373f883715913220873e0d146793cd9d647d91eb7fca330e77ec5fd3fa441d85",
+        "rows": 228265,
+        "run_id": "20261029T165312Z-affc878abc0c4a6f9ab8c5fbfd4f9043"
+      },
+      "receipt": {
+        "processed": true,
+        "event_id": "3c169df4ca11b2707a3cbf17ccbb02cc001da194de90fc7fd42270aba8b5b084",
+        "run_id": "20261029T165312Z-affc878abc0c4a6f9ab8c5fbfd4f9043",
+        "decision": "applied",
+        "rows": 228265,
+        "committed_at": "2026-10-29T16:55:37.141808+00:00",
+        "purge_authorized": false
+      }
+    },
+    "export_orders": {
+      "dag_run_id": "poc_closure__20261029T165303Z-9ba59731",
+      "dataset": "order_details",
+      "request_id": "af1-7b36bb5cc765d9c8a29c082bd857379841531e3f",
+      "state": "success",
+      "tasks": [
+        {
+          "task_id": "check_ingestion",
+          "state": "success",
+          "try_number": 1,
+          "start_date": "2026-10-29T16:54:55.688160Z",
+          "end_date": "2026-10-29T16:54:57.101586Z"
+        },
+        {
+          "task_id": "export_snapshot",
+          "state": "success",
+          "try_number": 1,
+          "start_date": "2026-10-29T16:55:10.826688Z",
+          "end_date": "2026-10-29T16:56:29.979842Z"
+        },
+        {
+          "task_id": "verify_delivery",
+          "state": "success",
+          "try_number": 1,
+          "start_date": "2026-10-29T16:56:31.793093Z",
+          "end_date": "2026-10-29T16:56:44.641093Z"
+        }
+      ],
+      "export": {
+        "attempts": 1,
+        "dataset": "order_details",
+        "publication": "published/dataset=order_details/version=1/run_date=2026-10-29/run=20261029T165514Z-7d19b960dded4aa5966f1e78d8108828.json",
+        "request_id": "af1-7b36bb5cc765d9c8a29c082bd857379841531e3f",
+        "run_id": "20261029T165514Z-7d19b960dded4aa5966f1e78d8108828"
+      },
+      "validation": {
+        "attempts": 1,
+        "dataset": "order_details",
+        "files": 5,
+        "manifest_sha256": "443db13e331607fb39138f4bbeb1f6b142f2cee3a89ba300840f4acbc52a1e7a",
+        "publication": "published/dataset=order_details/version=1/run_date=2026-10-29/run=20261029T165514Z-7d19b960dded4aa5966f1e78d8108828.json",
+        "request_id": "af1-7b36bb5cc765d9c8a29c082bd857379841531e3f",
+        "row_sha256": "dcfcd1a1380a43e6fd2227fb23f71cf10795d158d2297f0389b9958c7b39e572",
+        "rows": 231412,
+        "run_id": "20261029T165514Z-7d19b960dded4aa5966f1e78d8108828"
+      }
+    }
+  },
+  "source_procedure_export": {
+    "source_results": "/srv/decom-sqlserver/validation/poc-closure-20261029T165303Z-9ba59731/source-procedure",
+    "rows": {
+      "full_current": 231412,
+      "upper_inclusive_100ns": 32,
+      "lower_exclusive_100ns": 0,
+      "equal_bounds": 0,
+      "reversed_bounds": 0,
+      "null_lower": 0,
+      "null_upper": 0
+    }
+  },
+  "source_procedure_manifest_sha256": "dcb0ce180c1950b89ed439032022f998936acebce9aae2d13d92d21e599e6024",
+  "outage_started_at": "2026-10-29T16:57:19.814395+00:00",
+  "offline_services": {
+    "decom-airflow-api-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy"
+  },
+  "source_stopped_state": {
+    "Running": false,
+    "Status": "exited",
+    "ExitCode": 0,
+    "FinishedAt": "2026-10-29T16:57:19.537103748Z"
+  },
+  "procedure_without_source": {
+    "verified_at": "2026-10-29T16:58:44.162458+00:00",
+    "passed": true,
+    "procedure": "Integration.GetOrderUpdates",
+    "source_definition_sha256": "d3d51f7dbf4bd6378a4e7161fdb23461f69fa2926fd9e6495fd8cc360aebab87",
+    "reference_version": "wwi-package-types/v1/70b20421d9e865772d2462dc897db708c6620e6ab6321e27581fe6f1b934f294",
+    "columns": [
+      "Order Date Key",
+      "Picked Date Key",
+      "WWI Order ID",
+      "WWI Backorder ID",
+      "Description",
+      "Package",
+      "Quantity",
+      "Unit Price",
+      "Tax Rate",
+      "Total Excluding Tax",
+      "Tax Amount",
+      "Total Including Tax",
+      "WWI City ID",
+      "WWI Customer ID",
+      "WWI Stock Item ID",
+      "WWI Salesperson ID",
+      "WWI Picker ID",
+      "Last Modified When"
+    ],
+    "cases": {
+      "full_current": {
+        "source_rows": 231412,
+        "target_rows": 231412,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "3d0d0fe98b2e9a59b45517dd05576332d2dd2caf03104d8ab8560807eae9eae2",
+        "target_sha256": "3d0d0fe98b2e9a59b45517dd05576332d2dd2caf03104d8ab8560807eae9eae2",
+        "elapsed_seconds": 55.8,
+        "last_cutoff": "0001-01-01",
+        "new_cutoff": "9999-12-31T23:59:59.9999999"
+      },
+      "upper_inclusive_100ns": {
+        "source_rows": 32,
+        "target_rows": 32,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "feed6845c958d35878bc21f626957eb0bcf3940f3b7fda53e936812a0e1ae87d",
+        "target_sha256": "feed6845c958d35878bc21f626957eb0bcf3940f3b7fda53e936812a0e1ae87d",
+        "elapsed_seconds": 12.17,
+        "last_cutoff": "2016-05-31T11:59:59.9999999",
+        "new_cutoff": "2016-05-31T12:00:00.0000000"
+      },
+      "lower_exclusive_100ns": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 13.79,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": "2016-05-31T12:00:00.0000001"
+      },
+      "equal_bounds": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": "2016-05-31T12:00:00.0000000"
+      },
+      "reversed_bounds": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": "2016-05-31T11:59:59.9999999"
+      },
+      "null_lower": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": null,
+        "new_cutoff": "2016-05-31T12:00:00.0000000"
+      },
+      "null_upper": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": null
+      }
+    },
+    "source_return_status": 0,
+    "target_success": "SELECT result set; no T-SQL return-code emulation",
+    "ordering": "OrderID ascending; duplicate-preserving comparison within each OrderID because the source does not define a line tie-breaker",
+    "reader_execute": true,
+    "loader_execute": false,
+    "reader_can_modify_reference": false,
+    "limits": [
+      "Quiet fixture comparison; not an online cutover proof",
+      "Explicit reference snapshot; no automatic refresh",
+      "datetime2(7) exposed as exact ISO text; cutoff inputs restricted to ISO without timezone",
+      "Source EXECUTE AS OWNER is compared with the full-scope lab reader; per-application RLS mapping is not certified",
+      "Current-row extraction preserves the source procedure semantics; deletes and historical versions are not returned"
+    ],
+    "purge_authorized": false
+  },
+  "direct_s3_without_source": {
+    "dataset": "order_details",
+    "run_id": "20261029T165514Z-7d19b960dded4aa5966f1e78d8108828",
+    "publication": "published/dataset=order_details/version=1/run_date=2026-10-29/run=20261029T165514Z-7d19b960dded4aa5966f1e78d8108828.json",
+    "manifest_sha256": "443db13e331607fb39138f4bbeb1f6b142f2cee3a89ba300840f4acbc52a1e7a",
+    "statistics": {
+      "first_key": 1,
+      "last_key": 231412,
+      "null_counts": {
+        "customer_id": 0,
+        "customer_name": 0,
+        "description": 0,
+        "order_date": 0,
+        "order_id": 0,
+        "order_line_id": 0,
+        "picked_quantity": 0,
+        "quantity": 0,
+        "stock_item_id": 0,
+        "tax_rate": 0,
+        "unit_price": 0
+      },
+      "row_sha256": "dcfcd1a1380a43e6fd2227fb23f71cf10795d158d2297f0389b9958c7b39e572",
+      "rows": 231412,
+      "sums": {
+        "picked_quantity": "8950628",
+        "quantity": "9310904"
+      }
+    },
+    "files": 5,
+    "bytes": 3044159,
+    "verified_at": "2026-10-29T16:58:51.596144+00:00",
+    "status": "validated"
+  },
+  "source_restored_at": "2026-10-29T17:09:31.794285+00:00",
+  "prior_failed_attempt": {
+    "failure_sha256": "c75c348d661e800f5574f46a3fec986a1341eec3fa72cc7154a9ae940fe98fc9",
+    "reason": "The status CLI attempted PRAGMA journal_mode while the invoice writer held a lock.",
+    "correction": "Read the committed application receipt using a read-only SQLite connection with bounded busy polling.",
+    "repeated_scope": "Only the source-offline invoice export/application delivery; original successful checks retained."
+  },
+  "outage_windows": [
+    {
+      "started_at": "2026-10-29T16:57:19.814395+00:00",
+      "restored_at": "2026-10-29T17:01:48.061224+00:00",
+      "passed": [
+        "migrated procedure: seven cases",
+        "direct S3 order consumption"
+      ]
+    },
+    {
+      "started_at": "2026-10-29T17:06:29.835802+00:00",
+      "checks_completed_at": "2026-10-29T17:08:54.396513+00:00",
+      "restored_at": "2026-10-29T17:09:31.794285+00:00",
+      "passed": [
+        "new invoice export",
+        "independent S3 validation",
+        "RabbitMQ application receipt",
+        "all stored application rows"
+      ]
+    }
+  ],
+  "invoice_without_source": {
+    "export": {
+      "dataset": "invoice_details",
+      "request_id": "poc-close-20261029T165303Z-9ba59731-invoice-retry",
+      "run_id": "20261029T170632Z-6b93b71f8b334b27ba50339276010690",
+      "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T170632Z-6b93b71f8b334b27ba50339276010690.json",
+      "status": "published",
+      "attempts": 1
+    },
+    "validation": {
+      "dataset": "invoice_details",
+      "run_id": "20261029T170632Z-6b93b71f8b334b27ba50339276010690",
+      "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T170632Z-6b93b71f8b334b27ba50339276010690.json",
+      "manifest_sha256": "735356c5fa5c46f179b8bd778606d3543c7d702be9b7d64afd3eea2bb32c2756",
+      "statistics": {
+        "first_key": 1,
+        "last_key": 228265,
+        "null_counts": {
+          "bill_to_customer_id": 0,
+          "bill_to_customer_name": 0,
+          "customer_id": 0,
+          "customer_name": 0,
+          "description": 0,
+          "extended_price": 0,
+          "invoice_date": 0,
+          "invoice_id": 0,
+          "invoice_line_id": 0,
+          "is_credit_note": 0,
+          "line_profit": 0,
+          "order_id": 0,
+          "quantity": 0,
+          "stock_item_id": 0,
+          "tax_amount": 0,
+          "tax_rate": 0,
+          "unit_price": 0
+        },
+        "row_sha256": "373f883715913220873e0d146793cd9d647d91eb7fca330e77ec5fd3fa441d85",
+        "rows": 228265,
+        "sums": {
+          "extended_price": "198043439.45",
+          "line_profit": "85729180.90",
+          "quantity": "8950628",
+          "tax_amount": "25782098.25"
+        }
+      },
+      "files": 5,
+      "bytes": 4529968,
+      "verified_at": "2026-10-29T17:08:19.147138+00:00",
+      "status": "validated"
+    },
+    "receipt": {
+      "event_id": "ca3d88830c9ecd00e0886f227cb9c6fa07d47391a4285c67b06c416797f5ffda",
+      "run_id": "20261029T170632Z-6b93b71f8b334b27ba50339276010690",
+      "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T170632Z-6b93b71f8b334b27ba50339276010690.json",
+      "decision": "applied",
+      "committed_at": "2026-10-29T17:08:35.930452+00:00"
+    },
+    "application_audit": {
+      "event_id": "ca3d88830c9ecd00e0886f227cb9c6fa07d47391a4285c67b06c416797f5ffda",
+      "statistics": {
+        "rows": 228265,
+        "first_key": 1,
+        "last_key": 228265,
+        "null_counts": {
+          "invoice_line_id": 0,
+          "invoice_id": 0,
+          "order_id": 0,
+          "customer_id": 0,
+          "customer_name": 0,
+          "bill_to_customer_id": 0,
+          "bill_to_customer_name": 0,
+          "invoice_date": 0,
+          "is_credit_note": 0,
+          "stock_item_id": 0,
+          "description": 0,
+          "quantity": 0,
+          "unit_price": 0,
+          "tax_rate": 0,
+          "tax_amount": 0,
+          "line_profit": 0,
+          "extended_price": 0
+        },
+        "sums": {
+          "quantity": "8950628",
+          "tax_amount": "25782098.25",
+          "line_profit": "85729180.90",
+          "extended_price": "198043439.45"
+        },
+        "row_sha256": "373f883715913220873e0d146793cd9d647d91eb7fca330e77ec5fd3fa441d85"
+      },
+      "all_stored_rows_reconciled": true,
+      "sqlite_version": "3.40.1",
+      "journal_mode": "delete",
+      "synchronous": 3,
+      "quick_check": "ok"
+    },
+    "automatic_dispatch_and_consumption": true
+  },
+  "offline_checks_completed_at": "2026-10-29T17:08:54.396513+00:00",
+  "recovery": {
+    "probe_id": "846c4160-08d5-450a-9bdd-8e5ecff3680d",
+    "archived_events": [
+      {
+        "op": "c",
+        "value": "before",
+        "commit_lsn": "00000279:000065c8:0003",
+        "change_lsn": "00000279:000065c8:0002",
+        "event_serial_no": 1
+      },
+      {
+        "op": "u",
+        "value": "after",
+        "commit_lsn": "00000279:000065d0:0003",
+        "change_lsn": "00000279:000065d0:0002",
+        "event_serial_no": 2
+      },
+      {
+        "op": "d",
+        "value": "after",
+        "commit_lsn": "00000279:000065d8:0005",
+        "change_lsn": "00000279:000065d8:0002",
+        "event_serial_no": 1
+      }
+    ],
+    "checkpoint_before": {
+      "namespace": "http",
+      "partition": {
+        "server": "wwi",
+        "database": "WideWorldImporters"
+      },
+      "commit_lsn": "0000027900005a480005",
+      "change_lsn": "0000027900005a480002",
+      "event_serial_no": 1,
+      "command_id": 1
+    },
+    "checkpoint_after": {
+      "namespace": "http",
+      "partition": {
+        "server": "wwi",
+        "database": "WideWorldImporters"
+      },
+      "commit_lsn": "00000279000065d80005",
+      "change_lsn": "00000279000065d80002",
+      "event_serial_no": 1,
+      "command_id": 1
+    },
+    "same_containers_images_config_and_history": true,
+    "persisted_checkpoint_advanced": true,
+    "native_cleanup_job": {
+      "enabled": 0,
+      "retention": 4320
+    }
+  },
+  "poc_status": "complete",
+  "completed_at": "2026-10-29T17:09:45.623952+00:00",
+  "final_services": {
+    "decom-airflow-api-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-sqlserver-sqlserver-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy"
+  },
+  "limitations": [
+    "POC: five business tables, one migrated stored procedure, technical-table purge only.",
+    "Normal Airflow preflight requires the source; the DAGs passed before the outage.",
+    "Downstream reads and a new manual invoice export/application delivery passed while SQL Server was stopped.",
+    "Two controlled outage windows were used; the first attempt and observer error are retained.",
+    "The source is restarted. No permanent retirement, business purge, HA or off-VM recovery certification."
+  ],
+  "provenance_sha256": {
+    "scripts/close-poc-host.py": "578ce7d49c7912d08fc4e25ab8ad05d911b18fc02e1300e908baa43597a7278d",
+    "closure-invoice-recovery.py": "036ff6a80439e40726512e6fc9d9f129c2cf3265950db84a3e9273a254260d6a"
+  }
+}

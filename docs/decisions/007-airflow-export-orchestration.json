@@ -1,0 +1,37 @@
+{
+  "decision": "Airflow orchestration for daily warehouse exports",
+  "date": "2026-10-29",
+  "status": "implemented; acceptance evidence recorded separately",
+  "version": "Apache Airflow 3.3.2, latest stable verified against the Apache distribution index on deployment day",
+  "base_image": "apache/airflow:3.3.2-python3.12@sha256:9df9c8be4096b9cc626bd7cb1f2b8c712eef66c59c615f8c7e6200871ca10bd1",
+  "decisions": [
+    "LocalExecutor with one active task globally, one-slot export_jobs pool and one active run per DAG; no Celery, Redis or additional RabbitMQ use.",
+    "Separate API, scheduler and DAG processor containers; a dedicated airflow_meta database and restricted owner role on the existing PostgreSQL 18 cluster.",
+    "Two daily full exports at 06:00 and 06:15 America/Toronto; catchup disabled; these initial lab schedules are project defaults.",
+    "Existing exporter and S3-only validator run as bounded, detached one-off containers. No Docker socket or business database/storage/broker credentials are mounted into Airflow.",
+    "A pinned-host-key SSH identity reaches a root-owned forced command. Its strict JSON allowlist permits dependency checks, the two existing export/validation jobs and invoice receipt checks only.",
+    "A request identity derives from dataset and Airflow DAG-run ID, never task attempt. The root journal survives task/SSH loss and reuses completed publications.",
+    "Invoice completion requires the application's durable delivery ledger to match publication, manifest hash, row hash and row count. Orders retain direct S3 consumption.",
+    "Readiness means healthy services and a recent successful warehouse scan; it does not certify a contiguous CDC watermark or source transaction boundary. No purge operation is exposed.",
+    "File-mounted generated secrets, FAB authentication, loopback UI publishing through SSH/IAP, persistent metadata and task logs.",
+    "Metadata initialization uses a five-connection pool; runtime components use two connections with no overflow. Initial schema creation holds multiple connections and cannot use a two-connection pool."
+  ],
+  "limitations": [
+    "Single VM, shared PostgreSQL instance and local disk; no HA or off-VM disaster recovery.",
+    "Airflow DAG authors remain trusted operators; restricted job submission is an additional boundary, not hostile-tenant isolation.",
+    "A failed Airflow task may leave a detached job running. Recover with the same request identity; do not delete journals or create a new run merely to resume.",
+    "Two retries after an initial failure; exhausted retries appear in the UI. External notifications and escalation routing are not configured.",
+    "Persistent task logs, job journals and exports require a future reviewed retention policy; no automatic evidence deletion.",
+    "Daily full snapshots are for this lab's measured volume. Incremental export contracts and Spark require separate measurement and design.",
+    "Application cutover, SQL-object migration, safe source CDC cleanup and decommissioning remain separate unfinished workstreams."
+  ],
+  "sources": [
+    "https://downloads.apache.org/airflow/",
+    "https://release-catalog.apache.org/airflow/index.html",
+    "https://airflow.apache.org/docs/apache-airflow/3.3.2/installation/prerequisites.html",
+    "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/executor/local.html",
+    "https://airflow.apache.org/docs/apache-airflow/3.3.2/configurations-ref.html",
+    "https://airflow.apache.org/docs/apache-airflow-providers-fab/stable/auth-manager/token.html",
+    "https://raw.githubusercontent.com/apache/airflow/constraints-3.3.2/constraints-3.12.txt"
+  ]
+}

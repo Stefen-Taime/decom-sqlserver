@@ -1,0 +1,65 @@
+{
+  "title": "Five-table sales warehouse and versioned consumer scope",
+  "status": "Implemented; validation evidence published separately",
+  "date": "2026-10-28",
+  "context": "The customers-orders/v1 consumer acknowledged mixed archive batches while ignoring three captured sales tables. A broader consumer must revisit those batches without resetting archive state or overwriting the first consumer checkpoints.",
+  "decision": {
+    "consumer": "sales/v2",
+    "tables": [
+      "Sales.Customers",
+      "Sales.Orders",
+      "Sales.OrderLines",
+      "Sales.Invoices",
+      "Sales.InvoiceLines"
+    ],
+    "schema": "Additive migration 002; migration 001 remains byte-for-byte unchanged.",
+    "checkpoints": "Keep ops.archive_batches as first-seen provenance; ops.consumer_batches acknowledges each (consumer_version,batch_id). Seed the v1 acknowledgments, revalidate all five table prefixes and _mixed for v2, deduplicate using unchanged source-event identities.",
+    "contract": "Owner-controlled ops.consumer_contracts fixes table scope, source instance, snapshot generation/LSN, archive prefix and layout. Routine polling refuses drift.",
+    "model": "Five source-scoped hubs, six relationship links, five append-only event satellites and current pointers. Parent hubs can be inferred before parent events. Historical links do not imply a current relationship.",
+    "invoice_relationships": "Keep sold-to CustomerID and BillToCustomerID as separate roles. OrderID is optional. InvoiceLines has no direct OrderLineID: do not infer a line mapping from StockItemID.",
+    "query_grains": "order_details has one row per current order line; invoice_details one row per current invoice line; invoice_summary aggregates lines at invoice grain before joining.",
+    "money": "Preserve source decimal values; typed query columns use PostgreSQL numeric; reconciliation decodes JSON numbers as Decimal. Credit notes preserve signed source amounts without automatic inversion.",
+    "computed_columns": "Rebuild ConfirmedDeliveryTime and ConfirmedReceivedBy from ReturnedDeliveryData in the invoice query view, because SQL Server CDC change tables return NULL for computed columns. Keep raw event images unchanged. The delivery-time helper supports the ISO form in this fixture and returns text to preserve seven fractional digits; it is not a general T-SQL conversion engine.",
+    "validation": "Stream source NDJSON and target server-side cursors to bound memory. Compare full primary-key sets, explicit business projections, six parent references, view grains and invoice totals. Source scans share one SERIALIZABLE transaction during a quiet lab validation window.",
+    "runtime": "No additional permanent service. Watch worker: 512 MiB / 0.75 CPU. One-off backfill: 768 MiB / 1.5 CPU. Retain the existing 4-vCPU/12-GiB VM.",
+    "source_probe_session": "Synthetic DML sets ANSI_NULLS, ANSI_PADDING, ANSI_WARNINGS, ARITHABORT, CONCAT_NULL_YIELDS_NULL and QUOTED_IDENTIFIER ON, with NUMERIC_ROUNDABORT OFF, as required by SQL Server indexed expressions/filtered indexes. No database-wide setting is changed."
+  },
+  "rollback": [
+    "Retain image decom-warehouse-loader:1, original source tar and protected pre-v2 logical backup in /srv/decom-sqlserver/releases/warehouse-sales-v2-20261028.",
+    "To pause an incident, stop only the warehouse loader; preserve SQL Server capture and SeaweedFS archives.",
+    "A full rollback restores the pre-v2 dump into a separate database, checks it with the original v1 source/image, then switches consumers deliberately. Do not drop the expanded warehouse or blindly run v1 against expanded current views.",
+    "Replay later raw archives after recovery. Never reset Debezium offsets, delete prior archive generations or delete old consumer acknowledgments."
+  ],
+  "limits": [
+    "The five captured tables are not the whole SQL Server database. Stored procedures, jobs, ownership and application dependencies remain a separate workstream.",
+    "Spatial and audit columns remain outside the explicit business reconciliation projection.",
+    "SERIALIZABLE source scans can block writes; independent source/target snapshots are not a general online cutover protocol.",
+    "Atomicity is per archived batch. Parent/child changes spanning batches can be temporarily inconsistent.",
+    "Discovery lists manifest keys in memory; a production discovery catalog and compaction require separate capacity work.",
+    "The datetime helper covers the documented ISO input contract only; scalar length follows PostgreSQL character counting and is not proven equivalent to SQL Server UTF-16 limits for supplementary Unicode characters.",
+    "Same-VM logical backup/restore reuses existing cluster roles; no off-VM disaster recovery or high availability is claimed.",
+    "No contiguous coverage watermark or cleanup authorization is produced. SQL CDC cleanup stays disabled."
+  ],
+  "sources": [
+    {
+      "title": "Microsoft: CDC and other SQL Server features (computed columns)",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/change-data-capture-and-other-sql-server-features"
+    },
+    {
+      "title": "PostgreSQL 18: date/time precision",
+      "url": "https://www.postgresql.org/docs/18/datatype-datetime.html"
+    },
+    {
+      "title": "PostgreSQL 18: exact numeric types",
+      "url": "https://www.postgresql.org/docs/18/datatype-numeric.html"
+    },
+    {
+      "title": "Source schema evidence",
+      "path": "/srv/decom-sqlserver/validation/source-inventory-20261028.json"
+    },
+    {
+      "title": "Microsoft: computed-column index session requirements",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/indexes-on-computed-columns"
+    }
+  ]
+}

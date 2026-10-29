@@ -1,0 +1,41 @@
+{
+  "id": "002",
+  "date": "2026-10-28",
+  "title": "Transactional archive consumer and source-scoped Customers/Orders Data Vault pilot",
+  "scope": ["Sales.Customers", "Sales.Orders"],
+  "source_instance": "sqlserver.WideWorldImporters/v1",
+  "snapshot_generation": "wwi-bootstrap-20261028",
+  "snapshot_commit_lsn": "00000274:00000758:0003",
+  "archive_generation": "raw/wwi/bootstrap-v2",
+  "decisions": [
+    "Use PostgreSQL 18.6 in Docker with pinned images, persistent storage, SCRAM authentication and separate schema-owner, loader and reader roles.",
+    "Read completion manifests, including mixed-table batches; validate raw bytes before any business-data writes.",
+    "Commit the event journal, hubs, links, satellites, current pointers and batch ledger in one PostgreSQL transaction protected by a writer advisory lock.",
+    "Deduplicate by source-event identity as well as batch identity. Snapshot identity is generation-specific; stream identity is independent of capture clocks and batch boundaries.",
+    "Use source-scoped CustomerID and OrderID as pilot keys until application owners establish enterprise business-key semantics.",
+    "Retain one append-only satellite row for each distinct source CDC event, including deletes, and retain full descriptive attributes in JSONB with hashdiffs. This event-history policy is explicit; it is not a claim that every Data Vault must use the same physical design.",
+    "Derive current rows and relationships from source-position ordering, not object-listing order, load time or maximum receipt LSN.",
+    "Separate SQL-object inventory and migration from table capture. Definitions and dependencies are exported for review, not automatically translated.",
+    "Use a bounded Python COPY-based consumer for the measured pilot; assess Spark after representative volume and performance measurements. Keep the worker runnable once for later Airflow orchestration."
+  ],
+  "limits": [
+    "Two-table pilot only; mixed-batch ignored-event counts explicitly record unconsumed tables.",
+    "Batch atomicity does not guarantee visibility of a whole source transaction spanning multiple archive batches.",
+    "Current views are partially visible during initial load; reconciliation must gate application cutover and downstream publication. Full-prefix discovery and an in-memory completed-key set require redesign/measurement at large batch counts.",
+    "Routine polling trusts completed ledger entries; full archive re-verification requires replay or a separate integrity audit.",
+    "Source instance, selected tables and snapshot/archive generation changes require an explicit versioned migration/backfill.",
+    "SQL Server dependency catalogs cannot establish all application consumers, dynamic SQL usage or ownership.",
+    "Single-VM resource caps and private network connections without intra-VM PostgreSQL TLS are lab simplifications; no production sizing, high availability or off-VM recovery is claimed.",
+    "No safe purge checkpoint or decommissioning authorization is produced."
+  ],
+  "sources": [
+    "https://www.postgresql.org/support/versioning/",
+    "https://hub.docker.com/_/postgres",
+    "https://www.postgresql.org/docs/18/sql-insert.html",
+    "https://www.postgresql.org/docs/18/sql-copy.html",
+    "https://www.postgresql.org/docs/18/explicit-locking.html#ADVISORY-LOCKS",
+    "https://debezium.io/documentation/reference/stable/connectors/sqlserver.html",
+    "https://automate-dv.readthedocs.io/en/latest/best_practises/loading/",
+    "https://automate-dv.readthedocs.io/en/v0.9.7/tutorial/tut_satellites/"
+  ]
+}

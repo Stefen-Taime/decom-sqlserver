@@ -1,0 +1,44 @@
+{
+  "id": "001",
+  "title": "Partition raw CDC batches by table and batch date; separate data and manifests",
+  "date": "2026-10-28",
+  "decision": {
+    "active_generation": "raw/wwi/bootstrap-v2",
+    "data_key": "data/table=<schema.table|_mixed>/batch_date=<YYYY-MM-DD>/<sha256>.json.gz",
+    "manifest_key": "manifests/table=<schema.table|_mixed>/batch_date=<YYYY-MM-DD>/<sha256>.receipt.json",
+    "date_basis": "UTC date of the minimum payload.ts_ms within the original HTTP batch",
+    "data_format": "Original Debezium JSON envelope array, gzip compressed",
+    "layout_version": "table-batch-date/v2"
+  },
+  "rationale": [
+    "Time-based partitioning and explicit key=value prefixes are documented storage patterns; the exact field names here are a project contract.",
+    "The lab has no measured need for two-character hash fanout. Readable table/date paths improve inspection and support bounded batch discovery.",
+    "Separate data and control prefixes prevent readers from treating receipt JSON as business events.",
+    "A date derived from batch contents remains stable across delayed retries. The receiver's current clock would send the same batch to a different partition after midnight.",
+    "Keep the original HTTP batch intact, including mixed-table batches. Their manifests enumerate all tables; table-specific consumers must include relevant _mixed batches.",
+    "Store the content hash in the filename to retain deterministic batch identities and byte-integrity checks. This does not provide event-level exactly-once processing."
+  ],
+  "limits": [
+    "batch_date describes a batch's earliest capture date, not the business-event date or the source commit date. A batch can cross midnight; manifests retain both timestamp bounds.",
+    "The archived files remain small ingestion batches. Compaction into larger analytical files is a separate processing step and must preserve CDC order and deduplication semantics.",
+    "This convention is informed by enterprise practice; it is not a universal standard or a measured performance claim for SeaweedFS.",
+    "The project remains a single-VM lab without high availability or off-VM recovery validation."
+  ],
+  "migration": {
+    "source": "raw/wwi/bootstrap-v1",
+    "destination": "raw/wwi/bootstrap-v2",
+    "method": "Pause capture, copy each verified batch without changing compressed or raw bytes, regenerate and verify manifests, reconcile coverage, then resume capture using existing offsets.",
+    "rollback": "Retain the complete v1 source archive, v1 image and source bundle. Reconcile any post-cutover v2 events before rolling back consumers or the writer; do not reset offsets.",
+    "source_deleted": false
+  },
+  "sources": [
+    {
+      "url": "https://docs.aws.amazon.com/athena/latest/ug/partitions.html",
+      "supports": "Time-based partitioning, source/date examples, key=value paths and separate table hierarchies. AWS services are not used by this lab's data plane."
+    },
+    {
+      "url": "https://debezium.io/documentation/reference/stable/connectors/sqlserver.html",
+      "supports": "The Debezium SQL Server event envelope and the distinction between source timestamps and connector processing timestamps."
+    }
+  ]
+}

@@ -1,0 +1,2243 @@
+{
+  "captured_at": "2026-10-28T22:56:44.724145+00:00",
+  "source_inventory_path": "/srv/decom-sqlserver/validation/sql-objects-20261028/inventory.json",
+  "source_inventory_sha256": "1555c5f202cf65fede3f01b9b9a2a7ad9322f2b9c1b8c9ce746a2b958ab75f62",
+  "procedure_count": 42,
+  "classification_counts": {
+    "source_administration": 13,
+    "lab_simulation": 5,
+    "data_extraction": 13,
+    "application_write": 6,
+    "application_read": 5
+  },
+  "procedures": [
+    {
+      "source_object": "Application.AddRoleMemberIfNonexistent",
+      "definition_sha256": "c83e1df7066ecdbd1eefe759a7b0763501cd121ebfbf60235afaa6e5c950cfc1",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Application.AddRoleMemberIfNonexistent",
+          "parameter_id": 1,
+          "name": "@RoleName",
+          "data_type": "sysname",
+          "max_length": 256,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Application.AddRoleMemberIfNonexistent",
+          "parameter_id": 2,
+          "name": "@UserName",
+          "data_type": "sysname",
+          "max_length": 256,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Application.AddRoleMemberIfNonexistent",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_ApplyAuditing",
+      "definition_sha256": "4449f36331ef9879cd5811daa3f80e2ddd3479761c56a10554f7075d7d8ab220",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_ApplyAuditing",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_ApplyColumnstoreIndexing",
+      "definition_sha256": "a69b27e159a71d35b52c65778186362aba2a448a36781eb9eddd55f914856fff",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_ApplyColumnstoreIndexing",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "Application.Configuration_ConfigureForEnterpriseEdition"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_ApplyFullTextIndexing",
+      "definition_sha256": "ef511df09ecd4dc35ee4f09d5b7130922e11119b33c949b6564c71fefd2da9ab",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_ApplyFullTextIndexing",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "Application.Configuration_ConfigureForEnterpriseEdition"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_ApplyPartitioning",
+      "definition_sha256": "f98f66e77783da892af19db54e39240956b336f6006d87816b536ef22938457c",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_ApplyPartitioning",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "Application.Configuration_ConfigureForEnterpriseEdition"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_ApplyRowLevelSecurity",
+      "definition_sha256": "03a234fb832d219b3ca0bb07b1b0360cb3219ee93aae4e93543859a43517de1e",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_ApplyRowLevelSecurity",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "DataLoadSimulation.ReactivateTemporalTablesAfterDataLoad"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_ConfigureForEnterpriseEdition",
+      "definition_sha256": "457c796902edb99ac2a3bd3df025e34f697a60c244fec826a5ea71a4eeb7212f",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_ConfigureForEnterpriseEdition",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.Configuration_ApplyColumnstoreIndexing",
+        "Application.Configuration_ApplyFullTextIndexing",
+        "Application.Configuration_ApplyPartitioning",
+        "Application.Configuration_EnableInMemory"
+      ],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_EnableInMemory",
+      "definition_sha256": "cc1c77ed3aa14f04af7f3657f0b67eed1f72eea65885758dbf426d1d2286defe",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_EnableInMemory",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "Application.Configuration_ConfigureForEnterpriseEdition"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_RemoveAuditing",
+      "definition_sha256": "1c8b7a009329974903f5d3c72d3d806e8db58a5c30bc8ed0264db61a277533ac",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_RemoveAuditing",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.Configuration_RemoveRowLevelSecurity",
+      "definition_sha256": "1df9af4b24259e618a0f8a06a69eeea4707c7b3626a0913763ae1fbc54d51809",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Application.Configuration_RemoveRowLevelSecurity",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "DataLoadSimulation.DeactivateTemporalTablesBeforeDataLoad"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Application.CreateRoleIfNonexistent",
+      "definition_sha256": "e7e947f2ee7c51ba1037e08c4e25373a73d7b981e4ba0a434bc1c88e60e193ec",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Application.CreateRoleIfNonexistent",
+          "parameter_id": 1,
+          "name": "@RoleName",
+          "data_type": "sysname",
+          "max_length": 256,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Application.CreateRoleIfNonexistent",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "DataLoadSimulation.Configuration_ApplyDataLoadSimulationProcedures",
+      "definition_sha256": "189454c2c6ac98226a35abbd0ce40671548b03d970f8ccf668ed3d704771df67",
+      "category": "lab_simulation",
+      "proposed_action": "Keep as optional lab tooling; do not migrate into warehouse query APIs.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "DataLoadSimulation.Configuration_ApplyDataLoadSimulationProcedures",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "DataLoadSimulation.DeactivateTemporalTablesBeforeDataLoad",
+        "DataLoadSimulation.ReactivateTemporalTablesAfterDataLoad"
+      ],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "DataLoadSimulation.PopulateDataToCurrentDate"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "DataLoadSimulation.Configuration_RemoveDataLoadSimulationProcedures",
+      "definition_sha256": "7069132268007f3c0e0eb071e2ae654a0c27188ea2fde2ff59e4707a32c82961",
+      "category": "lab_simulation",
+      "proposed_action": "Keep as optional lab tooling; do not migrate into warehouse query APIs.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "DataLoadSimulation.Configuration_RemoveDataLoadSimulationProcedures",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [
+        "DataLoadSimulation.PopulateDataToCurrentDate"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "DataLoadSimulation.DeactivateTemporalTablesBeforeDataLoad",
+      "definition_sha256": "297fab36d2451c3b6f0fac2d11ae3daa4f2149eeba5a0b4bfb7ce5188f73e6df",
+      "category": "lab_simulation",
+      "proposed_action": "Keep as optional lab tooling; do not migrate into warehouse query APIs.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "DataLoadSimulation.DeactivateTemporalTablesBeforeDataLoad",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.Configuration_RemoveRowLevelSecurity"
+      ],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "DataLoadSimulation.Configuration_ApplyDataLoadSimulationProcedures"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "DataLoadSimulation.PopulateDataToCurrentDate",
+      "definition_sha256": "418b3bcbc8716cc61e6abb55d4bcc3034deea09dacb9d79e14819cd957f06f03",
+      "category": "lab_simulation",
+      "proposed_action": "Keep as optional lab tooling; do not migrate into warehouse query APIs.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "DataLoadSimulation.PopulateDataToCurrentDate",
+          "parameter_id": 1,
+          "name": "@AverageNumberOfCustomerOrdersPerDay",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "DataLoadSimulation.PopulateDataToCurrentDate",
+          "parameter_id": 2,
+          "name": "@SaturdayPercentageOfNormalWorkDay",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "DataLoadSimulation.PopulateDataToCurrentDate",
+          "parameter_id": 3,
+          "name": "@SundayPercentageOfNormalWorkDay",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "DataLoadSimulation.PopulateDataToCurrentDate",
+          "parameter_id": 4,
+          "name": "@IsSilentMode",
+          "data_type": "bit",
+          "max_length": 1,
+          "precision": 1,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "DataLoadSimulation.PopulateDataToCurrentDate",
+          "parameter_id": 5,
+          "name": "@AreDatesPrinted",
+          "data_type": "bit",
+          "max_length": 1,
+          "precision": 1,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "DataLoadSimulation.PopulateDataToCurrentDate",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "DataLoadSimulation.Configuration_ApplyDataLoadSimulationProcedures",
+        "DataLoadSimulation.Configuration_RemoveDataLoadSimulationProcedures",
+        "DataLoadSimulation.DailyProcessToCreateHistory",
+        "Sales.Orders"
+      ],
+      "transitive_table_dependencies": [
+        "Sales.Orders"
+      ],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [
+        "DataLoadSimulation.DailyProcessToCreateHistory"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "DataLoadSimulation.ReactivateTemporalTablesAfterDataLoad",
+      "definition_sha256": "68ec03cf46fb29055f0a68b3623454e0de550ca8e52d9421e6d06af7eff1d0b7",
+      "category": "lab_simulation",
+      "proposed_action": "Keep as optional lab tooling; do not migrate into warehouse query APIs.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "DataLoadSimulation.ReactivateTemporalTablesAfterDataLoad",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.Configuration_ApplyRowLevelSecurity"
+      ],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [
+        "DataLoadSimulation.Configuration_ApplyDataLoadSimulationProcedures"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetCityUpdates",
+      "definition_sha256": "b806c5a7b60b2f045d1b03bc1914ed9fe093fa867776ca6203a578ccc9699412",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetCityUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetCityUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetCityUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "?.cc",
+        "Application.Cities",
+        "Application.Cities_Archive",
+        "Application.Countries",
+        "Application.Countries_Archive",
+        "Application.StateProvinces",
+        "Application.StateProvinces_Archive"
+      ],
+      "transitive_table_dependencies": [
+        "Application.Cities",
+        "Application.Cities_Archive",
+        "Application.Countries",
+        "Application.Countries_Archive",
+        "Application.StateProvinces",
+        "Application.StateProvinces_Archive"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.Cities",
+        "Application.Cities_Archive",
+        "Application.Countries",
+        "Application.Countries_Archive",
+        "Application.StateProvinces",
+        "Application.StateProvinces_Archive"
+      ],
+      "unresolved_or_external_references": [
+        "?.cc"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetCustomerUpdates",
+      "definition_sha256": "486f68ccd98922343a8ccff53684473a69aa2da1b1889ebe8b5f8750b6685405",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetCustomerUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetCustomerUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetCustomerUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "?.cc",
+        "Application.People",
+        "Sales.BuyingGroups",
+        "Sales.BuyingGroups_Archive",
+        "Sales.CustomerCategories",
+        "Sales.CustomerCategories_Archive",
+        "Sales.Customers",
+        "Sales.Customers_Archive"
+      ],
+      "transitive_table_dependencies": [
+        "Application.People",
+        "Sales.BuyingGroups",
+        "Sales.BuyingGroups_Archive",
+        "Sales.CustomerCategories",
+        "Sales.CustomerCategories_Archive",
+        "Sales.Customers",
+        "Sales.Customers_Archive"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.People",
+        "Sales.BuyingGroups",
+        "Sales.BuyingGroups_Archive",
+        "Sales.CustomerCategories",
+        "Sales.CustomerCategories_Archive",
+        "Sales.Customers_Archive"
+      ],
+      "unresolved_or_external_references": [
+        "?.cc"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetEmployeeUpdates",
+      "definition_sha256": "ce029e0e95d86f51641e023d86eaca9c049643292e006fc49d4fd8b3ff63759c",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetEmployeeUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetEmployeeUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetEmployeeUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "?.cc",
+        "Application.People",
+        "Application.People_Archive"
+      ],
+      "transitive_table_dependencies": [
+        "Application.People",
+        "Application.People_Archive"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.People",
+        "Application.People_Archive"
+      ],
+      "unresolved_or_external_references": [
+        "?.cc"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetMovementUpdates",
+      "definition_sha256": "135314d9525325c2e2e9deb1f1f7d604fa3f4142044b4a478c159ddc8b1037c2",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetMovementUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetMovementUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetMovementUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Warehouse.StockItemTransactions"
+      ],
+      "transitive_table_dependencies": [
+        "Warehouse.StockItemTransactions"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.StockItemTransactions"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetOrderUpdates",
+      "definition_sha256": "d3d51f7dbf4bd6378a4e7161fdb23461f69fa2926fd9e6495fd8cc360aebab87",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetOrderUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetOrderUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetOrderUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Sales.Customers",
+        "Sales.OrderLines",
+        "Sales.Orders",
+        "Warehouse.PackageTypes"
+      ],
+      "transitive_table_dependencies": [
+        "Sales.Customers",
+        "Sales.OrderLines",
+        "Sales.Orders",
+        "Warehouse.PackageTypes"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.PackageTypes"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "migrated_lab_pilot",
+      "target": "app.get_order_updates(text,text,text)",
+      "validation_evidence": "docs/validation/sql-object-pilot-2026-10-28.json",
+      "reference_mode": "explicit versioned PackageTypes snapshot; automatic refresh not implemented"
+    },
+    {
+      "source_object": "Integration.GetPaymentMethodUpdates",
+      "definition_sha256": "0f4f2a3fe3566bf9fce8a44ffcd78d430a6dc03e959e4cf2b35cb33253fae727",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetPaymentMethodUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetPaymentMethodUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetPaymentMethodUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "?.cc",
+        "Application.PaymentMethods",
+        "Application.PaymentMethods_Archive"
+      ],
+      "transitive_table_dependencies": [
+        "Application.PaymentMethods",
+        "Application.PaymentMethods_Archive"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.PaymentMethods",
+        "Application.PaymentMethods_Archive"
+      ],
+      "unresolved_or_external_references": [
+        "?.cc"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetPurchaseUpdates",
+      "definition_sha256": "02658099566337b38af99583fd0b85f99c1dab3fb99967f51b25cbf7d25ceb97",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetPurchaseUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetPurchaseUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetPurchaseUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Purchasing.PurchaseOrderLines",
+        "Purchasing.PurchaseOrders",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems"
+      ],
+      "transitive_table_dependencies": [
+        "Purchasing.PurchaseOrderLines",
+        "Purchasing.PurchaseOrders",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems"
+      ],
+      "outside_current_cdc_scope": [
+        "Purchasing.PurchaseOrderLines",
+        "Purchasing.PurchaseOrders",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetSaleUpdates",
+      "definition_sha256": "a940ab1eac3d500b38bd6afe94f86e25594bf6eb9f4bfaf77b5dbe9d73076626",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetSaleUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetSaleUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetSaleUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Sales.Customers",
+        "Sales.InvoiceLines",
+        "Sales.Invoices",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems"
+      ],
+      "transitive_table_dependencies": [
+        "Sales.Customers",
+        "Sales.InvoiceLines",
+        "Sales.Invoices",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetStockHoldingUpdates",
+      "definition_sha256": "14a70e99c37f6c92355b08d2337983785b80bf8b6be35b60b23d512db4d6cd1b",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Integration.GetStockHoldingUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Warehouse.StockItemHoldings"
+      ],
+      "transitive_table_dependencies": [
+        "Warehouse.StockItemHoldings"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.StockItemHoldings"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetStockItemUpdates",
+      "definition_sha256": "2a827b11e6e5a068b8ebc90b6cd5e3728b95f1cbfc823620dcf6bd8e0d419d7d",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetStockItemUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetStockItemUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetStockItemUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "?.cc",
+        "Warehouse.Colors",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems",
+        "Warehouse.StockItems_Archive"
+      ],
+      "transitive_table_dependencies": [
+        "Warehouse.Colors",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems",
+        "Warehouse.StockItems_Archive"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.Colors",
+        "Warehouse.PackageTypes",
+        "Warehouse.StockItems",
+        "Warehouse.StockItems_Archive"
+      ],
+      "unresolved_or_external_references": [
+        "?.cc"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetSupplierUpdates",
+      "definition_sha256": "0ec771035d6c4b42c2db3dbd79d7c0fa6c273580c4a61613ab06f7dffba86c78",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetSupplierUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetSupplierUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetSupplierUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "?.cc",
+        "Application.People",
+        "Purchasing.SupplierCategories",
+        "Purchasing.SupplierCategories_Archive",
+        "Purchasing.Suppliers",
+        "Purchasing.Suppliers_Archive"
+      ],
+      "transitive_table_dependencies": [
+        "Application.People",
+        "Purchasing.SupplierCategories",
+        "Purchasing.SupplierCategories_Archive",
+        "Purchasing.Suppliers",
+        "Purchasing.Suppliers_Archive"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.People",
+        "Purchasing.SupplierCategories",
+        "Purchasing.SupplierCategories_Archive",
+        "Purchasing.Suppliers",
+        "Purchasing.Suppliers_Archive"
+      ],
+      "unresolved_or_external_references": [
+        "?.cc"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetTransactionTypeUpdates",
+      "definition_sha256": "c4b645f79394e9faadc05c4ba595d0380b2fd76029f3fd0bfbbac9c2ae7a4950",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetTransactionTypeUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetTransactionTypeUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetTransactionTypeUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "?.cc",
+        "Application.TransactionTypes",
+        "Application.TransactionTypes_Archive"
+      ],
+      "transitive_table_dependencies": [
+        "Application.TransactionTypes",
+        "Application.TransactionTypes_Archive"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.TransactionTypes",
+        "Application.TransactionTypes_Archive"
+      ],
+      "unresolved_or_external_references": [
+        "?.cc"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Integration.GetTransactionUpdates",
+      "definition_sha256": "a82b87be95b6eb9b78b0d543c055bebf96431af41c31653146398f7f893a0447",
+      "category": "data_extraction",
+      "proposed_action": "Port the extraction contract after covering dependencies and cutoff semantics.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Integration.GetTransactionUpdates",
+          "parameter_id": 1,
+          "name": "@LastCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Integration.GetTransactionUpdates",
+          "parameter_id": 2,
+          "name": "@NewCutoff",
+          "data_type": "datetime2",
+          "max_length": 8,
+          "precision": 27,
+          "scale": 7,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Integration.GetTransactionUpdates",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Purchasing.SupplierTransactions",
+        "Sales.CustomerTransactions",
+        "Sales.Invoices"
+      ],
+      "transitive_table_dependencies": [
+        "Purchasing.SupplierTransactions",
+        "Sales.CustomerTransactions",
+        "Sales.Invoices"
+      ],
+      "outside_current_cdc_scope": [
+        "Purchasing.SupplierTransactions",
+        "Sales.CustomerTransactions"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Sequences.ReseedAllSequences",
+      "definition_sha256": "2811cd1d4565ffb559d9c1f8f4b283cbac19f225c2ce09fb366efdcd8d86406f",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [],
+      "execution_context": {
+        "object_name": "Sequences.ReseedAllSequences",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Sequences.ReseedSequenceBeyondTableValues"
+      ],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Sequences.ReseedSequenceBeyondTableValues",
+      "definition_sha256": "dd6adc140aa35343c4e1a98db1b467744f0d504e4ca390703e5907e18c4b8907",
+      "category": "source_administration",
+      "proposed_action": "Retain with the source; redesign target administration explicitly.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Sequences.ReseedSequenceBeyondTableValues",
+          "parameter_id": 1,
+          "name": "@SequenceName",
+          "data_type": "sysname",
+          "max_length": 256,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Sequences.ReseedSequenceBeyondTableValues",
+          "parameter_id": 2,
+          "name": "@SchemaName",
+          "data_type": "sysname",
+          "max_length": 256,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Sequences.ReseedSequenceBeyondTableValues",
+          "parameter_id": 3,
+          "name": "@TableName",
+          "data_type": "sysname",
+          "max_length": 256,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Sequences.ReseedSequenceBeyondTableValues",
+          "parameter_id": 4,
+          "name": "@ColumnName",
+          "data_type": "sysname",
+          "max_length": 256,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Sequences.ReseedSequenceBeyondTableValues",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [],
+      "transitive_table_dependencies": [],
+      "outside_current_cdc_scope": [],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": true,
+      "referencing_sql_objects": [
+        "Sequences.ReseedAllSequences"
+      ],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.ActivateWebsiteLogon",
+      "definition_sha256": "37bd0e2bfae63e4ca1cf2b799a8cd9ab4d3e02e416a5788065b6e9e779a0ef4f",
+      "category": "application_write",
+      "proposed_action": "Design a transactional application target; do not redirect writes into the Data Vault.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.ActivateWebsiteLogon",
+          "parameter_id": 1,
+          "name": "@PersonID",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.ActivateWebsiteLogon",
+          "parameter_id": 2,
+          "name": "@LogonName",
+          "data_type": "nvarchar",
+          "max_length": 100,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.ActivateWebsiteLogon",
+          "parameter_id": 3,
+          "name": "@InitialPassword",
+          "data_type": "nvarchar",
+          "max_length": 80,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.ActivateWebsiteLogon",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.People"
+      ],
+      "transitive_table_dependencies": [
+        "Application.People"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.People"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.ChangePassword",
+      "definition_sha256": "80c2d48a195ef67bccf406048ed608b048aabd58ad267090ddbbdf391ee367a9",
+      "category": "application_write",
+      "proposed_action": "Design a transactional application target; do not redirect writes into the Data Vault.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.ChangePassword",
+          "parameter_id": 1,
+          "name": "@PersonID",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.ChangePassword",
+          "parameter_id": 2,
+          "name": "@OldPassword",
+          "data_type": "nvarchar",
+          "max_length": 80,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.ChangePassword",
+          "parameter_id": 3,
+          "name": "@NewPassword",
+          "data_type": "nvarchar",
+          "max_length": 80,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.ChangePassword",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.People"
+      ],
+      "transitive_table_dependencies": [
+        "Application.People"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.People"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.InsertCustomerOrders",
+      "definition_sha256": "3cce8c409de63d3e14765c836f41244555046c8d1a3765e969b85b7ec534fb39",
+      "category": "application_write",
+      "proposed_action": "Design a transactional application target; do not redirect writes into the Data Vault.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.InsertCustomerOrders",
+          "parameter_id": 1,
+          "name": "@Orders",
+          "data_type": "OrderList",
+          "max_length": -1,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": true
+        },
+        {
+          "object_name": "Website.InsertCustomerOrders",
+          "parameter_id": 2,
+          "name": "@OrderLines",
+          "data_type": "OrderLineList",
+          "max_length": -1,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": true
+        },
+        {
+          "object_name": "Website.InsertCustomerOrders",
+          "parameter_id": 3,
+          "name": "@OrdersCreatedByPersonID",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.InsertCustomerOrders",
+          "parameter_id": 4,
+          "name": "@SalespersonPersonID",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.InsertCustomerOrders",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Sales.OrderLines",
+        "Sales.Orders",
+        "Sequences.OrderID",
+        "Warehouse.StockItems",
+        "Website.CalculateCustomerPrice",
+        "Website.OrderLineList",
+        "Website.OrderList"
+      ],
+      "transitive_table_dependencies": [
+        "Sales.Customers",
+        "Sales.OrderLines",
+        "Sales.Orders",
+        "Sales.SpecialDeals",
+        "Warehouse.StockItemStockGroups",
+        "Warehouse.StockItems"
+      ],
+      "outside_current_cdc_scope": [
+        "Sales.SpecialDeals",
+        "Warehouse.StockItemStockGroups",
+        "Warehouse.StockItems"
+      ],
+      "unresolved_or_external_references": [
+        "Website.OrderLineList",
+        "Website.OrderList"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.InvoiceCustomerOrders",
+      "definition_sha256": "8991313ac70d011b56cd2b6761b1d909fe25a85ece337b4e219a260e339448e5",
+      "category": "application_write",
+      "proposed_action": "Design a transactional application target; do not redirect writes into the Data Vault.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.InvoiceCustomerOrders",
+          "parameter_id": 1,
+          "name": "@OrdersToInvoice",
+          "data_type": "OrderIDList",
+          "max_length": -1,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": true
+        },
+        {
+          "object_name": "Website.InvoiceCustomerOrders",
+          "parameter_id": 2,
+          "name": "@PackedByPersonID",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.InvoiceCustomerOrders",
+          "parameter_id": 3,
+          "name": "@InvoicedByPersonID",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.InvoiceCustomerOrders",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.TransactionTypes",
+        "Sales.CustomerTransactions",
+        "Sales.Customers",
+        "Sales.InvoiceLines",
+        "Sales.Invoices",
+        "Sales.OrderLines",
+        "Sales.Orders",
+        "Sequences.InvoiceID",
+        "Warehouse.StockItemHoldings",
+        "Warehouse.StockItemTransactions",
+        "Warehouse.StockItems",
+        "Website.OrderIDList"
+      ],
+      "transitive_table_dependencies": [
+        "Application.TransactionTypes",
+        "Sales.CustomerTransactions",
+        "Sales.Customers",
+        "Sales.InvoiceLines",
+        "Sales.Invoices",
+        "Sales.OrderLines",
+        "Sales.Orders",
+        "Warehouse.StockItemHoldings",
+        "Warehouse.StockItemTransactions",
+        "Warehouse.StockItems"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.TransactionTypes",
+        "Sales.CustomerTransactions",
+        "Warehouse.StockItemHoldings",
+        "Warehouse.StockItemTransactions",
+        "Warehouse.StockItems"
+      ],
+      "unresolved_or_external_references": [
+        "Website.OrderIDList"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.RecordColdRoomTemperatures",
+      "definition_sha256": "39be086efaf4fc1e25803ab8a8e533a4ad90b929f4ea606ec519277107eae9a5",
+      "category": "application_write",
+      "proposed_action": "Design a transactional application target; do not redirect writes into the Data Vault.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.RecordColdRoomTemperatures",
+          "parameter_id": 1,
+          "name": "@SensorReadings",
+          "data_type": "SensorDataList",
+          "max_length": -1,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": true
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.RecordColdRoomTemperatures",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Warehouse.ColdRoomTemperatures",
+        "Website.SensorDataList"
+      ],
+      "transitive_table_dependencies": [
+        "Warehouse.ColdRoomTemperatures"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.ColdRoomTemperatures"
+      ],
+      "unresolved_or_external_references": [
+        "Website.SensorDataList"
+      ],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.RecordVehicleTemperature",
+      "definition_sha256": "68566ecc8e379705f140a26ea8d250625ac865bcd9ff3858f3a1a9fe760c8325",
+      "category": "application_write",
+      "proposed_action": "Design a transactional application target; do not redirect writes into the Data Vault.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.RecordVehicleTemperature",
+          "parameter_id": 1,
+          "name": "@FullSensorDataArray",
+          "data_type": "nvarchar",
+          "max_length": 2000,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.RecordVehicleTemperature",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Warehouse.VehicleTemperatures"
+      ],
+      "transitive_table_dependencies": [
+        "Warehouse.VehicleTemperatures"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.VehicleTemperatures"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.SearchForCustomers",
+      "definition_sha256": "237dffa2f637b77f8b2c61ebbfbbcfc7fbcb0dcb5b3227fe3e3da1897822e0f9",
+      "category": "application_read",
+      "proposed_action": "Candidate for a read API after data, search, JSON and authorization parity review.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.SearchForCustomers",
+          "parameter_id": 1,
+          "name": "@SearchText",
+          "data_type": "nvarchar",
+          "max_length": 2000,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.SearchForCustomers",
+          "parameter_id": 2,
+          "name": "@MaximumRowsToReturn",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.SearchForCustomers",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.Cities",
+        "Application.People",
+        "Sales.Customers"
+      ],
+      "transitive_table_dependencies": [
+        "Application.Cities",
+        "Application.People",
+        "Sales.Customers"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.Cities",
+        "Application.People"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.SearchForPeople",
+      "definition_sha256": "59a4cd2a4f1193083a83fa965d2db6b7bf93e5506092d7da83752c546a0c8526",
+      "category": "application_read",
+      "proposed_action": "Candidate for a read API after data, search, JSON and authorization parity review.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.SearchForPeople",
+          "parameter_id": 1,
+          "name": "@SearchText",
+          "data_type": "nvarchar",
+          "max_length": 2000,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.SearchForPeople",
+          "parameter_id": 2,
+          "name": "@MaximumRowsToReturn",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.SearchForPeople",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": null,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.People",
+        "Purchasing.Suppliers",
+        "Sales.Customers"
+      ],
+      "transitive_table_dependencies": [
+        "Application.People",
+        "Purchasing.Suppliers",
+        "Sales.Customers"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.People",
+        "Purchasing.Suppliers"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.SearchForStockItems",
+      "definition_sha256": "f576e17e33ca2658ba4d585453b7dd92dd5d3258a009c3c249246d64e119a104",
+      "category": "application_read",
+      "proposed_action": "Candidate for a read API after data, search, JSON and authorization parity review.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.SearchForStockItems",
+          "parameter_id": 1,
+          "name": "@SearchText",
+          "data_type": "nvarchar",
+          "max_length": 2000,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.SearchForStockItems",
+          "parameter_id": 2,
+          "name": "@MaximumRowsToReturn",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.SearchForStockItems",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Warehouse.StockItems"
+      ],
+      "transitive_table_dependencies": [
+        "Warehouse.StockItems"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.StockItems"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.SearchForStockItemsByTags",
+      "definition_sha256": "c8c7b459f0f7bd1d005247667ee81ce028e1e5c15a328ae4af687c7bda732316",
+      "category": "application_read",
+      "proposed_action": "Candidate for a read API after data, search, JSON and authorization parity review.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.SearchForStockItemsByTags",
+          "parameter_id": 1,
+          "name": "@SearchText",
+          "data_type": "nvarchar",
+          "max_length": 2000,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.SearchForStockItemsByTags",
+          "parameter_id": 2,
+          "name": "@MaximumRowsToReturn",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.SearchForStockItemsByTags",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Warehouse.StockItems"
+      ],
+      "transitive_table_dependencies": [
+        "Warehouse.StockItems"
+      ],
+      "outside_current_cdc_scope": [
+        "Warehouse.StockItems"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    },
+    {
+      "source_object": "Website.SearchForSuppliers",
+      "definition_sha256": "57e0bfc6d0951b3b8f894453cacdb7d12f3ff2d222f8a9d54e9b69269e9c75d5",
+      "category": "application_read",
+      "proposed_action": "Candidate for a read API after data, search, JSON and authorization parity review.",
+      "assessment_basis": "Source definitions and catalog dependency graph; application ownership is unconfirmed.",
+      "parameters": [
+        {
+          "object_name": "Website.SearchForSuppliers",
+          "parameter_id": 1,
+          "name": "@SearchText",
+          "data_type": "nvarchar",
+          "max_length": 2000,
+          "precision": 0,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        },
+        {
+          "object_name": "Website.SearchForSuppliers",
+          "parameter_id": 2,
+          "name": "@MaximumRowsToReturn",
+          "data_type": "int",
+          "max_length": 4,
+          "precision": 10,
+          "scale": 0,
+          "is_output": false,
+          "is_readonly": false
+        }
+      ],
+      "execution_context": {
+        "object_name": "Website.SearchForSuppliers",
+        "uses_ansi_nulls": true,
+        "uses_quoted_identifier": true,
+        "execute_as_principal_id": -2,
+        "execution_principal": null
+      },
+      "direct_references": [
+        "Application.Cities",
+        "Application.People",
+        "Purchasing.Suppliers"
+      ],
+      "transitive_table_dependencies": [
+        "Application.Cities",
+        "Application.People",
+        "Purchasing.Suppliers"
+      ],
+      "outside_current_cdc_scope": [
+        "Application.Cities",
+        "Application.People",
+        "Purchasing.Suppliers"
+      ],
+      "unresolved_or_external_references": [],
+      "dynamic_sql_review_required": false,
+      "referencing_sql_objects": [],
+      "application_owner": null,
+      "external_callers": "Not established; confirm with application owners and runtime observations.",
+      "source_retirement_authorized": false,
+      "migration_status": "assessed_not_migrated"
+    }
+  ],
+  "views_and_functions": [
+    {
+      "name": "Application.DetermineCustomerAccess",
+      "type": "SQL_INLINE_TABLE_VALUED_FUNCTION",
+      "definition_sha256": "13c53bf686a8262e3daeb36a96a9fc14846c2c04751ce802c67296af12c4e4e9",
+      "transitive_tables": [
+        "Application.Cities",
+        "Application.StateProvinces"
+      ]
+    },
+    {
+      "name": "Website.CalculateCustomerPrice",
+      "type": "SQL_SCALAR_FUNCTION",
+      "definition_sha256": "61bdb163e2ee06a9da107cfcb877d934303b71333f72b8f3458748447712a702",
+      "transitive_tables": [
+        "Sales.Customers",
+        "Sales.SpecialDeals",
+        "Warehouse.StockItemStockGroups",
+        "Warehouse.StockItems"
+      ]
+    },
+    {
+      "name": "Website.Customers",
+      "type": "VIEW",
+      "definition_sha256": "437904e6117ba6853fe539d369a822c1eaa80832c1c281b16c4e99c07fd60fa9",
+      "transitive_tables": [
+        "Application.Cities",
+        "Application.DeliveryMethods",
+        "Application.People",
+        "Sales.BuyingGroups",
+        "Sales.CustomerCategories",
+        "Sales.Customers"
+      ]
+    },
+    {
+      "name": "Website.Suppliers",
+      "type": "VIEW",
+      "definition_sha256": "67455c8befdd145402550711784f519a2f538b4595dea0d8f46396397cf47254",
+      "transitive_tables": [
+        "Application.Cities",
+        "Application.DeliveryMethods",
+        "Application.People",
+        "Purchasing.SupplierCategories",
+        "Purchasing.Suppliers"
+      ]
+    },
+    {
+      "name": "Website.VehicleTemperatures",
+      "type": "VIEW",
+      "definition_sha256": "a312349f031e7dc61b06123608b759a1f6b31f96bf61d5208da31f6ed22d1353",
+      "transitive_tables": [
+        "Warehouse.VehicleTemperatures"
+      ]
+    }
+  ],
+  "dml_triggers": [],
+  "sequence_count": 26,
+  "security_policies": [
+    {
+      "schema_name": "Application",
+      "name": "FilterCustomersBySalesTerritoryRole",
+      "is_enabled": true,
+      "predicate_definition": "([Application].[DetermineCustomerAccess]([DeliveryCityID]))",
+      "target_table": "Sales.Customers"
+    },
+    {
+      "schema_name": "Application",
+      "name": "FilterCustomersBySalesTerritoryRole",
+      "is_enabled": true,
+      "predicate_definition": "([Application].[DetermineCustomerAccess]([DeliveryCityID]))",
+      "target_table": "Sales.Customers"
+    }
+  ],
+  "sql_agent_jobs": [
+    {
+      "name": "cdc.WideWorldImporters_capture",
+      "enabled": true,
+      "step_id": 1,
+      "subsystem": "TSQL",
+      "database": "WideWorldImporters",
+      "command_sha256": "889c048db8514e41394601967116dd648ce6684b4eb3e9ab31bad533fe120896",
+      "exact_name_mentions": []
+    },
+    {
+      "name": "cdc.WideWorldImporters_capture",
+      "enabled": true,
+      "step_id": 2,
+      "subsystem": "TSQL",
+      "database": "WideWorldImporters",
+      "command_sha256": "b83d14f5349bc6fa117c367758c084904a45dad129c27bb00cb6b51c43e5a5d9",
+      "exact_name_mentions": []
+    },
+    {
+      "name": "cdc.WideWorldImporters_cleanup",
+      "enabled": false,
+      "step_id": 1,
+      "subsystem": "TSQL",
+      "database": "WideWorldImporters",
+      "command_sha256": "4b3b2bcb61635fe79dfeb3701cc6ecbf6bb3e06d78a40483e1ad9176a775b2c3",
+      "exact_name_mentions": []
+    }
+  ],
+  "cache_observation_count": 0,
+  "limits": [
+    "Static metadata is not a complete call graph; dynamic SQL, unqualified references, CLR methods, external clients and runtime permissions need review.",
+    "No cache observation does not prove a procedure is unused. No procedure is classified as safe to delete.",
+    "Schema/name-based application groupings are not confirmed application ownership."
+  ],
+  "selected_pilot": "Integration.GetOrderUpdates",
+  "reference_snapshot": {
+    "version": "wwi-package-types/v1/70b20421d9e865772d2462dc897db708c6620e6ab6321e27581fe6f1b934f294",
+    "rows": 14,
+    "automatic_refresh": false
+  },
+  "purge_authorized": false
+}

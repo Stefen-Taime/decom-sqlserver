@@ -1,0 +1,45 @@
+{
+  "decision": "Demonstrate bounded native CDC cleanup on the technical fixture before extending production readiness work",
+  "date": "2026-10-29",
+  "status": "Deployed and executed successfully; no business purge authorization",
+  "contract": "cdc-probe-purge-pilot/v1",
+  "context": "The user explicitly requested a smaller POC and authorized proceeding directly to a manual lab.CdcProbe purge pilot. Full off-VM recovery and production qualification are deferred for this technical-only exercise.",
+  "evidence": {
+    "report": "../validation/cdc-purge-pilot-v1-2026-10-29.json",
+    "run_id": "20261029T163640Z-0f62f8ad3e8e",
+    "report_sha256": "fa5916bbff9baabc0545fa3b108b9f5799698284cd3c324314182711e5451423",
+    "tests_passed_locally_and_on_vm": 88,
+    "deleted_images": 48,
+    "deleted_complete_probe_cycles": 12,
+    "final_retained_probe_images": 8,
+    "healthy_permanent_services": 13
+  },
+  "scope": {
+    "database": "WideWorldImporters",
+    "table": "lab.CdcProbe",
+    "capture_instance": "lab_CdcProbe",
+    "manual_retention_minutes": 15,
+    "maximum_candidate_images": 200,
+    "native_cleanup_job_enabled": false,
+    "native_job_retention_minutes_unchanged": 4320,
+    "business_purge_authorized": false
+  },
+  "decisions": [
+    "Keep the general v3 auditor read-only and its unresolved production gates unchanged. Implement a separate fixed-scope operator runner; do not add a service, schedule or wider runtime privileges.",
+    "Select only complete known technical probe lifecycles older than the pilot margin. Compare independent source observations and reject changed capture identity, values, counts, active probe rows or an enabled cleanup job.",
+    "Anchor the boundary before a newly verified probe's persisted delete checkpoint. Stop Debezium gracefully, fsync and preserve its files, and bind direct-mode command IDs to unique source images. Always attempt to restore capture in finally.",
+    "Verify every retained post-bootstrap technical image against original checksummed raw batches. Preserve all 52 pre-cleanup technical images in a separately labeled direct SQL evidence object, including the 12 pre-bootstrap images. Do not fabricate events or modify existing raw archives.",
+    "Call only sys.sp_cdc_cleanup_change_table for lab_CdcProbe with SQL-side guards. Enforce the total image cap independently of the procedure's per-statement threshold. Never automatically retry a cleanup error.",
+    "Verify exact planned removal, unchanged retained values and all five business captures over the same source boundary. Read the backup and archives again after cleanup, restart the same connector, and verify fresh insert/update/delete delivery plus persisted checkpoint advancement.",
+    "Treat prior v3 reconciliation and resume results as historical pre-purge evidence. Intentional removal changes their comparison inputs; the separate pilot report records the transition without making production gates pass."
+  ],
+  "limitations": [
+    "Single quiet lab VM and technical fixture only. The archive-only probe has no warehouse business-consumer acknowledgement requirement.",
+    "The SQL-image backup was read back and verified on the same VM. It is not a native CDC-table restore, immutable object storage or a tested off-VM disaster-recovery copy.",
+    "Graceful stop/start is demonstrated. Crash durability, general transaction completeness, busy multi-operator cleanup and production consumer/retention policies remain unqualified.",
+    "The native operation cannot be undone by reverting code. Preserve reports, evidence and current checkpoint; inspect actual metadata after any partial failure rather than resetting offsets or inserting into CDC system tables."
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-cdc-cleanup-change-table-transact-sql?view=sql-server-ver17"
+  ]
+}

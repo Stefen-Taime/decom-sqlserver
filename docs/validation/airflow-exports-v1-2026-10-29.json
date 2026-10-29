@@ -1,0 +1,225 @@
+{
+  "verified_at": "2026-10-29T01:11:45.149532+00:00",
+  "versions": {
+    "apache-airflow": "3.3.2",
+    "apache-airflow-providers-fab": "3.9.0",
+    "paramiko": "5.0.0"
+  },
+  "image_id": "sha256:a50087aaaa7e294cd9e5becc7438c34a582c3118053ff2723ef6dc1b9ecea3ac",
+  "unit_tests_passed": 12,
+  "live_acceptance": {
+    "started_at": "2026-10-29T01:04:22.325098+00:00",
+    "warehouse_before": {
+      "events": 604459,
+      "batches": 3027,
+      "current_keys": 604450
+    },
+    "runs": {
+      "export_invoices": {
+        "run_id": "acceptance__20261029T010428Z",
+        "dataset": "invoice_details",
+        "intentional_post_publication_failure": true,
+        "state": "success",
+        "tasks": [
+          {
+            "task_id": "check_ingestion",
+            "state": "success",
+            "try_number": 1,
+            "start_date": "2026-10-29T01:04:29.928045Z",
+            "end_date": "2026-10-29T01:04:38.687444Z"
+          },
+          {
+            "task_id": "verify_delivery",
+            "state": "success",
+            "try_number": 1,
+            "start_date": "2026-10-29T01:07:34.406785Z",
+            "end_date": "2026-10-29T01:07:47.168405Z"
+          },
+          {
+            "task_id": "confirm_invoice_application",
+            "state": "success",
+            "try_number": 1,
+            "start_date": "2026-10-29T01:07:47.690300Z",
+            "end_date": "2026-10-29T01:07:48.763548Z"
+          },
+          {
+            "task_id": "export_snapshot",
+            "state": "success",
+            "try_number": 2,
+            "start_date": "2026-10-29T01:07:19.641206Z",
+            "end_date": "2026-10-29T01:07:20.771615Z"
+          }
+        ],
+        "request_id": "af1-89c59a74a8bf8f294797ae12b64e69dbc1e35313",
+        "export": {
+          "attempts": 1,
+          "dataset": "invoice_details",
+          "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T010442Z-2f479ada70fc463c9f80fc8209f72a0b.json",
+          "request_id": "af1-89c59a74a8bf8f294797ae12b64e69dbc1e35313",
+          "run_id": "20261029T010442Z-2f479ada70fc463c9f80fc8209f72a0b"
+        },
+        "validation": {
+          "attempts": 1,
+          "dataset": "invoice_details",
+          "files": 5,
+          "manifest_sha256": "5a1826496994789f66a63efc82ce60fe95436d4699d7c8a115c3f8ff055bbd64",
+          "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-29/run=20261029T010442Z-2f479ada70fc463c9f80fc8209f72a0b.json",
+          "request_id": "af1-89c59a74a8bf8f294797ae12b64e69dbc1e35313",
+          "row_sha256": "373f883715913220873e0d146793cd9d647d91eb7fca330e77ec5fd3fa441d85",
+          "rows": 228265,
+          "run_id": "20261029T010442Z-2f479ada70fc463c9f80fc8209f72a0b"
+        },
+        "repeat_reused_completed_result": true,
+        "application_receipt": {
+          "processed": true,
+          "event_id": "cd9b41135e70944417f706e97ccb213c6519b805fb84e63680086bf21d2c73cd",
+          "run_id": "20261029T010442Z-2f479ada70fc463c9f80fc8209f72a0b",
+          "decision": "applied",
+          "rows": 228265,
+          "committed_at": "2026-10-29T01:06:51.967861+00:00",
+          "purge_authorized": false
+        }
+      },
+      "export_orders": {
+        "run_id": "acceptance__20261029T010428Z",
+        "dataset": "order_details",
+        "intentional_post_publication_failure": false,
+        "state": "success",
+        "tasks": [
+          {
+            "task_id": "check_ingestion",
+            "state": "success",
+            "try_number": 1,
+            "start_date": "2026-10-29T01:06:14.040790Z",
+            "end_date": "2026-10-29T01:06:16.038087Z"
+          },
+          {
+            "task_id": "export_snapshot",
+            "state": "success",
+            "try_number": 1,
+            "start_date": "2026-10-29T01:06:16.519293Z",
+            "end_date": "2026-10-29T01:07:19.215849Z"
+          },
+          {
+            "task_id": "verify_delivery",
+            "state": "success",
+            "try_number": 1,
+            "start_date": "2026-10-29T01:07:20.866342Z",
+            "end_date": "2026-10-29T01:07:33.567874Z"
+          }
+        ],
+        "request_id": "af1-99f567adb949634361844887e0f8512665c4518d",
+        "export": {
+          "attempts": 1,
+          "dataset": "order_details",
+          "publication": "published/dataset=order_details/version=1/run_date=2026-10-29/run=20261029T010619Z-7a5b2fb7c9c64a45a6f2cde883ae8d12.json",
+          "request_id": "af1-99f567adb949634361844887e0f8512665c4518d",
+          "run_id": "20261029T010619Z-7a5b2fb7c9c64a45a6f2cde883ae8d12"
+        },
+        "validation": {
+          "attempts": 1,
+          "dataset": "order_details",
+          "files": 5,
+          "manifest_sha256": "5f647445823e256885746b246746578b83640fbe59f1aa27ccbd0dd059d36a1b",
+          "publication": "published/dataset=order_details/version=1/run_date=2026-10-29/run=20261029T010619Z-7a5b2fb7c9c64a45a6f2cde883ae8d12.json",
+          "request_id": "af1-99f567adb949634361844887e0f8512665c4518d",
+          "row_sha256": "dcfcd1a1380a43e6fd2227fb23f71cf10795d158d2297f0389b9958c7b39e572",
+          "rows": 231412,
+          "run_id": "20261029T010619Z-7a5b2fb7c9c64a45a6f2cde883ae8d12"
+        },
+        "repeat_reused_completed_result": true
+      }
+    },
+    "ingestion_readiness": {
+      "status": "ready",
+      "dataset": "invoice_details",
+      "ingestion": {
+        "consumer": "sales/v2",
+        "last_success_at": "2026-10-29T01:11:02.737866+00:00",
+        "error_type": null,
+        "recent": true
+      },
+      "checked_at": "2026-10-29T01:11:33.727723+00:00",
+      "source_transaction_boundary_certified": false,
+      "purge_authorized": false
+    },
+    "access_checks": [
+      "rejected",
+      "rejected",
+      "rejected",
+      "warehouse connection denied"
+    ],
+    "components_recreated": true
+  },
+  "service_health": {
+    "decom-sqlserver-sqlserver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-airflow-api-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy"
+  },
+  "airflow_component_health": {
+    "metadatabase": {
+      "status": "healthy"
+    },
+    "scheduler": {
+      "status": "healthy",
+      "latest_scheduler_heartbeat": "2026-10-29T01:11:34.763627+00:00"
+    },
+    "triggerer": {
+      "status": null,
+      "latest_triggerer_heartbeat": null
+    },
+    "dag_processor": {
+      "status": "healthy",
+      "latest_dag_processor_heartbeat": "2026-10-29T01:11:34.314373+00:00"
+    }
+  },
+  "persisted_task_log_files": 8,
+  "warehouse_after": {
+    "events": 604459,
+    "batches": 3027,
+    "current_keys": 604450
+  },
+  "airflow_runtime_has_no_docker_socket_or_business_secrets": true,
+  "host_memory_kib": {
+    "total": 12240492,
+    "available": 7417436
+  },
+  "postgres_connections": {
+    "total": 15,
+    "airflow": 5
+  },
+  "scheduled_exports": [
+    {
+      "dag_id": "export_invoices",
+      "paused": false,
+      "cron": "0 6 * * *",
+      "next_run_utc": "2026-10-29T10:00:00Z",
+      "timezone": "America/Toronto"
+    },
+    {
+      "dag_id": "export_orders",
+      "paused": false,
+      "cron": "15 6 * * *",
+      "next_run_utc": "2026-10-29T10:15:00Z",
+      "timezone": "America/Toronto"
+    }
+  ],
+  "automatic_cdc_cleanup_enabled": false,
+  "purge_authorized": false,
+  "limitations": [
+    "Single VM/shared PostgreSQL; no HA or off-VM disaster recovery.",
+    "Readiness is a recent scan, not a certified contiguous source CDC watermark.",
+    "Independent full snapshots; no common transaction boundary across datasets.",
+    "No external failure notification or automatic evidence/log/export retention."
+  ]
+}

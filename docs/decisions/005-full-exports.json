@@ -1,0 +1,95 @@
+{
+  "title": "Reusable PostgreSQL to SeaweedFS full exports",
+  "date": "2026-10-28",
+  "status": "Implemented; acceptance evidence recorded separately",
+  "scope": {
+    "datasets": [
+      "invoice_details/v1",
+      "order_details/v1"
+    ],
+    "mode": "full current-state snapshots",
+    "source": "PostgreSQL delivery views over existing marts",
+    "destination": "s3://warehouse-exports",
+    "runtime": "One-off Docker jobs; no extra permanent service"
+  },
+  "contracts": {
+    "configuration": "Reviewed JSON per dataset: source, ordered columns/types/nullability, key, totals, destination, file/row-group limits",
+    "grain": "One current invoice line or order line",
+    "money": "Decimal128(18,2); tax rate decimal128(18,3); loss/overflow rejected; signed credits and optional order IDs preserved",
+    "empty": "Rejected by both current dataset contracts",
+    "files": "Parquet 2.6 with Zstandard; 5000 rows per group, 50000 per file by default"
+  },
+  "consistency": {
+    "warehouse": "Read-only REPEATABLE READ across independent source aggregates and ordered server cursor",
+    "source": "No global source transaction/cutover boundary certified; loader commits independent archive batches",
+    "cross_dataset": "Separate snapshots; no grouped invoice/order release",
+    "provenance": "PostgreSQL snapshot ID/time, visible sales/v2 counts and source archive contract. Not a source contiguous watermark."
+  },
+  "publication": {
+    "layout": "datasets/dataset=<name>/version=<n>/run_date=<UTC attempt day>/run=<UTC timestamp>-<uuid>/data/part-NNNNN.parquet and manifest.json; published/.../run=<id>.json",
+    "sequence": [
+      "Upload parts",
+      "Write checksummed manifest",
+      "Read back every file and validate schema, primary-key order/uniqueness, required fields, bytes, hashes and exact totals",
+      "Durably record ready state",
+      "Write publication marker last",
+      "Durably acknowledge publication"
+    ],
+    "discovery": "Consumers only list published/, select an explicit run, follow exact manifest keys, and validate before use. No mutable latest pointer.",
+    "storage_semantics": "No multi-object atomicity, rename, conditional-write or ETag integrity assumption; same-VM fsync enabled. Immutability is an application convention, not WORM."
+  },
+  "recovery": {
+    "identity": "Stable request ID, contract fingerprint, durable fsynced local journal and nonblocking OS lock",
+    "incomplete": "Abandon old attempt and restart full extraction with fresh snapshot/path; no cross-snapshot continuation",
+    "ready": "Revalidate and publish original attempt without opening a new DB snapshot",
+    "ambiguous_success": "Identical existing publication accepted without rewriting it",
+    "corruption": "Fail closed; restore exact data or explicitly switch to a new request",
+    "limits": "Single writer host; no distributed serialization or cross-host exactly-once claim; automatic garbage collection disabled"
+  },
+  "security": {
+    "database": "Dedicated warehouse_exporter, only SELECT on three delivery views; no DML/DDL/underlying schema privileges; read-only default",
+    "s3_exporter": "Read/Write/List warehouse-exports only",
+    "s3_consumer": "Independent Read/List warehouse-exports only; no PostgreSQL secret or network membership",
+    "bootstrap": "Existing S3 admin credential used only for bucket setup",
+    "boundaries": "Internal Docker network and filer UI are trusted lab admin surfaces; S3 access control is not hostile-tenant isolation"
+  },
+  "resources": {
+    "exporter": "768 MiB, 1 CPU, 256 MiB tmpfs",
+    "consumer": "512 MiB, 1 CPU",
+    "limitations": "Fixture acceptance is not production capacity. No Spark deployment until volume/throughput measurements justify it."
+  },
+  "rollback": "Stop new jobs; keep last accepted consumer snapshot and all data/journal/secrets. Additive SQL migration 005 does not affect the loader. Do not edit applied migrations or reset offsets.",
+  "deferred": [
+    "Real application transactional snapshot replacement and cutover",
+    "Incremental exports and deletion contracts",
+    "Scheduling and alerting",
+    "Per-application scopes/identity lifecycle/TLS",
+    "Off-VM recovery, replication, retention and WORM",
+    "RabbitMQ for one consumer only",
+    "Safe CDC purge and full SQL Server decommissioning"
+  ],
+  "purge_authorized": false,
+  "references": [
+    {
+      "url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+      "supports": "Repeatable Read snapshot behavior"
+    },
+    {
+      "url": "https://www.psycopg.org/psycopg3/docs/advanced/cursors.html",
+      "supports": "Server-side cursors and bounded client retrieval"
+    },
+    {
+      "url": "https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetWriter.html",
+      "supports": "Incremental Parquet writer/schema/row groups/decimal storage"
+    },
+    {
+      "url": "https://arrow.apache.org/release/26.0.0.html",
+      "supports": "Pinned PyArrow release"
+    },
+    {
+      "url": "https://github.com/seaweedfs/seaweedfs/wiki/S3-Credentials",
+      "supports": "Bucket-scoped S3 identities; exact permissions verified against deployed version"
+    }
+  ],
+  "conventions": "Directory layout, publication protocol and request-journal design are project decisions, not claims of a universal enterprise standard."
+}

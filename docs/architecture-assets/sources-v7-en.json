@@ -1,0 +1,37 @@
+[
+  {
+    "file": "sqlserver.svg",
+    "source": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/1037761-cardgrid-sql-server2022",
+    "sha256": "3a395d2ecdfca1b2e96700ca009e3312c47b071edd58c572d19351e723819eaf"
+  },
+  {
+    "file": "debezium.svg",
+    "source": "https://debezium.io/assets/images/color_black_debezium_type_600px.svg",
+    "sha256": "c77a8be594441b31ebeb226cdb04c59f301485488e0d7f6d172b1bb9b821f358"
+  },
+  {
+    "file": "seaweedfs-icon.png",
+    "source": "https://seaweedfs.com/apple-touch-icon.png",
+    "sha256": "93b56173241a1d279f10ed9b2ec105bef8f32db3920bdf38b87de33317910bef"
+  },
+  {
+    "file": "postgresql.png",
+    "source": "https://www.postgresql.org/media/img/about/press/elephant.png",
+    "sha256": "ff92fb5d12a7fa6b23c2eb403d2edf4fbc58ced802021e1f02c3583cb70957be"
+  },
+  {
+    "file": "rabbitmq.svg",
+    "source": "https://www.rabbitmq.com/img/rabbitmq-logo.svg",
+    "sha256": "5c83f8a9819ca280dd32eef7e79c567a071dddc6a66a120b5d1511f286766749"
+  },
+  {
+    "file": "airflow.svg",
+    "source": "https://airflow.apache.org/images/airflow-icon.svg",
+    "sha256": "5ef09e84bc3ec931468369b388e9be65fd68fd93c09e53f73b15f295f67f60e3"
+  },
+  {
+    "file": "docker.svg",
+    "source": "https://www.docker.com/static/Docker-Logos-1.zip#docker-logos/SVG/docker-mark-ocean-blue.svg",
+    "sha256": "0fd7f9164de13672bb1708ac7cc401ed439eb938ffa7358d5cb278e107904687"
+  }
+]

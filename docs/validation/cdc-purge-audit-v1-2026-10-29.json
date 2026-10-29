@@ -1,0 +1,278 @@
+{
+  "contract": "cdc-purge-audit/v1",
+  "mode": "audit-only",
+  "observed_at": "2026-10-29T01:40:18.773810+00:00",
+  "source_observation_sha256": "8bc376d3361f73c2a2b0ea3021722cadd4b68e45447de7cf64876e6aaf124515",
+  "policy_sha256": "e2e0d830c7c88cf99ac59996562587305d71b4510ec5b05514dc01192dcda285",
+  "source_upper_lsn_observed": "0x00000276000020300003",
+  "bootstrap_lsn": "00000274:00000758:0003",
+  "capture_instances": [
+    {
+      "capture_instance": "lab_CdcProbe",
+      "table_name": "lab.CdcProbe",
+      "start_lsn": "0x00000273000045E0003C",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_Customers",
+      "table_name": "Sales.Customers",
+      "start_lsn": "0x0000027300001C100118",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_InvoiceLines",
+      "table_name": "Sales.InvoiceLines",
+      "start_lsn": "0x0000027300003C18007E",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_Invoices",
+      "table_name": "Sales.Invoices",
+      "start_lsn": "0x000002730000343000CE",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_OrderLines",
+      "table_name": "Sales.OrderLines",
+      "start_lsn": "0x0000027300002C980078",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    },
+    {
+      "capture_instance": "Sales_Orders",
+      "table_name": "Sales.Orders",
+      "start_lsn": "0x00000273000024E000A2",
+      "end_lsn": null,
+      "has_drop_pending": null,
+      "role_name": "cdc_reader"
+    }
+  ],
+  "retention_hours": 72,
+  "retention_cutoff_source_time": "2026-10-26T01:37:45.470",
+  "retention_observation_lsn": null,
+  "pre_bootstrap_retained_row_images": {
+    "lab.CdcProbe": 12
+  },
+  "archive": {
+    "listed_manifests": 3033,
+    "verified_manifests": 3033,
+    "inventory_sha256": "100c703b83a793cccf4c7b55937bdfc3f72c2a9a1b3279d268960c8b253b68fc",
+    "operations": {
+      "r": 604445,
+      "c": 11,
+      "u": 10,
+      "d": 11
+    },
+    "records_by_table": {
+      "Sales.Customers": 663,
+      "Sales.InvoiceLines": 228268,
+      "Sales.Invoices": 70513,
+      "Sales.OrderLines": 231415,
+      "Sales.Orders": 73600,
+      "lab.CdcProbe": 18
+    },
+    "integrity_errors": [],
+    "integrity_error_count": 0,
+    "identical_stream_redeliveries": 0,
+    "conflicting_stream_redeliveries": 0
+  },
+  "retained_identity_coverage": {
+    "matched": true,
+    "source_row_images": 42,
+    "archive_row_images": 42,
+    "missing_row_images": 0,
+    "unexpected_row_images": 0,
+    "source_identity_sha256": "0832ccb882652ba783dc64d7ac6734139edecce783b3bdbce27fd26cea87603a",
+    "archive_identity_sha256": "0832ccb882652ba783dc64d7ac6734139edecce783b3bdbce27fd26cea87603a",
+    "comparison": "Retained row identities and multiplicities only; source column values are not certified"
+  },
+  "tables": {
+    "Sales.Customers": {
+      "matched": true,
+      "source_row_images": 0,
+      "archive_row_images": 0,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "archive_identity_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "comparison": "Retained row identities and multiplicities only; source column values are not certified"
+    },
+    "Sales.Orders": {
+      "matched": true,
+      "source_row_images": 6,
+      "archive_row_images": 6,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "24f9f45973f9b276a6581cc499aa88fe81194891629807e2c964696dff12e3e8",
+      "archive_identity_sha256": "24f9f45973f9b276a6581cc499aa88fe81194891629807e2c964696dff12e3e8",
+      "comparison": "Retained row identities and multiplicities only; source column values are not certified"
+    },
+    "Sales.OrderLines": {
+      "matched": true,
+      "source_row_images": 4,
+      "archive_row_images": 4,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "36ddd6aa1e4ef2d021d15da092273297dee45649a640d1523f7fe8c5cd48466e",
+      "archive_identity_sha256": "36ddd6aa1e4ef2d021d15da092273297dee45649a640d1523f7fe8c5cd48466e",
+      "comparison": "Retained row identities and multiplicities only; source column values are not certified"
+    },
+    "Sales.Invoices": {
+      "matched": true,
+      "source_row_images": 4,
+      "archive_row_images": 4,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "dcdc2e932ed18bf2b8e8b30120a9f19b2bd471e195548ed6cd39244450598a04",
+      "archive_identity_sha256": "dcdc2e932ed18bf2b8e8b30120a9f19b2bd471e195548ed6cd39244450598a04",
+      "comparison": "Retained row identities and multiplicities only; source column values are not certified"
+    },
+    "Sales.InvoiceLines": {
+      "matched": true,
+      "source_row_images": 4,
+      "archive_row_images": 4,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "5405ed9db46d11bcd52c9a98be548a9bf3eaad513e381ff3b95c8893bbcb8cc0",
+      "archive_identity_sha256": "5405ed9db46d11bcd52c9a98be548a9bf3eaad513e381ff3b95c8893bbcb8cc0",
+      "comparison": "Retained row identities and multiplicities only; source column values are not certified"
+    },
+    "lab.CdcProbe": {
+      "matched": true,
+      "source_row_images": 24,
+      "archive_row_images": 24,
+      "missing_row_images": 0,
+      "unexpected_row_images": 0,
+      "source_identity_sha256": "a02b21a9fac7112f0bec3ab05aba07fa6c91689b8b038a61a2c5ba95a242e24a",
+      "archive_identity_sha256": "a02b21a9fac7112f0bec3ab05aba07fa6c91689b8b038a61a2c5ba95a242e24a",
+      "comparison": "Retained row identities and multiplicities only; source column values are not certified"
+    }
+  },
+  "warehouse": {
+    "consumer": "sales/v2",
+    "acknowledged_batches": 3027,
+    "required_batches": 3027,
+    "archive_only_batches_not_required": 6,
+    "checkpoint_mismatches": 0,
+    "acknowledged_but_missing_manifests": 0,
+    "archive_stream_events": 14,
+    "ledger_stream_events": 14,
+    "missing_stream_events": 0,
+    "unexpected_stream_events": 0,
+    "semantic_mismatches": 0
+  },
+  "checks": {
+    "ARCHIVE_INTEGRITY": true,
+    "RETAINED_POST_BOOTSTRAP_IDENTITIES_MATCH": true,
+    "WAREHOUSE_BATCH_CHECKPOINTS_MATCH": true,
+    "WAREHOUSE_STREAM_SEMANTICS_MATCH": true,
+    "WAREHOUSE_SCAN_RECENT": true,
+    "CAPTURE_SCOPE_MATCHES_POLICY": true,
+    "CAPTURE_HISTORY_REACHES_BOOTSTRAP": true,
+    "PRE_BOOTSTRAP_HISTORY_ACCOUNTED_FOR": false,
+    "RETENTION_WINDOW_HAS_HISTORY": false,
+    "SOURCE_OBSERVATION_STABLE": true,
+    "AUTOMATIC_CLEANUP_DISABLED": true,
+    "FULL_SOURCE_ROW_IMAGES_RECONCILED": null,
+    "CONNECTOR_DURABLE_RESUME_CHECKPOINT_CERTIFIED": null,
+    "TRANSACTION_FENCE_CERTIFIED": null,
+    "ALL_CDC_CONSUMERS_REGISTERED_AND_APPROVED": null,
+    "RETENTION_POLICY_APPROVED": null,
+    "OFF_VM_ARCHIVE_RESTORE_PROVEN": null,
+    "SERVICES_HEALTHY_AT_COMPLETION": true
+  },
+  "limitations": [
+    "Identity matching does not compare all source column values.",
+    "A fixed maximum observed LSN is not a certified connector checkpoint or transaction fence.",
+    "The snapshot establishes state, not recovery of changes from before bootstrap.",
+    "Full-export application receipts do not establish a contiguous CDC checkpoint.",
+    "This audit contains no purge execution path and cannot produce an executable low watermark."
+  ],
+  "decision": {
+    "status": "blocked",
+    "purge_authorized": false,
+    "executable_low_watermark": null,
+    "blockers": [
+      "PRE_BOOTSTRAP_HISTORY_ACCOUNTED_FOR",
+      "RETENTION_WINDOW_HAS_HISTORY",
+      "FULL_SOURCE_ROW_IMAGES_RECONCILED",
+      "CONNECTOR_DURABLE_RESUME_CHECKPOINT_CERTIFIED",
+      "TRANSACTION_FENCE_CERTIFIED",
+      "ALL_CDC_CONSUMERS_REGISTERED_AND_APPROVED",
+      "RETENTION_POLICY_APPROVED",
+      "OFF_VM_ARCHIVE_RESTORE_PROVEN",
+      "PURGE_EXECUTION_NOT_IMPLEMENTED"
+    ],
+    "changes_deleted": 0
+  },
+  "run_id": "20261029T013744Z-3a50b99ea184",
+  "completed_at": "2026-10-29T01:40:19.556433+00:00",
+  "sql_access_checks": {
+    "sysadmin": 0,
+    "db_owner": 0,
+    "can_read_cdc": 1,
+    "can_delete_cdc": 0,
+    "can_update_source": 0,
+    "can_execute_cleanup": 0
+  },
+  "storage_access_checks": {
+    "warehouse_read_only": true,
+    "business_row_access_denied": true,
+    "s3_write_denied": true,
+    "export_bucket_list_denied": true
+  },
+  "unit_tests_passed": 16,
+  "source_fingerprint_before": "82346eac3092b527ac8ea04a212ae23196a09617c06e8ae93f3008e0c11d0d6b",
+  "source_fingerprint_after": "82346eac3092b527ac8ea04a212ae23196a09617c06e8ae93f3008e0c11d0d6b",
+  "cleanup_job_before": {
+    "cleanup_jobs": [
+      {
+        "enabled": 0,
+        "retention": 4320
+      }
+    ]
+  },
+  "cleanup_job_after": {
+    "cleanup_jobs": [
+      {
+        "enabled": 0,
+        "retention": 4320
+      }
+    ]
+  },
+  "image_id": "sha256:a679fd0c384b3b413434275fa2db5e8da8d2429a01280017d2477ce4bc59db6f",
+  "service_health": {
+    "decom-airflow-api-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-sqlserver-sqlserver-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy"
+  },
+  "provenance_sha256": {
+    "app/audit.py": "861d76ba588e471f837f53a5a162b52f91e2d5ab7775768850a8241351e8f268",
+    "app/audit_core.py": "e4688744446379282caf70f4c8f2bc3f3a7c0c9ec6a38fe62771e1ea0b9ccf25",
+    "app/check_access.py": "5741e6fe183bffa74e5b21cea853e406ddaa3c621e8eec9fabdd7ae58f98e32f",
+    "scripts/prepare-host.py": "7c8ceca6c1142b95a93e779d128650be30ef0477367621958f00638d48cf0913",
+    "scripts/run-host.py": "bc7bf65cbf393f362be8201e5ae529ac573f87257f5962174f4b233dbdb692a9",
+    "scripts/source.py": "90d1bf9ea565f90a1bd61676e0603546a0bb3f9c077eb11f2e2fd9fd0bb02e7f",
+    "tests/test_audit.py": "e0ac985467210a7a179c7730d8b3275cb4f16544d583d07083f75bf356fc9d28",
+    "tests/test_source.py": "b8680589bc244d6f0a9e095e8c5760b6b845544cf4df21d6e41b4c05847ce82f"
+  }
+}

@@ -1,0 +1,1 @@
+"""Isolated messaging protocol validation."""

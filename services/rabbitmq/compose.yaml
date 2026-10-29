@@ -1,0 +1,129 @@
+name: decom-messaging
+services:
+  rabbitmq:
+    image: rabbitmq:4.4.0-management@sha256:af6f50d38098d8bd52fef7f3fa85015dd8b2bf6def58e995bf584ae9ba0f6407
+    hostname: rabbitmq
+    user: "999:999"
+    restart: unless-stopped
+    stop_grace_period: 90s
+    environment:
+      RABBITMQ_NODENAME: rabbit@rabbitmq
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "+S 2:2 +A 4"
+    volumes:
+      - ${MESSAGING_DATA_DIR:-./data}/broker:/var/lib/rabbitmq
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+    secrets: [definitions]
+    networks: [messaging, management]
+    ports: ["127.0.0.1:15672:15672"]
+    mem_limit: 768m
+    memswap_limit: 768m
+    cpus: 1.0
+    healthcheck:
+      test: [CMD, rabbitmq-diagnostics, -q, check_running]
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 45s
+    logging: &logging
+      driver: local
+      options: {max-size: "10m", max-file: "3"}
+  dispatcher:
+    build:
+      context: ..
+      dockerfile: rabbitmq/Dockerfile
+    image: decom-invoice-messaging:1
+    user: "10008:10008"
+    command: [dispatcher.py, --watch]
+    restart: unless-stopped
+    read_only: true
+    tmpfs: ["/tmp:size=64m,mode=1777"]
+    stop_grace_period: 45s
+    environment: &environment
+      RABBIT_HOST: rabbitmq
+      RABBIT_VHOST: /exports
+      RABBIT_CREDENTIALS_FILE: /run/secrets/publisher
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: warehouse-exports
+      S3_CREDENTIALS_FILE: /run/secrets/publisher_s3
+    secrets: [publisher, publisher_s3]
+    volumes: ["${MESSAGING_DATA_DIR:-./data}/dispatcher:/state"]
+    networks: [messaging, archive]
+    depends_on:
+      rabbitmq: {condition: service_healthy}
+    mem_limit: 256m
+    memswap_limit: 256m
+    cpus: 0.5
+    healthcheck: &health
+      test: [CMD, python, health.py]
+      interval: 20s
+      timeout: 5s
+      retries: 4
+      start_period: 45s
+    logging: *logging
+  invoice-app:
+    image: decom-invoice-messaging:1
+    user: "10009:10009"
+    restart: unless-stopped
+    stop_grace_period: 90s
+    read_only: true
+    tmpfs: ["/tmp:size=256m,mode=1777"]
+    environment:
+      <<: *environment
+      RABBIT_CREDENTIALS_FILE: /run/secrets/invoice_app
+      S3_CREDENTIALS_FILE: /run/secrets/app_s3
+    secrets: [invoice_app, app_s3]
+    volumes: ["${MESSAGING_DATA_DIR:-./data}/app:/state"]
+    networks: [messaging, archive]
+    depends_on:
+      rabbitmq: {condition: service_healthy}
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1.0
+    healthcheck: *health
+    logging: *logging
+  probe:
+    image: decom-invoice-messaging:1
+    profiles: [tools]
+    user: "0:0"
+    restart: "no"
+    read_only: true
+    tmpfs: ["/tmp:size=256m,mode=1777"]
+    environment:
+      <<: *environment
+      RABBIT_ADMIN_FILE: /run/secrets/admin
+      S3_CREDENTIALS_FILE: /run/secrets/test_reader_s3
+      APP_STATE_DIR: /validation/app
+      DISPATCH_STATE_DIR: /validation/dispatcher
+    secrets: [admin, publisher, invoice_app, publisher_s3, app_s3, test_reader_s3, fixture_writer_s3]
+    volumes: ["${MESSAGING_DATA_DIR:-./data}/validation:/validation"]
+    networks: [messaging, archive]
+    mem_limit: 768m
+    memswap_limit: 768m
+    cpus: 1.0
+    logging: *logging
+secrets:
+  definitions:
+    file: ${MESSAGING_SECRET_DIR:-./.secrets}/definitions.json
+  admin:
+    file: ${MESSAGING_SECRET_DIR:-./.secrets}/admin.json
+  publisher:
+    file: ${MESSAGING_SECRET_DIR:-./.secrets}/publisher.json
+  invoice_app:
+    file: ${MESSAGING_SECRET_DIR:-./.secrets}/invoice-app.json
+  publisher_s3:
+    file: ${MESSAGING_SECRET_DIR:-./.secrets}/publisher-s3.json
+  app_s3:
+    file: ${MESSAGING_SECRET_DIR:-./.secrets}/app-s3.json
+  test_reader_s3:
+    file: ${MESSAGING_SECRET_DIR:-./.secrets}/test-reader-s3.json
+  fixture_writer_s3:
+    file: /srv/decom-sqlserver/secrets/export/s3-writer.json
+networks:
+  messaging:
+    name: decom-messaging-backend
+    internal: true
+  management:
+    name: decom-messaging-management
+  archive:
+    external: true
+    name: decom-cdc-archive

@@ -1,0 +1,206 @@
+{
+  "verified_at": "2026-10-28T23:24:28.599250+00:00",
+  "pilot": "Integration.GetOrderUpdates",
+  "target": "app.get_order_updates(text,text,text)",
+  "source_engine": {
+    "version": "16.0.4305.5",
+    "compatibility_level": 130
+  },
+  "isolated_integration_tests_passed": 25,
+  "source_procedure_comparison": {
+    "verified_at": "2026-10-28T23:24:24.613643+00:00",
+    "passed": true,
+    "procedure": "Integration.GetOrderUpdates",
+    "source_definition_sha256": "d3d51f7dbf4bd6378a4e7161fdb23461f69fa2926fd9e6495fd8cc360aebab87",
+    "reference_version": "wwi-package-types/v1/70b20421d9e865772d2462dc897db708c6620e6ab6321e27581fe6f1b934f294",
+    "columns": [
+      "Order Date Key",
+      "Picked Date Key",
+      "WWI Order ID",
+      "WWI Backorder ID",
+      "Description",
+      "Package",
+      "Quantity",
+      "Unit Price",
+      "Tax Rate",
+      "Total Excluding Tax",
+      "Tax Amount",
+      "Total Including Tax",
+      "WWI City ID",
+      "WWI Customer ID",
+      "WWI Stock Item ID",
+      "WWI Salesperson ID",
+      "WWI Picker ID",
+      "Last Modified When"
+    ],
+    "cases": {
+      "full_current": {
+        "source_rows": 231412,
+        "target_rows": 231412,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "3d0d0fe98b2e9a59b45517dd05576332d2dd2caf03104d8ab8560807eae9eae2",
+        "target_sha256": "3d0d0fe98b2e9a59b45517dd05576332d2dd2caf03104d8ab8560807eae9eae2",
+        "elapsed_seconds": 53.95,
+        "last_cutoff": "0001-01-01",
+        "new_cutoff": "9999-12-31T23:59:59.9999999"
+      },
+      "upper_inclusive_100ns": {
+        "source_rows": 32,
+        "target_rows": 32,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "feed6845c958d35878bc21f626957eb0bcf3940f3b7fda53e936812a0e1ae87d",
+        "target_sha256": "feed6845c958d35878bc21f626957eb0bcf3940f3b7fda53e936812a0e1ae87d",
+        "elapsed_seconds": 15.26,
+        "last_cutoff": "2016-05-31T11:59:59.9999999",
+        "new_cutoff": "2016-05-31T12:00:00.0000000"
+      },
+      "lower_exclusive_100ns": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 14.35,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": "2016-05-31T12:00:00.0000001"
+      },
+      "equal_bounds": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": "2016-05-31T12:00:00.0000000"
+      },
+      "reversed_bounds": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": "2016-05-31T11:59:59.9999999"
+      },
+      "null_lower": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": null,
+        "new_cutoff": "2016-05-31T12:00:00.0000000"
+      },
+      "null_upper": {
+        "source_rows": 0,
+        "target_rows": 0,
+        "missing_or_different_rows": 0,
+        "extra_or_different_rows": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.0,
+        "last_cutoff": "2016-05-31T12:00:00.0000000",
+        "new_cutoff": null
+      }
+    },
+    "source_return_status": 0,
+    "target_success": "SELECT result set; no T-SQL return-code emulation",
+    "ordering": "OrderID ascending; duplicate-preserving comparison within each OrderID because the source does not define a line tie-breaker",
+    "reader_execute": true,
+    "loader_execute": false,
+    "reader_can_modify_reference": false,
+    "limits": [
+      "Quiet fixture comparison; not an online cutover proof",
+      "Explicit reference snapshot; no automatic refresh",
+      "datetime2(7) exposed as exact ISO text; cutoff inputs restricted to ISO without timezone",
+      "Source EXECUTE AS OWNER is compared with the full-scope lab reader; per-application RLS mapping is not certified",
+      "Current-row extraction preserves the source procedure semantics; deletes and historical versions are not returned"
+    ],
+    "purge_authorized": false
+  },
+  "numeric_golden_cases": {
+    "passed": 12,
+    "source_overflow_error": 8115,
+    "target_overflow_sqlstate": "22003 (isolated test)"
+  },
+  "reference": {
+    "version": "wwi-package-types/v1/70b20421d9e865772d2462dc897db708c6620e6ab6321e27581fe6f1b934f294",
+    "rows": 14,
+    "automatic_refresh": false
+  },
+  "source_procedure_definition_unchanged": true,
+  "warehouse_ingestion_state_unchanged": {
+    "events": 604459,
+    "scope_batches": 3027,
+    "current_keys": 604450
+  },
+  "migration_checksums": [
+    {
+      "version": "001-pilot.sql",
+      "sha256": "4e91d92475c07954f4e175eff987683ca3218cae3ea1f871bafcf086b293dde0"
+    },
+    {
+      "version": "002-five-sales-tables.sql",
+      "sha256": "7d44d3f5cfd48714d4f322700f0b320751cc6ee948397c2afaca7b7eb5afebb7"
+    },
+    {
+      "version": "003-order-updates-api.sql",
+      "sha256": "fae53554105e7b2b4da320058e6670868b2fbf8e22863e996178f9daff90f1c5"
+    },
+    {
+      "version": "004-order-tax-division.sql",
+      "sha256": "ef67fbc984bfca77b48bc5f3f8243d2e7edab3cec7c7c065cb20feee80f7984f"
+    }
+  ],
+  "services": {
+    "decom-sqlserver-sqlserver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-debezium-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-archiver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-seaweedfs-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cloudbeaver-cloudbeaver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-postgres-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-loader-1": {
+      "running": true,
+      "health": "healthy"
+    }
+  },
+  "application_cutover_authorized": false,
+  "source_retirement_authorized": false,
+  "purge_authorized": false,
+  "cloudbeaver": {
+    "cloudbeaver_login": "passed",
+    "postgresql_saved_connection": "passed",
+    "validated_counts": [
+      32
+    ],
+    "reader_can_insert": false,
+    "order_updates_api": "passed"
+  }
+}

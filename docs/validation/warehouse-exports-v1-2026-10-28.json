@@ -1,0 +1,181 @@
+{
+  "checks": [
+    "validated manifest without commit marker is undiscoverable",
+    "crash after publication recovered without duplicate delivery",
+    "partial run invisible; retry uses fresh snapshot and path",
+    "duplicate request returns same immutable publication",
+    "S3 Parquet corruption rejected",
+    "S3 missing data file rejected",
+    "S3 manifest corruption rejected",
+    "exporter defaults to read-only transactions",
+    "exporter denied raw schemas, DDL and DML even with read-only default disabled",
+    "exporter cannot list raw CDC bucket",
+    "same request cannot run concurrently on this host",
+    "same request cannot change its contract"
+  ],
+  "exports": {
+    "invoice_details": {
+      "attempts": 1,
+      "dataset": "invoice_details",
+      "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-28/run=20261028T235345Z-dbb9d103b7ed429ba9be2915f51cd95b.json",
+      "request_id": "invoice-20261028T235343Z",
+      "run_id": "20261028T235345Z-dbb9d103b7ed429ba9be2915f51cd95b",
+      "status": "published"
+    },
+    "order_details": {
+      "attempts": 2,
+      "dataset": "order_details",
+      "publication": "published/dataset=order_details/version=1/run_date=2026-10-28/run=20261028T235538Z-ee791a159e5e4aacbd157b17a9402c0b.json",
+      "request_id": "orders-20261028T235343Z",
+      "run_id": "20261028T235538Z-ee791a159e5e4aacbd157b17a9402c0b",
+      "status": "published"
+    }
+  },
+  "purge_authorized": false,
+  "contract_tests": {
+    "passed": 9,
+    "output": "Container decom-export-exporter-run-220fc09d9a56 Creating \n Container decom-export-exporter-run-220fc09d9a56 Created \n.........\n----------------------------------------------------------------------\nRan 9 tests in 0.013s\n\nOK"
+  },
+  "consumer": {
+    "invoice_details": {
+      "dataset": "invoice_details",
+      "run_id": "20261028T235345Z-dbb9d103b7ed429ba9be2915f51cd95b",
+      "publication": "published/dataset=invoice_details/version=1/run_date=2026-10-28/run=20261028T235345Z-dbb9d103b7ed429ba9be2915f51cd95b.json",
+      "manifest_sha256": "eb72c7c54f52939c49cc710e47e1056cea32eb3c50e9accaa30d9b1f12b6cce4",
+      "statistics": {
+        "first_key": 1,
+        "last_key": 228265,
+        "null_counts": {
+          "bill_to_customer_id": 0,
+          "bill_to_customer_name": 0,
+          "customer_id": 0,
+          "customer_name": 0,
+          "description": 0,
+          "extended_price": 0,
+          "invoice_date": 0,
+          "invoice_id": 0,
+          "invoice_line_id": 0,
+          "is_credit_note": 0,
+          "line_profit": 0,
+          "order_id": 0,
+          "quantity": 0,
+          "stock_item_id": 0,
+          "tax_amount": 0,
+          "tax_rate": 0,
+          "unit_price": 0
+        },
+        "row_sha256": "373f883715913220873e0d146793cd9d647d91eb7fca330e77ec5fd3fa441d85",
+        "rows": 228265,
+        "sums": {
+          "extended_price": "198043439.45",
+          "line_profit": "85729180.90",
+          "quantity": "8950628",
+          "tax_amount": "25782098.25"
+        }
+      },
+      "files": 5,
+      "bytes": 4529968,
+      "verified_at": "2026-10-28T23:58:07.873086+00:00",
+      "status": "validated"
+    },
+    "order_details": {
+      "dataset": "order_details",
+      "run_id": "20261028T235538Z-ee791a159e5e4aacbd157b17a9402c0b",
+      "publication": "published/dataset=order_details/version=1/run_date=2026-10-28/run=20261028T235538Z-ee791a159e5e4aacbd157b17a9402c0b.json",
+      "manifest_sha256": "443423157b8b496016e44c2276a44a0fc152e9565ee6aade078acac68f1b1138",
+      "statistics": {
+        "first_key": 1,
+        "last_key": 231412,
+        "null_counts": {
+          "customer_id": 0,
+          "customer_name": 0,
+          "description": 0,
+          "order_date": 0,
+          "order_id": 0,
+          "order_line_id": 0,
+          "picked_quantity": 0,
+          "quantity": 0,
+          "stock_item_id": 0,
+          "tax_rate": 0,
+          "unit_price": 0
+        },
+        "row_sha256": "dcfcd1a1380a43e6fd2227fb23f71cf10795d158d2297f0389b9958c7b39e572",
+        "rows": 231412,
+        "sums": {
+          "picked_quantity": "8950628",
+          "quantity": "9310904"
+        }
+      },
+      "files": 5,
+      "bytes": 3044159,
+      "verified_at": "2026-10-28T23:58:17.015902+00:00",
+      "status": "validated"
+    }
+  },
+  "consumer_access": {
+    "checks": [
+      "consumer write denied",
+      "consumer delete denied",
+      "consumer raw list denied",
+      "consumer raw read denied",
+      "consumer receives no PostgreSQL configuration or credential",
+      "Compose consumer has only archive network and its own S3 secret"
+    ]
+  },
+  "warehouse_counts_before": {
+    "events": 604459,
+    "batches": 3027,
+    "current_keys": 604450
+  },
+  "warehouse_counts_after": {
+    "events": 604459,
+    "batches": 3027,
+    "current_keys": 604450
+  },
+  "service_health": {
+    "decom-sqlserver-sqlserver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-debezium-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-archiver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cdc-seaweedfs-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-cloudbeaver-cloudbeaver-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-postgres-1": {
+      "running": true,
+      "health": "healthy"
+    },
+    "decom-warehouse-loader-1": {
+      "running": true,
+      "health": "healthy"
+    }
+  },
+  "automatic_cdc_cleanup_enabled": false,
+  "image_id": "sha256:eaf8f06c49859ebf5939f86929557661ec09704753877ca123da1ddbe081a980",
+  "contracts": {
+    "order_details.v1.json": "490b6fbcba0e59d58d02dde1e04c2a0c1cca28f46e994e182e01c600e87f4cd7",
+    "invoice_details.v1.json": "c2113f2fb319034f821407f846492b45657b6580dfc578fb83133ad6374ccd56"
+  },
+  "migration_sha256": "b13685120e4109c254228916b27e970018f20bf7ed0bb674c15330ecb12738f8",
+  "verified_at": "2026-10-28T23:58:20.647141+00:00",
+  "limits": [
+    "Full snapshots of current warehouse rows; invoice/order exports have separate PostgreSQL snapshots.",
+    "No certified SQL Server transaction watermark, incremental deletion feed or purge authorization.",
+    "Single writer host and durable local request journal; no distributed locking or host-loss recovery test.",
+    "S3 credential permissions tested; trusted lab network/filer administration is not tenant isolation.",
+    "Same-VM storage, no WORM, off-VM restore, automatic retention or scheduler.",
+    "Consumer verifies files and persists a local acknowledgement; no real application replacement/cutover."
+  ]
+}

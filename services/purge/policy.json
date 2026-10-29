@@ -1,0 +1,22 @@
+{
+  "contract": "cdc-purge-audit/v3",
+  "mode": "audit-only",
+  "source_database": "WideWorldImporters",
+  "source_instance": "sqlserver.WideWorldImporters/v1",
+  "snapshot_commit_lsn": "00000274:00000758:0003",
+  "archive_bucket": "cdc-raw",
+  "archive_prefix": "raw/wwi/bootstrap-v2",
+  "warehouse_consumer": "sales/v2",
+  "retention_hours": 72,
+  "retention_policy_status": "lab-default; production retention and legal requirements not approved",
+  "max_source_rows_per_table": 100000,
+  "checkpoint_exercise_max_age_hours": 24,
+  "tables": {
+    "Sales.Customers": {"capture_instance": "Sales_Customers", "primary_key": "CustomerID", "warehouse_required": true},
+    "Sales.Orders": {"capture_instance": "Sales_Orders", "primary_key": "OrderID", "warehouse_required": true},
+    "Sales.OrderLines": {"capture_instance": "Sales_OrderLines", "primary_key": "OrderLineID", "warehouse_required": true},
+    "Sales.Invoices": {"capture_instance": "Sales_Invoices", "primary_key": "InvoiceID", "warehouse_required": true},
+    "Sales.InvoiceLines": {"capture_instance": "Sales_InvoiceLines", "primary_key": "InvoiceLineID", "warehouse_required": true},
+    "lab.CdcProbe": {"capture_instance": "lab_CdcProbe", "primary_key": "ProbeID", "warehouse_required": false, "reason": "Archive-only technical fixture; excluded from the business warehouse contract"}
+  }
+}

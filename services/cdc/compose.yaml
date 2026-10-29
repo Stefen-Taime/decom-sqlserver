@@ -1,0 +1,158 @@
+name: decom-cdc
+
+x-logging: &logging
+  driver: local
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  seaweedfs:
+    image: chrislusf/seaweedfs:4.51@sha256:f7a49e3f3972ebed5be2ed4befa4a0c68eb7bdddba6e692d42729ceb545134b8
+    user: "10002:10002"
+    working_dir: /data
+    command:
+      - server
+      - -dir=/data
+      - -ip=seaweedfs
+      - -ip.bind=0.0.0.0
+      - -filer
+      - -s3
+      - -s3.config=/run/secrets/seaweed_s3
+      - -s3.port.iceberg=0
+      - -s3.port.lance=0
+      - -s3.iam=false
+      - -s3.autoCreateBucket=false
+      - -s3.concurrentUploadLimitMB=32
+      - -s3.readerCacheSizeMB=32
+      - -master.volumeSizeLimitMB=1024
+      - -master.telemetry=false
+      - -volume.max=20
+      - -volume.minFreeSpace=10GiB
+    restart: unless-stopped
+    mem_limit: 1536m
+    memswap_limit: 1536m
+    cpus: 1.0
+    stop_grace_period: 60s
+    ports:
+      - "127.0.0.1:8333:8333"
+      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:9333:9333"
+    volumes:
+      - ${CDC_DATA_DIR:-./data}/seaweedfs:/data
+      - ./seaweedfs/filer.toml:/etc/seaweedfs/filer.toml:ro
+    secrets: [seaweed_s3]
+    networks: [archive]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9333/cluster/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 20s
+    logging: *logging
+
+  archiver:
+    build: ./archiver
+    image: decom-cdc-archiver:2
+    user: "10003:10003"
+    restart: unless-stopped
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 0.75
+    read_only: true
+    tmpfs: [/tmp]
+    environment:
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: cdc-raw
+      ARCHIVE_PREFIX: raw/wwi/bootstrap-v2
+      S3_CREDENTIALS_FILE: /run/secrets/archive_s3
+      WEBHOOK_SECRET_FILE: /run/secrets/webhook
+    secrets: [archive_s3, webhook]
+    networks: [archive]
+    ports:
+      - "127.0.0.1:8090:8080"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/ready', timeout=5)"]
+      interval: 15s
+      timeout: 8s
+      retries: 8
+    logging: *logging
+
+  storage-init:
+    image: decom-cdc-archiver:2
+    profiles: [tools]
+    user: "0:0"
+    command: ["python", "init_bucket.py"]
+    environment:
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: cdc-raw
+      S3_CREDENTIALS_FILE: /run/secrets/admin_s3
+    secrets: [admin_s3]
+    networks: [archive]
+    mem_limit: 256m
+
+  archive-migrate:
+    image: decom-cdc-archiver:2
+    profiles: [tools]
+    user: "0:0"
+    command: ["python", "migrate_layout.py", "--source-prefix", "raw/wwi/bootstrap-v1", "--report", "/reports/layout-v2-migration.json"]
+    environment:
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: cdc-raw
+      ARCHIVE_PREFIX: raw/wwi/bootstrap-v2
+      S3_CREDENTIALS_FILE: /run/secrets/archive_s3
+    secrets: [archive_s3]
+    networks: [archive]
+    volumes:
+      - ${CDC_DATA_DIR:-./data}/migration-reports:/reports
+    read_only: true
+    tmpfs: [/tmp]
+    mem_limit: 1024m
+    cpus: 2.0
+
+  debezium:
+    image: quay.io/debezium/server:3.7.0.Final@sha256:c1e1e9504422d9fd6423550ebf217af182d44eeab8288c82d78b1769bb0b087d
+    user: "185:0"
+    entrypoint: ["/bin/bash", "/opt/lab/start.sh"]
+    environment:
+      JAVA_OPTS: "-Xms256m -Xmx768m -XX:ActiveProcessorCount=2"
+    restart: unless-stopped
+    mem_limit: 1536m
+    memswap_limit: 1536m
+    cpus: 1.5
+    stop_grace_period: 90s
+    volumes:
+      - ./debezium/application.properties:/debezium/config/application.properties:ro
+      - ./debezium/start.sh:/opt/lab/start.sh:ro
+      - ${CDC_DATA_DIR:-./data}/debezium:/debezium/data
+    secrets: [debezium_password, webhook]
+    networks: [source, archive]
+    depends_on:
+      archiver:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/q/health"]
+      interval: 15s
+      timeout: 8s
+      retries: 8
+      start_period: 30s
+    logging: *logging
+
+secrets:
+  seaweed_s3:
+    file: ${CDC_SECRET_DIR:-./.secrets}/seaweed-s3.json
+  admin_s3:
+    file: ${CDC_SECRET_DIR:-./.secrets}/s3-admin.json
+  archive_s3:
+    file: ${CDC_SECRET_DIR:-./.secrets}/s3-archive.json
+  debezium_password:
+    file: ${CDC_SECRET_DIR:-./.secrets}/debezium_password
+  webhook:
+    file: ${CDC_SECRET_DIR:-./.secrets}/webhook
+
+networks:
+  source:
+    external: true
+    name: decom-sqlserver-backend
+  archive:
+    name: decom-cdc-archive

@@ -1,0 +1,585 @@
+{
+  "contract": "cdc-probe-purge-pilot/v1",
+  "run_id": "20261029T163640Z-0f62f8ad3e8e",
+  "passed": true,
+  "completed_at": "2026-10-29T16:37:30.938095+00:00",
+  "mode": "manual-technical-pilot",
+  "plan": {
+    "contract": "cdc-probe-purge-plan/v1",
+    "capture_instance": "lab_CdcProbe",
+    "table": "lab.CdcProbe",
+    "effective_lsn": "00000279000052f00003",
+    "capture_before": {
+      "capture_instance": "lab_CdcProbe",
+      "object_id": 471672728,
+      "source_object_id": 39671189,
+      "table_name": "lab.CdcProbe",
+      "start_lsn": "0x00000273000045E0003C",
+      "create_date": "2026-10-28T17:03:37.930"
+    },
+    "candidate_count": 48,
+    "candidate_cycles": 12,
+    "candidate_sql_sha256": "08c246ad1bd53d6e75460800bf77a1442ea4d18a30c0e62d3b5c68279f1758bb",
+    "candidate_rows_sha256": "f9aa61040c3c2b2fb9f178f35a4851fb98b8202d2eddc60abcc618358d5c4a47",
+    "retained_rows": 4,
+    "retention_minutes": 15,
+    "max_rows": 200,
+    "anchor_id": "ebf3cbe2-0edd-4944-aea3-22cdbe6e5355",
+    "checkpoint_commit_lsn": "00000279000059180005",
+    "selected_source_identities": [
+      [
+        "lab.CdcProbe",
+        "a3ff1a25-40a7-40a2-9b10-05cebab09b1b",
+        2,
+        "0000027300004dd8001c",
+        "0000027300004dd8001b"
+      ],
+      [
+        "lab.CdcProbe",
+        "a3ff1a25-40a7-40a2-9b10-05cebab09b1b",
+        3,
+        "0000027300004de00003",
+        "0000027300004de00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "a3ff1a25-40a7-40a2-9b10-05cebab09b1b",
+        4,
+        "0000027300004de00003",
+        "0000027300004de00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "a3ff1a25-40a7-40a2-9b10-05cebab09b1b",
+        1,
+        "0000027300004de80005",
+        "0000027300004de80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e229b511-2f19-4699-aeb5-dbfe06c524dd",
+        2,
+        "00000273000055d80003",
+        "00000273000055d80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e229b511-2f19-4699-aeb5-dbfe06c524dd",
+        3,
+        "00000273000055e00003",
+        "00000273000055e00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e229b511-2f19-4699-aeb5-dbfe06c524dd",
+        4,
+        "00000273000055e00003",
+        "00000273000055e00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e229b511-2f19-4699-aeb5-dbfe06c524dd",
+        1,
+        "00000273000055e80005",
+        "00000273000055e80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "f37acbdf-7765-41f9-9d60-ca6f856bbd7c",
+        2,
+        "00000273000056f80003",
+        "00000273000056f80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "f37acbdf-7765-41f9-9d60-ca6f856bbd7c",
+        3,
+        "00000273000057000003",
+        "00000273000057000002"
+      ],
+      [
+        "lab.CdcProbe",
+        "f37acbdf-7765-41f9-9d60-ca6f856bbd7c",
+        4,
+        "00000273000057000003",
+        "00000273000057000002"
+      ],
+      [
+        "lab.CdcProbe",
+        "f37acbdf-7765-41f9-9d60-ca6f856bbd7c",
+        1,
+        "00000273000057080005",
+        "00000273000057080002"
+      ],
+      [
+        "lab.CdcProbe",
+        "5bab59b6-f79a-4ecf-949f-0a2cc2a43be5",
+        2,
+        "0000027400002d680003",
+        "0000027400002d680002"
+      ],
+      [
+        "lab.CdcProbe",
+        "5bab59b6-f79a-4ecf-949f-0a2cc2a43be5",
+        3,
+        "0000027400002d700003",
+        "0000027400002d700002"
+      ],
+      [
+        "lab.CdcProbe",
+        "5bab59b6-f79a-4ecf-949f-0a2cc2a43be5",
+        4,
+        "0000027400002d700003",
+        "0000027400002d700002"
+      ],
+      [
+        "lab.CdcProbe",
+        "5bab59b6-f79a-4ecf-949f-0a2cc2a43be5",
+        1,
+        "0000027400002d780005",
+        "0000027400002d780002"
+      ],
+      [
+        "lab.CdcProbe",
+        "38fae338-4d8b-43fe-96c7-6f05c4e03762",
+        2,
+        "0000027400002e080003",
+        "0000027400002e080002"
+      ],
+      [
+        "lab.CdcProbe",
+        "38fae338-4d8b-43fe-96c7-6f05c4e03762",
+        3,
+        "0000027400002e100003",
+        "0000027400002e100002"
+      ],
+      [
+        "lab.CdcProbe",
+        "38fae338-4d8b-43fe-96c7-6f05c4e03762",
+        4,
+        "0000027400002e100003",
+        "0000027400002e100002"
+      ],
+      [
+        "lab.CdcProbe",
+        "38fae338-4d8b-43fe-96c7-6f05c4e03762",
+        1,
+        "0000027400002e180005",
+        "0000027400002e180002"
+      ],
+      [
+        "lab.CdcProbe",
+        "449605ca-d610-4154-9a96-e176f83623f2",
+        2,
+        "0000027400002ec80003",
+        "0000027400002ec80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "449605ca-d610-4154-9a96-e176f83623f2",
+        3,
+        "0000027400002ed00003",
+        "0000027400002ed00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "449605ca-d610-4154-9a96-e176f83623f2",
+        4,
+        "0000027400002ed00003",
+        "0000027400002ed00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "449605ca-d610-4154-9a96-e176f83623f2",
+        1,
+        "0000027400002ed80005",
+        "0000027400002ed80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "95aafb95-266d-45c2-94f4-fbc57a29da8c",
+        2,
+        "0000027400003d780003",
+        "0000027400003d780002"
+      ],
+      [
+        "lab.CdcProbe",
+        "95aafb95-266d-45c2-94f4-fbc57a29da8c",
+        3,
+        "0000027400003d800003",
+        "0000027400003d800002"
+      ],
+      [
+        "lab.CdcProbe",
+        "95aafb95-266d-45c2-94f4-fbc57a29da8c",
+        4,
+        "0000027400003d800003",
+        "0000027400003d800002"
+      ],
+      [
+        "lab.CdcProbe",
+        "95aafb95-266d-45c2-94f4-fbc57a29da8c",
+        1,
+        "0000027400003d880005",
+        "0000027400003d880002"
+      ],
+      [
+        "lab.CdcProbe",
+        "fcafad60-f4d7-4414-bcbc-cba0e504cdff",
+        2,
+        "0000027400003dd00003",
+        "0000027400003dd00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "fcafad60-f4d7-4414-bcbc-cba0e504cdff",
+        3,
+        "0000027400003dd80003",
+        "0000027400003dd80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "fcafad60-f4d7-4414-bcbc-cba0e504cdff",
+        4,
+        "0000027400003dd80003",
+        "0000027400003dd80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "fcafad60-f4d7-4414-bcbc-cba0e504cdff",
+        1,
+        "0000027400003de00005",
+        "0000027400003de00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "3f0e81f3-316d-47b4-8cc9-a6f86e8fd7e4",
+        2,
+        "0000027400003f280003",
+        "0000027400003f280002"
+      ],
+      [
+        "lab.CdcProbe",
+        "3f0e81f3-316d-47b4-8cc9-a6f86e8fd7e4",
+        3,
+        "0000027400003f300003",
+        "0000027400003f300002"
+      ],
+      [
+        "lab.CdcProbe",
+        "3f0e81f3-316d-47b4-8cc9-a6f86e8fd7e4",
+        4,
+        "0000027400003f300003",
+        "0000027400003f300002"
+      ],
+      [
+        "lab.CdcProbe",
+        "3f0e81f3-316d-47b4-8cc9-a6f86e8fd7e4",
+        1,
+        "0000027400003f380005",
+        "0000027400003f380002"
+      ],
+      [
+        "lab.CdcProbe",
+        "1b130ee3-f5a4-46f2-97b8-a7aea0f5e032",
+        2,
+        "00000279000042380003",
+        "00000279000042380002"
+      ],
+      [
+        "lab.CdcProbe",
+        "1b130ee3-f5a4-46f2-97b8-a7aea0f5e032",
+        3,
+        "00000279000042400003",
+        "00000279000042400002"
+      ],
+      [
+        "lab.CdcProbe",
+        "1b130ee3-f5a4-46f2-97b8-a7aea0f5e032",
+        4,
+        "00000279000042400003",
+        "00000279000042400002"
+      ],
+      [
+        "lab.CdcProbe",
+        "1b130ee3-f5a4-46f2-97b8-a7aea0f5e032",
+        1,
+        "00000279000042480005",
+        "00000279000042480002"
+      ],
+      [
+        "lab.CdcProbe",
+        "ad7d3508-7ff4-46af-9db4-0b89cc815bcf",
+        2,
+        "00000279000042680003",
+        "00000279000042680002"
+      ],
+      [
+        "lab.CdcProbe",
+        "ad7d3508-7ff4-46af-9db4-0b89cc815bcf",
+        3,
+        "00000279000042700003",
+        "00000279000042700002"
+      ],
+      [
+        "lab.CdcProbe",
+        "ad7d3508-7ff4-46af-9db4-0b89cc815bcf",
+        4,
+        "00000279000042700003",
+        "00000279000042700002"
+      ],
+      [
+        "lab.CdcProbe",
+        "ad7d3508-7ff4-46af-9db4-0b89cc815bcf",
+        1,
+        "00000279000042780003",
+        "00000279000042780002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e90782af-9625-4417-a540-31136b42c3de",
+        2,
+        "00000279000042b00003",
+        "00000279000042b00002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e90782af-9625-4417-a540-31136b42c3de",
+        3,
+        "00000279000042b80003",
+        "00000279000042b80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e90782af-9625-4417-a540-31136b42c3de",
+        4,
+        "00000279000042b80003",
+        "00000279000042b80002"
+      ],
+      [
+        "lab.CdcProbe",
+        "e90782af-9625-4417-a540-31136b42c3de",
+        1,
+        "00000279000042c00005",
+        "00000279000042c00002"
+      ]
+    ],
+    "scope": "Manual POC only; lab.CdcProbe CDC history; no business cleanup approval"
+  },
+  "archive": {
+    "contract": "cdc-probe-archive-proof/v1",
+    "source_observation_sha256": "699dee248f0cd117b77646dd63b222786436ea702f44b40276cd6a1bc5494cd6",
+    "verified_manifests": 17,
+    "matched_post_bootstrap_images": 40,
+    "archive_proofs": [
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-28/165d221afa9c721ba054ecd129c450b837ac76313e7deba0bfdca26ce3006711.receipt.json",
+        "manifest_sha256": "91883ea9b8e2b3c21d5f89ade30a1909dbed5ce458047ddc00a7c90df5915b7d",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-28/31feda4cc343ef81f3d56be975be8e69fb0f14be589e6ec57e34463d1729a2e3.receipt.json",
+        "manifest_sha256": "3755dc4d582bb4d1db7175e60e45747ceb303bd2ae2dae5607728339bb70410f",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-28/adcd2caf33ce356bb755cc80c86eac319d8290f52a5236e16b4601d36264fa4a.receipt.json",
+        "manifest_sha256": "ecfa8bf8ddefd65ebe947dd3a29aba5399246747d6074c90b3211dbc9a54d5ad",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-28/c0c94ac979e44bb0939cef60f2ef13b7c8bf0df32ba2015bf111d2ea5b90bf1f.receipt.json",
+        "manifest_sha256": "0bdcb478872bf0b561b5f25d0c86816c442c2543e92db127ac3e2d00d300d09e",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-28/c9dbd44d2cddb8c1be81f1615bce14df45ca07c1bd19591411f22ada5f4fa2cc.receipt.json",
+        "manifest_sha256": "e5158d17552c094b37e3b1cfdd6d3c8e147267ce29f79513e265e35a52f66255",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-28/cd1187834b87da1ea811a3037b7b01e16f7d40afa5de2461c84596d3a57638e9.receipt.json",
+        "manifest_sha256": "ab0fe6cec89186a47768b2a7b3a2ff3e0d50c9fac52de1d57e63e3ce1b10b2f8",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-29/26fdd896a75308dd9baf8ca8b57b9e714ab4ee88c610a8870900c29a9d626610.receipt.json",
+        "manifest_sha256": "3cd27916571b93aabe25fd5f1b69c31f6bdc70a7ed663dce41135c8ad963e9bb",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-29/39efb2d3d46e3b2dce8156cad591e5efbe4e1f53001f45fc38f52106f1fadfb9.receipt.json",
+        "manifest_sha256": "afcceb2e7c3e30226757d345e39247d5e11860022a82b8de2e1340ff7e36c603",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-29/5268197ad4cf2b4518155c4935c3ea246ee87a295c95e98e1fe4533f3a93eba9.receipt.json",
+        "manifest_sha256": "ba636222b5d931055e0b970b2625268b9abf4629391cb1ff20b9914da5ae3ac1",
+        "matched_images": 4
+      },
+      {
+        "manifest_key": "raw/wwi/bootstrap-v2/manifests/table=lab.CdcProbe/batch_date=2026-10-29/acebfdeba00ef31c8a02d9f96d52a7eaad4f371e502525b0d3f6cfe6d0f0b964.receipt.json",
+        "manifest_sha256": "6f04c408f8ada1a842cf8e290c52b6b117ea79278d8dc186229ef0d7156b7960",
+        "matched_images": 4
+      }
+    ],
+    "pre_bootstrap_images_preserved_as_sql_evidence": 12,
+    "source_image_backup": {
+      "bucket": "cdc-raw",
+      "key": "control/purge-pilot/v1/20261029T163640Z-0f62f8ad3e8e/source-images.json",
+      "sha256": "699dee248f0cd117b77646dd63b222786436ea702f44b40276cd6a1bc5494cd6",
+      "images": 52,
+      "readback_verified": true,
+      "format": "sqlserver-cdc-probe-images/v1"
+    },
+    "production_purge_authorized": false
+  },
+  "execution": {
+    "return_code": 0,
+    "cleanup_failed": false,
+    "actual_low_watermark": "0x00000279000052F00003",
+    "candidates_remaining": 0
+  },
+  "reconciliation": {
+    "exact_planned_images_removed": 48,
+    "retained_probe_images": 4,
+    "business_captures_unchanged": [
+      "Sales.Customers",
+      "Sales.InvoiceLines",
+      "Sales.Invoices",
+      "Sales.OrderLines",
+      "Sales.Orders"
+    ],
+    "fixed_upper_lsn": "0x00000279000059180005",
+    "all_retained_values_identical": true
+  },
+  "changes_deleted": 48,
+  "final_probe_cdc_images": 8,
+  "live_probe_rows": 0,
+  "continuity": {
+    "anchor_id": "ebf3cbe2-0edd-4944-aea3-22cdbe6e5355",
+    "post_purge_probe_id": "5fd00f87-c7e0-46da-8df3-10d68eeed315",
+    "post_purge_events": [
+      "c",
+      "u",
+      "d"
+    ],
+    "checkpoint_before": {
+      "container_id": "aeb9cf00e4b1269ee3094b6281f3ee65dabadecf9745ea95739238fce51fe49f",
+      "image_id": "sha256:c1e1e9504422d9fd6423550ebf217af182d44eeab8288c82d78b1769bb0b087d",
+      "config_sha256": "7630d05c47bc4048e18c435fbb1afb482eefe084d535454e09ba2af48b28c00c",
+      "state_directory": "/srv/decom-sqlserver/cdc/debezium",
+      "checkpoint": {
+        "namespace": "http",
+        "partition": {
+          "server": "wwi",
+          "database": "WideWorldImporters"
+        },
+        "commit_lsn": "00000279000059180005",
+        "change_lsn": "00000279000059180002",
+        "event_serial_no": 1,
+        "command_id": 1
+      },
+      "files": {
+        "offsets.dat": {
+          "sha256": "718c28a135ed20bab9b3b83492356c756e77ccea0d8259152e1e5dc404eaf2ab",
+          "bytes": 284
+        },
+        "schema-history.dat": {
+          "sha256": "abaadee65e2c3be618d695408b19695b07d7f2ed7b2c2954f6731d6a4215c259",
+          "bytes": 56440
+        }
+      },
+      "source_container_id": "f667e08e5c67329abaa794b08f2f04e9c51c5cfcdd06df8af485bdd15e9d8005"
+    },
+    "checkpoint_after": {
+      "container_id": "aeb9cf00e4b1269ee3094b6281f3ee65dabadecf9745ea95739238fce51fe49f",
+      "image_id": "sha256:c1e1e9504422d9fd6423550ebf217af182d44eeab8288c82d78b1769bb0b087d",
+      "config_sha256": "7630d05c47bc4048e18c435fbb1afb482eefe084d535454e09ba2af48b28c00c",
+      "state_directory": "/srv/decom-sqlserver/cdc/debezium",
+      "checkpoint": {
+        "namespace": "http",
+        "partition": {
+          "server": "wwi",
+          "database": "WideWorldImporters"
+        },
+        "commit_lsn": "0000027900005a480005",
+        "change_lsn": "0000027900005a480002",
+        "event_serial_no": 1,
+        "command_id": 1
+      },
+      "files": {
+        "offsets.dat": {
+          "sha256": "9b1d6c9b524c7bb2b71db6a9b647fc8cf6cd0855dd6bc44ca75d8676839653ec",
+          "bytes": 284
+        },
+        "schema-history.dat": {
+          "sha256": "abaadee65e2c3be618d695408b19695b07d7f2ed7b2c2954f6731d6a4215c259",
+          "bytes": 56440
+        }
+      },
+      "source_container_id": "f667e08e5c67329abaa794b08f2f04e9c51c5cfcdd06df8af485bdd15e9d8005"
+    },
+    "checkpoint_advanced": true,
+    "same_container_image_config_history_and_mount": true,
+    "state_fsynced_before_cleanup": true,
+    "archive_and_backup_readback_after_cleanup": true
+  },
+  "native_cleanup_jobs": [
+    {
+      "enabled": 0,
+      "retention": 4320
+    }
+  ],
+  "services": {
+    "decom-airflow-api-1": "healthy",
+    "decom-airflow-dag-processor-1": "healthy",
+    "decom-airflow-scheduler-1": "healthy",
+    "decom-cdc-archiver-1": "healthy",
+    "decom-cdc-debezium-1": "healthy",
+    "decom-cdc-seaweedfs-1": "healthy",
+    "decom-cloudbeaver-cloudbeaver-1": "healthy",
+    "decom-messaging-dispatcher-1": "healthy",
+    "decom-messaging-invoice-app-1": "healthy",
+    "decom-messaging-rabbitmq-1": "healthy",
+    "decom-sqlserver-sqlserver-1": "healthy",
+    "decom-warehouse-loader-1": "healthy",
+    "decom-warehouse-postgres-1": "healthy"
+  },
+  "scope_exception": {
+    "retention_minutes": 15,
+    "pre_bootstrap_strategy": "Verified direct SQL CDC image backup",
+    "off_vm_recovery_tested": false,
+    "crash_durability_certified": false,
+    "production_transaction_fence_certified": false,
+    "business_purge_authorized": false,
+    "automatic_purge_enabled": false,
+    "archive_only_technical_consumer": true
+  },
+  "provenance_sha256": {
+    "app/audit.py": "58c79f52a81708c72cf68731b08b55979d40fd0ff5affa595438b473502aed54",
+    "app/audit_core.py": "45e47a0e823f14897678353ae599386d5ef6b85d5f23345cff79e0f357551950",
+    "app/check_access.py": "5741e6fe183bffa74e5b21cea853e406ddaa3c621e8eec9fabdd7ae58f98e32f",
+    "app/logical_values.py": "0cfa5d7d0d3588363e3e3e18cc437d924f8437ced119536f79af6fd887ce8a86",
+    "app/offset_checkpoint.py": "9d62a927f351b135f998d54c4fa41a8399a11c702551a1a859a5cf1e783ed1cb",
+    "app/pilot_archive.py": "d13a5215b071cf59134b5f1203413fcf66040f2a723615e599e1892fc3eb41f3",
+    "app/pilot_core.py": "f2a3c6c599da53cd2b1c33e4513aa892b0eb8a65da5ee36a8bd0420be90e72e3",
+    "app/resume_audit.py": "ea4079c3e9d83337f19cb21582098bbe5e751cd727a141d39abc7d61496502be",
+    "app/row_values.py": "0a092ba77e8aab85eaf12d31dda59fb7b7a55f5efafb4486df76c7461551106e",
+    "app/run_tests.py": "8ce8484082986485a869d56187349b9ccd18456ba480bdc39c7ce8e1db51bbb4",
+    "scripts/checkpoint-input.py": "c36f4f478d873e7539661ebfcf03db1d1b04b6fe00a33a15fb91bb401d3510d0",
+    "scripts/pilot-host.py": "b9cf031be979b63e3914fa27cb8e0787e59f9c6524ebca09971c5cb0ab456b50",
+    "scripts/prepare-host.py": "7c8ceca6c1142b95a93e779d128650be30ef0477367621958f00638d48cf0913",
+    "scripts/resolution-input.py": "c4f4a7e3f3a2ba2c5014c98a4c4bc3d0928fb452b1eb277655a36f73ceff5c01",
+    "scripts/run-host.py": "7e095448c10e40877a3a64fff1e75c95d64396f2205fa1de42d2fd3bfba2b9b2",
+    "scripts/source.py": "b6744d6282f50af0b8186442b2b0c38d40578e25afd729b900dc28e5c0420f1d",
+    "scripts/verify-checkpoint-host.py": "d3c2d1707c521816f144258586208422d45ede1afa0fee1c986002775fddff91",
+    "tests/test_audit.py": "e0ac985467210a7a179c7730d8b3275cb4f16544d583d07083f75bf356fc9d28",
+    "tests/test_checkpoint.py": "bf275936c641719509ef14e72b5d08a0f12742579b2f952e22df31cb8ee65884",
+    "tests/test_logical_values.py": "392a018aad28ba8d511e3b1a5145497e7f0b2d5a08c2ef7063efdbc306b8afe1",
+    "tests/test_pilot.py": "1151bb94db4972179148eaefeb55ff38bfa27c9d9432dc4c3f1307c70adacf1a",
+    "tests/test_resume_runner.py": "6cf1cc128bcbf0b3e2ac30863dcd85f9f888908bc8cab3e4f1088ead37d83a3b",
+    "tests/test_row_values.py": "e98e06edc72ad1ebc0d88ee428702cf1945e2f909ac718193cfc5f044368581a",
+    "tests/test_source.py": "83af52530821545e518751ccc2b815f5b3540be767faf875dd0291e94451feb5"
+  }
+}

@@ -1,0 +1,45 @@
+name: decom-purge
+services:
+  audit:
+    build:
+      context: ..
+      dockerfile: purge/Dockerfile
+    image: decom-cdc-purge-audit:3
+    user: "10010:10010"
+    profiles: [tools]
+    restart: "no"
+    read_only: true
+    tmpfs: ["/tmp:size=64m,mode=1777"]
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1.0
+    environment:
+      PGHOST: postgres
+      PGDATABASE: warehouse
+      PGUSER: warehouse_cdc_auditor
+      PGPASSWORD_FILE: /run/secrets/pg_password
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: cdc-raw
+      S3_CREDENTIALS_FILE: /run/secrets/archive_reader
+      ARCHIVE_PREFIX: raw/wwi/bootstrap-v2
+      SNAPSHOT_COMMIT_LSN: "00000274:00000758:0003"
+    secrets: [pg_password,archive_reader]
+    networks: [warehouse,archive]
+    volumes:
+      - ${PURGE_RUN_DIR:?Set a unique protected audit run directory}/input:/input:ro
+      - ${PURGE_RUN_DIR:?Set a unique protected audit run directory}/output:/output
+    logging:
+      driver: local
+      options: {max-size: "10m", max-file: "3"}
+secrets:
+  pg_password:
+    file: ${PURGE_SECRET_DIR:-./.secrets}/pg_password
+  archive_reader:
+    file: ${PURGE_SECRET_DIR:-./.secrets}/s3-reader.json
+networks:
+  warehouse:
+    external: true
+    name: decom-warehouse-backend
+  archive:
+    external: true
+    name: decom-cdc-archive

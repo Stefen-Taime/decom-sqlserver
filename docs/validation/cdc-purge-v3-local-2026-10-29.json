@@ -1,0 +1,74 @@
+{
+  "contract": "cdc-purge-v3-local-validation/v1",
+  "completed_at": "2026-10-29T15:18:52.861858+00:00",
+  "status": "local_checks_passed_vm_acceptance_pending",
+  "unit_tests": {
+    "tests_run": 75,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true
+  },
+  "python_sources_parsed": 20,
+  "compose_config_valid": true,
+  "java_serialization_fixtures": {
+    "count": 10,
+    "generator": "services/purge/tests/fixtures/OffsetFixture.java",
+    "generator_runtime": "OpenJDK Corretto 20.0.2.1; --release 17"
+  },
+  "unchanged_warehouse_dependencies_match_previous_live_provenance": {
+    "loader/load.py": true,
+    "loader/resolve.py": true,
+    "loader/resolve_core.py": true,
+    "loader/sales_contract.py": true
+  },
+  "remote_actions_performed": [],
+  "vm_deployed": false,
+  "live_checkpoint_decoded": false,
+  "live_restart_exercised": false,
+  "live_service_health_observed": false,
+  "purge_authorized": false,
+  "changes_deleted": 0,
+  "remote_validation_blocker": "This session could not resolve/reach compute.googleapis.com. The initial standard gcloud configuration was read-only; retrying with a private writable temporary configuration reached the network restriction. This does not establish that the VM is unavailable.",
+  "pending_vm_validation": [
+    "Inspect actual connector image libraries and offset format",
+    "Back up existing purge code/image and build image :3",
+    "Run the controlled local resume exercise",
+    "Run v3 audit, verify values, permissions, source stability and health",
+    "Retain sanitized live acceptance report; leave durable-crash checkpoint, transaction fence and off-VM restore gates unresolved"
+  ],
+  "provenance_sha256": {
+    "services/purge/Dockerfile": "5cd2790cd0d2f74dc094dd27f3cb72d37310be33db00b8a6f5aa9fc741584118",
+    "services/purge/README.md": "d90a63ff28ce0db52e1c6e29fa53c38c228a8d6583d86476711f8091090d100f",
+    "services/purge/app/audit.py": "1ea8ff29471bcdddb77f1a60b220638dc8b7e36bc54145463e083e7873041557",
+    "services/purge/app/audit_core.py": "45e47a0e823f14897678353ae599386d5ef6b85d5f23345cff79e0f357551950",
+    "services/purge/app/check_access.py": "5741e6fe183bffa74e5b21cea853e406ddaa3c621e8eec9fabdd7ae58f98e32f",
+    "services/purge/app/logical_values.py": "0cfa5d7d0d3588363e3e3e18cc437d924f8437ced119536f79af6fd887ce8a86",
+    "services/purge/app/offset_checkpoint.py": "854a69a89dc52502637e32ca3ec9e6672ca8830f961e8fe458946e9d1d24168d",
+    "services/purge/app/resume_audit.py": "41df47c71d1a6c749a32c0de66c483a5198f87c2c4ed4c92bba4afb5bed8dbd3",
+    "services/purge/app/row_values.py": "0a092ba77e8aab85eaf12d31dda59fb7b7a55f5efafb4486df76c7461551106e",
+    "services/purge/app/run_tests.py": "8ce8484082986485a869d56187349b9ccd18456ba480bdc39c7ce8e1db51bbb4",
+    "services/purge/compose.yaml": "8284b78eb563a89e210c6f189e12c9fcf866949291fb7aa04eb70d3cf5c4d122",
+    "services/purge/policy.json": "11a5d0d5bd9121b48be9262fc5ae4573314797c47bc7e59cbf29c2ce1a386ca6",
+    "services/purge/scripts/checkpoint-input.py": "c36f4f478d873e7539661ebfcf03db1d1b04b6fe00a33a15fb91bb401d3510d0",
+    "services/purge/scripts/prepare-host.py": "7c8ceca6c1142b95a93e779d128650be30ef0477367621958f00638d48cf0913",
+    "services/purge/scripts/resolution-input.py": "c4f4a7e3f3a2ba2c5014c98a4c4bc3d0928fb452b1eb277655a36f73ceff5c01",
+    "services/purge/scripts/run-host.py": "7e095448c10e40877a3a64fff1e75c95d64396f2205fa1de42d2fd3bfba2b9b2",
+    "services/purge/scripts/source.py": "b6744d6282f50af0b8186442b2b0c38d40578e25afd729b900dc28e5c0420f1d",
+    "services/purge/scripts/verify-checkpoint-host.py": "9f91c213af2dbc78fff9c1071d4908831f540c450cfa0d83e874e233845df662",
+    "services/purge/tests/fixtures/OffsetFixture.java": "bdad1cd8cbe7ec773bcbcdc33ff6806ef36bc13255fee4d32ec9a4e8800f2b3e",
+    "services/purge/tests/fixtures/offsets.json": "c1af8ef800c757ad45ff438b890c7605b979d43b5c526e096319ea5aee722e90",
+    "services/purge/tests/test_audit.py": "e0ac985467210a7a179c7730d8b3275cb4f16544d583d07083f75bf356fc9d28",
+    "services/purge/tests/test_checkpoint.py": "865d606ae6eed307feb4c425fb34012a4a10625ec154d6fb8c0fca916e44877b",
+    "services/purge/tests/test_logical_values.py": "d0bc7b431bc65be408f52864715cb6c37676d9939384387011dc91b47a82ddc1",
+    "services/purge/tests/test_resume_runner.py": "6cf1cc128bcbf0b3e2ac30863dcd85f9f888908bc8cab3e4f1088ead37d83a3b",
+    "services/purge/tests/test_row_values.py": "e98e06edc72ad1ebc0d88ee428702cf1945e2f909ac718193cfc5f044368581a",
+    "services/purge/tests/test_source.py": "83af52530821545e518751ccc2b815f5b3540be767faf875dd0291e94451feb5"
+  },
+  "historical_evidence_sha256": {
+    "cdc-purge-audit-v1-2026-10-29.json": "9faca9d95d310af765ba333514bb0dc492d6402160978727c74d47432926810f",
+    "cdc-purge-audit-v2-2026-10-29.json": "bbd5ab635e86240b212d793ba2cdce649e1ac70712f74cf68926dd1e9a9af0b8",
+    "cdc-purge-after-reconstruction-2026-10-29.json": "fa0ed38d3b8f5d791b2134b8ab39a6d35496f47a8e774f6f0e8e1461aa047a52",
+    "cdc-value-reconstruction-v1-2026-10-29.json": "d0cab7e67b32220e180f186b527f220d3b08bc048beaa5a9eac9388525443aa0"
+  }
+}

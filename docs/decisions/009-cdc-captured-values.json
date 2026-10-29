@@ -1,0 +1,36 @@
+{
+  "decision": "Compare every captured column of retained post-bootstrap CDC images before considering cleanup",
+  "date": "2026-10-29",
+  "extends": "008-cdc-purge-audit.json",
+  "contract": "cdc-purge-audit/v2",
+  "scope": "Read-only value reconciliation; no cleanup executor or change to archive/warehouse contracts",
+  "decisions": [
+    "Discover the captured columns and their SQL types for all six configured capture instances. Read every captured value from the retained change table, including before/after update images, within the fixed observation boundary.",
+    "Preserve NULL explicitly in source JSON and reject missing or additional archive fields. A new unsupported SQL type fails closed rather than being silently dropped.",
+    "Serialize exact numerics as text at the source and compare using Decimal without context-dependent rounding. Preserve integer precision beyond 2^53 and all seven fractional timestamp digits. Do not trim strings, normalize Unicode or convert exact values through floating point.",
+    "For the existing Debezium isostring configuration, normalize the connector's date/timestamp Z suffix against SQL timezone-free values without using Python microsecond datetime conversion. Unknown timezone-bearing types are not accepted by this mapping.",
+    "Compare geography/geometry as native SQL Server serialized bytes, matching the observed connector bytes representation. Do not replace it with WKB, which would alter the representation and discard native metadata.",
+    "Use a multiset of canonical value hashes per retained CDC image identity, preserving multiplicity. Report only counts, hashes and differing column names, never business values.",
+    "Reobserve source values and captured metadata after the archive scan. Changes inside the same bounded observation invalidate source stability.",
+    "Check captured-column sets in snapshot envelopes, but do not call this full source snapshot value reconciliation. Explicitly report tables without retained CDC images.",
+    "Treat SQL CDC unavailable-value NULL representations as captured data. Do not manufacture older values from the current base table.",
+    "Record the CDC update mask. Diagnose the pinned Debezium 3.7.0 unavailable-value rule only for an unchanged large-object column with source NULL, an update operation and the exact expected marker. Keep strict equality false for these cells; diagnostic representation consistency is not proof of preserved original values.",
+    "Keep all existing independent cleanup gates and the unconditional prohibition on audit-authorized deletion. Retain v1 evidence and the prior image for rollback."
+  ],
+  "limits": [
+    "The 100,000-row-per-capture bound and 512 MiB one-off container remain lab constraints. Row width and archive size can also limit this implementation; larger histories need partitioned reconciliation and measured capacity.",
+    "Unsupported types, including float/real, datetimeoffset and arbitrary user-defined types, require a reviewed mapping before use. Type support is deliberately explicit.",
+    "Matching captured values cannot recover data SQL CDC did not retain, prove transaction atomicity, certify a durable connector offset, or authorize retirement of any application.",
+    "Marker treatment requires a separate, versioned consumer/reconstruction contract. No raw event, source row or existing warehouse semantic hash is rewritten by this audit. A marker must not silently replace a known business value or be treated as SQL NULL.",
+    "Complete source observations contain business values and are protected inputs; they must not be copied into the repository or public acceptance reports.",
+    "Single-VM durability, recovery, retention approval, other CDC consumers and pre-bootstrap history remain separate unresolved concerns."
+  ],
+  "sources": [
+    "https://debezium.io/documentation/reference/3.7/connectors/sqlserver.html",
+    "https://github.com/debezium/debezium/blob/v3.7.0.Final/debezium-connector-sqlserver/src/main/java/io/debezium/connector/sqlserver/SqlServerChangeTablePointer.java",
+    "https://github.com/debezium/debezium/blob/v3.7.0.Final/debezium-connector-sqlserver/src/main/java/io/debezium/connector/sqlserver/SqlServerDatabaseSchema.java",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-functions/cdc-fn-cdc-get-all-changes-capture-instance-transact-sql",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver16",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-cdc-cleanup-change-table-transact-sql"
+  ]
+}

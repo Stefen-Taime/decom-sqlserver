@@ -1,0 +1,17 @@
+{
+  "verified_on": "2026-10-28",
+  "archive_prefix": "s3://cdc-raw/raw/wwi/bootstrap-v1/",
+  "verified_receipts": 3023,
+  "verified_payload_and_compressed_checksums": true,
+  "snapshot_unique_primary_keys": {
+    "Sales.Customers": 663,
+    "Sales.InvoiceLines": 228265,
+    "Sales.Invoices": 70510,
+    "Sales.OrderLines": 231412,
+    "Sales.Orders": 73595
+  },
+  "snapshot_last_marker": true,
+  "snapshot_records": 604445,
+  "receiver_failure_tests_passed": 10,
+  "purge_authorized": false
+}

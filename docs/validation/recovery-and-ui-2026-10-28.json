@@ -1,0 +1,30 @@
+{
+  "verified_on": "2026-10-28",
+  "cloudbeaver": {
+    "login": "stefen",
+    "authentication_via_graphql": "passed",
+    "saved_sql_connection": "passed",
+    "sql_counts": {"customers": 663, "orders": 73595, "order_lines": 231412, "stored_procedures": 42},
+    "sql_customer_update_permission": false,
+    "browser_login_page": "verified",
+    "browser_authenticated_session": "not used; credentials and SQL access tested through the application API"
+  },
+  "seaweedfs": {
+    "filer_browser": "verified",
+    "master_browser": "verified",
+    "archive_path_fsync": true
+  },
+  "cdc_recovery": {
+    "baseline_probe": "5bab59b6-f79a-4ecf-949f-0a2cc2a43be5",
+    "storage_outage_probe": "38fae338-4d8b-43fe-96c7-6f05c4e03762",
+    "connector_recreation_probe": "449605ca-d610-4154-9a96-e176f83623f2",
+    "all_probe_insert_update_delete_events_verified": true,
+    "receiver_http_status_during_outage": 503,
+    "source_offset_unchanged_during_outage": true,
+    "backlog_archived_after_storage_restart": true,
+    "no_new_snapshot_after_connector_recreation": true
+  },
+  "sqlserver_cdc_capture_job_enabled": true,
+  "sqlserver_cdc_cleanup_job_enabled": false,
+  "purge_authorized": false
+}

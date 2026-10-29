@@ -1,0 +1,52 @@
+name: decom-sqlserver
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-CU27-GDR1-ubuntu-22.04@sha256:cf8f0ab2ebe61feec2eed2629061a07d247f791c2a8ddda74a4ac9f06a291718
+    platform: linux/amd64
+    hostname: sqlserver
+    restart: unless-stopped
+    user: "10001:10001"
+    mem_limit: 4g
+    memswap_limit: 4g
+    cpus: 2.0
+    stop_grace_period: 90s
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_AGENT_ENABLED: "true"
+      MSSQL_MEMORY_LIMIT_MB: "3072"
+      MSSQL_COLLATION: SQL_Latin1_General_CP1_CI_AS
+    entrypoint: ["/bin/bash", "/opt/lab/bin/start.sh"]
+    ports:
+      - "127.0.0.1:${SQLSERVER_PORT:-1433}:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./bin:/opt/lab/bin:ro
+      - ./sql:/opt/lab/sql:ro
+      - ${SQLSERVER_BACKUP_DIR:-./backups}:/var/opt/mssql/backup:ro
+    secrets:
+      - sa_password
+    healthcheck:
+      test: ["CMD", "/bin/bash", "/opt/lab/bin/sqlcmd.sh", "-i", "/opt/lab/sql/00-health.sql", "-o", "/dev/null"]
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 60s
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+secrets:
+  sa_password:
+    file: ${SQLSERVER_SECRET_DIR:-./.secrets}/sa_password
+
+volumes:
+  sqlserver_data:
+    name: decom-sqlserver-data
+
+networks:
+  default:
+    name: decom-sqlserver-backend

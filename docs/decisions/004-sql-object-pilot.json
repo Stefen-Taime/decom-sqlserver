@@ -1,0 +1,87 @@
+{
+  "title": "SQL object assessment and first extraction-procedure port",
+  "date": "2026-10-28",
+  "status": "Implemented; see separate deployment evidence",
+  "source_procedure": "Integration.GetOrderUpdates",
+  "target_function": "app.get_order_updates(text,text,text)",
+  "selection": {
+    "reason": "The real procedure reads Orders, OrderLines and Customers, already in the current warehouse. Its only additional data lookup is the 14-row Warehouse.PackageTypes reference. Website.SearchForCustomers also needs Cities and People, and is deferred.",
+    "scope": "One read/extraction contract. No write procedure, source procedure replacement or application cutover.",
+    "source_tables": [
+      "Sales.Orders",
+      "Sales.OrderLines",
+      "Sales.Customers",
+      "Warehouse.PackageTypes"
+    ]
+  },
+  "contract": {
+    "parameters": [
+      "last_cutoff: ISO datetime2(7) text without timezone; NULL allowed",
+      "new_cutoff: same type; NULL allowed",
+      "reference_version: explicit loaded PackageTypes snapshot identifier"
+    ],
+    "window": "Last Modified When > last_cutoff AND Last Modified When <= new_cutoff. Last Modified When is the source CASE expression choosing the newer order/line edit time. NULL, equal and reversed cutoff windows return no rows.",
+    "time_precision": "Normalize to YYYY-MM-DDTHH:MM:SS.fffffff text, comparing with C collation. Keep the seventh fractional digit. Strip the Debezium serializer Z only from archived source values; do not convert wall clocks across timezones. The public ISO contract is narrower than arbitrary T-SQL date coercions.",
+    "result": "Preserve all 18 source column names and values. SQL date results remain date; Last Modified When is exact ISO text rather than a six-digit PostgreSQL timestamp. Source success code 0 becomes a successful SELECT result; this is not T-SQL wire-protocol compatibility.",
+    "numeric": "Use fixed decimal casts matching the observed SQL Server 16 / compatibility 130 expression types: quantity*price decimal(29,2); multiplying by tax decimal(38,5); division and rounded tax numeric(38,6); total including tax numeric(38,6). Preserve NULL prices and half-away-from-zero rounding, including negative quantities. The tested source engine truncates the division result to six fractional places before the final ROUND. Migration 004 reproduces that step; it avoids an extra cent for quantity=1, price=0.01 and tax=49.999.",
+    "ordering": "OrderID ascending with a deterministic OrderLineID tie-breaker in the target. Source tie order is unspecified, so validation compares duplicate-preserving row multisets within OrderID groups. Add an outer ORDER BY when composing a consumer query.",
+    "reference": "Load an immutable, content-addressed PackageTypes snapshot with checksum, source capture time and temporal bounds. Pass its version explicitly; unknown, incomplete or missing-key snapshots fail. There is no automatic refresh and no new CDC capture generation.",
+    "current_state": "Use current non-deleted warehouse rows, as the source procedure queries current source tables. The procedure does not emit deletions or previous historical versions. Customer/reference changes alone do not advance its order/line edit cutoff."
+  },
+  "security": {
+    "source": "The procedure runs WITH EXECUTE AS OWNER. The source has an enabled customer RLS policy involving city/territory membership.",
+    "target": "SECURITY INVOKER; pinned pg_catalog search path; schema-qualified relations; PUBLIC execution revoked. Only warehouse_reader receives usage/SELECT/EXECUTE. The CDC loader receives no API or reference-write privilege.",
+    "certified_scope": "Full-scope lab reader only. Per-application identity, territory restrictions, external callers and ownership remain unconfirmed; do not infer application authorization parity from row equality."
+  },
+  "assessment": {
+    "procedures": 42,
+    "categories": {
+      "source_administration": 13,
+      "lab_simulation": 5,
+      "data_extraction": 13,
+      "application_write": 6,
+      "application_read": 5
+    },
+    "dynamic_sql_review_candidates": 13,
+    "method": "Definition fingerprints, source metadata, direct/transitive dependency graph, module execution context, parameter types, SQL Agent command fingerprints and heuristic dynamic-SQL flags.",
+    "limitations": "SQL schemas/names suggest categories, not proven application ownership. Static dependencies and procedure-cache observations are incomplete; absence from cache does not justify deletion. No object is approved for retirement."
+  },
+  "validation": {
+    "isolated_tests": 25,
+    "real_source_cases": 7,
+    "numeric_golden_cases": 12,
+    "source_execution": "Run the original SQL Server procedure, capture its 18-column result into a temporary table, then stream JSONL in one SERIALIZABLE source transaction. Source business data and definitions are unchanged.",
+    "target_comparison": "Read-only warehouse_reader connection in REPEATABLE READ, server-side cursor, exact Decimal values, ordered groups, duplicate preservation, complete result counts and SHA-256 fingerprints.",
+    "limits": "Quiet fixture validation only. Source SERIALIZABLE reads can block writers. Not an online cutover checkpoint, deletion feed, purge watermark or capacity certification."
+  },
+  "operations": {
+    "migration": "003-order-updates-api.sql adds the API/reference schemas; 004-order-tax-division.sql corrects intermediate division precision. Both are checksum-ledgered; applied migrations are never edited.",
+    "recovery": "Protected schema-only backup in /srv/decom-sqlserver/releases/order-updates-v1-20261028, plus the verified PackageTypes bundle. Existing full warehouse recovery evidence remains separate.",
+    "disable_api": "REVOKE EXECUTE ON FUNCTION app.get_order_updates(text,text,text) FROM warehouse_reader;",
+    "rollback": "Disable the API without deleting CDC data or reference history. Use a subsequent numbered migration to correct or retire the implementation; do not edit an applied migration.",
+    "permanent_services_added": 0,
+    "automatic_purge": false
+  },
+  "sources": [
+    {
+      "title": "Microsoft: SQL expression dependencies",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sql-expression-dependencies-transact-sql"
+    },
+    {
+      "title": "Microsoft: decimal precision and scale",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/precision-scale-and-length-transact-sql"
+    },
+    {
+      "title": "Microsoft: ROUND behavior",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/round-transact-sql"
+    },
+    {
+      "title": "PostgreSQL 18: function security and execution privileges",
+      "url": "https://www.postgresql.org/docs/18/sql-createfunction.html"
+    },
+    {
+      "title": "Source evidence",
+      "path": "/srv/decom-sqlserver/validation/sql-objects-20261028"
+    }
+  ]
+}

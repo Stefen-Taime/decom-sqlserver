@@ -1,0 +1,78 @@
+name: decom-export
+services:
+  exporter:
+    build: .
+    image: decom-export:1
+    user: "10005:10005"
+    profiles: [tools]
+    restart: "no"
+    read_only: true
+    tmpfs: ["/tmp:size=256m,mode=1777"]
+    mem_limit: 768m
+    memswap_limit: 768m
+    cpus: 1.0
+    environment:
+      PGHOST: postgres
+      PGDATABASE: warehouse
+      PGUSER: warehouse_exporter
+      PGPASSWORD_FILE: /run/secrets/pg_password
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: warehouse-exports
+      S3_CREDENTIALS_FILE: /run/secrets/s3_writer
+      EXPORT_STATE_DIR: /state
+    secrets: [pg_password, s3_writer]
+    networks: [warehouse, archive]
+    volumes:
+      - ${EXPORT_DATA_DIR:-./data}/requests:/state
+    logging: &logging
+      driver: local
+      options: {max-size: "10m", max-file: "3"}
+  consumer:
+    image: decom-export:1
+    user: "10006:10006"
+    profiles: [tools]
+    restart: "no"
+    read_only: true
+    tmpfs: ["/tmp:size=256m,mode=1777"]
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1.0
+    command: [consumer.py, list, --dataset, invoice_details]
+    environment:
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: warehouse-exports
+      S3_CREDENTIALS_FILE: /run/secrets/s3_consumer
+      CONSUMER_STATE_DIR: /state
+    secrets: [s3_consumer]
+    networks: [archive]
+    volumes:
+      - ${EXPORT_DATA_DIR:-./data}/consumer:/state
+    logging: *logging
+  storage-init:
+    image: decom-export:1
+    profiles: [tools]
+    user: "0:0"
+    command: [init_storage.py]
+    environment:
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: warehouse-exports
+      S3_CREDENTIALS_FILE: /run/secrets/s3_admin
+    secrets: [s3_admin]
+    networks: [archive]
+    mem_limit: 256m
+secrets:
+  pg_password:
+    file: ${EXPORT_SECRET_DIR:-./.secrets}/pg_password
+  s3_writer:
+    file: ${EXPORT_SECRET_DIR:-./.secrets}/s3-writer.json
+  s3_consumer:
+    file: ${EXPORT_SECRET_DIR:-./.secrets}/s3-consumer.json
+  s3_admin:
+    file: /srv/decom-sqlserver/secrets/cdc/s3-admin.json
+networks:
+  warehouse:
+    external: true
+    name: decom-warehouse-backend
+  archive:
+    external: true
+    name: decom-cdc-archive
